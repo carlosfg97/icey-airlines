@@ -1,0 +1,38 @@
+# Models are config, not code. Change them here.
+anthropic:
+  model: claude-sonnet-5-5
+  tool_type: web_search_20250305   # basic web search, no code-execution tool needed
+  max_uses: 5                      # max searches per call
+  max_tokens: 2048
+openai:
+  model: gpt-6-astra
+  reasoning_effort: low            # set to null to omit
+  search_context_size: medium
+
+# Same location for every call so results are comparable.
+user_location:
+  type: approximate
+  country: US
+
+# Cost and safety
+max_calls_per_run: 40              # hard cap per hourly run
+max_total_calls: 3200              # budget cap across all non-test rows in results.jsonl
+call_timeout_s: 180
+max_retries: 2                     # retries after the first attempt, with backoff
+max_pause_continues: 3             # Anthropic pause_turn continuations
+workers: 4                         # parallel calls
+
+# Experiment design
+routes_per_airline_per_run: 3      # 3 airlines x 3 routes x 2 directions x 2 providers = 36 calls
+airlines: [alaska, delta, southwest]
+providers: [anthropic, openai]
+prompt_variant: base               # "base" never names the airline; "named" adds "on <Airline>"
+holiday_date: "2026-12-23"         # fixed so the holiday window is comparable across runs
+window_days: {next_week: 7, next_month: 30}
+
+# Save full raw API responses only for test runs (hourly raw files would bloat git).
+raw_responses: test_only           # test_only | all | none
+
+paths:
+  results: data/results.jsonl
+  raw_dir: data/raw

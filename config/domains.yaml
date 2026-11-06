@@ -1,0 +1,56 @@
+# Registrable domain -> category. Edit freely; unknown domains are reported for review.
+# airline_direct_target / airline_direct_other are decided per call from `airlines` below.
+airlines:            # target airline -> its own domains
+  alaska: [alaskaair.com, hawaiianairlines.com]
+  delta: [delta.com]
+  southwest: [southwest.com]
+
+other_airlines:      # direct airline sites that are not the target
+  - united.com
+  - aa.com
+  - americanairlines.com
+  - jetblue.com
+  - spirit.com
+  - flyfrontier.com
+  - allegiantair.com
+  - westjet.com
+  - aircanada.com
+  - sunexpress.com
+  - hawaiianairlines.com   # counted as "target" for Alaska only
+  - alaskaair.com
+  - delta.com
+  - southwest.com
+
+ota_aggregator:
+  - expedia.com
+  - kayak.com
+  - skyscanner.com
+  - skyscanner.net
+  - priceline.com
+  - travelocity.com
+  - orbitz.com
+  - cheapflights.com
+  - cheapoair.com
+  - momondo.com
+  - hopper.com
+  - kiwi.com
+  - trip.com
+  - booking.com
+  - farecompare.com
+  - airfarewatchdog.com
+  - justfly.com
+  - fly.com
+  - flighthub.com
+  - vayama.com
+  - gotogate.com
+  - studentuniverse.com
+  - tripadvisor.com
+  - hipmunk.com
+  - ixigo.com
+  - onetravel.com
+  - cheaptickets.com
+
+# google.com is only an aggregator under these paths (Google Flights / Travel)
+path_rules:
+  - {domain: google.com, path_prefix: /travel, category: ota_aggregator}
+  - {domain: google.com, path_prefix: /flights, category: ota_aggregator}

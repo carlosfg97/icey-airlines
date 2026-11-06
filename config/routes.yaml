@@ -1,0 +1,69 @@
+# DRAFT route lists. Alaska and Delta come from the spec (public rankings, unverified).
+# Southwest is my own draft (hub-to-hub / high-volume pairs), NOT verified. Check against DOT/OAG.
+airports:
+  SEA: Seattle
+  ANC: Anchorage
+  LAX: Los Angeles
+  SFO: San Francisco
+  LAS: Las Vegas
+  PHX: Phoenix
+  SAN: San Diego
+  FAI: Fairbanks
+  JNU: Juneau
+  HNL: Honolulu
+  PDX: Portland, Oregon
+  ATL: Atlanta
+  MCO: Orlando
+  FLL: Fort Lauderdale
+  TPA: Tampa
+  PBI: West Palm Beach
+  MIA: Miami
+  LGA: New York (LaGuardia)
+  BOS: Boston
+  DCA: Washington, D.C. (Reagan National)
+  JFK: New York (JFK)
+  DEN: Denver
+  DAL: Dallas (Love Field)
+  HOU: Houston (Hobby)
+  MDW: Chicago (Midway)
+  BWI: Baltimore/Washington (BWI)
+
+airline_names:
+  alaska: Alaska Airlines
+  delta: Delta Air Lines
+  southwest: Southwest Airlines
+
+routes:
+  alaska:
+    - [SEA, ANC]
+    - [SEA, LAX]
+    - [SEA, SFO]
+    - [SEA, LAS]
+    - [SEA, PHX]
+    - [SEA, SAN]
+    - [SEA, FAI]
+    - [SEA, JNU]
+    - [SEA, HNL]
+    - [SEA, PDX]
+  delta:
+    - [ATL, MCO]
+    - [ATL, FLL]
+    - [ATL, TPA]
+    - [ATL, PBI]
+    - [ATL, MIA]
+    - [ATL, LGA]
+    - [ATL, LAX]
+    - [ATL, BOS]
+    - [ATL, DCA]
+    - [JFK, LAX]
+  southwest:
+    - [LAX, LAS]
+    - [DEN, LAS]
+    - [LAS, PHX]
+    - [DEN, PHX]
+    - [DAL, HOU]
+    - [DEN, MDW]
+    - [BWI, MCO]
+    - [LAS, SAN]
+    - [DEN, LAX]
+    - [ATL, BWI]
