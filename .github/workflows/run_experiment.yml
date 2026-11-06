@@ -1,0 +1,80 @@
+name: Run experiment
+
+on:
+  schedule:
+    - cron: "7 * * * *"          # hourly, at minute 7 (GitHub may delay by a few minutes)
+  workflow_dispatch:             # manual "Run workflow" button
+    inputs:
+      is_test:
+        description: "Test run (flagged is_test, saves raw responses, excluded from analysis)"
+        type: boolean
+        default: true
+      limit:
+        description: "Max calls (12 = one route per airline, both directions, both providers)"
+        type: string
+        default: "12"
+
+# Never let two runs overlap (they would race on data/results.jsonl).
+concurrency:
+  group: experiment
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    # Manual runs always go. Hourly runs only go when repo variable SCHEDULE_ENABLED is "true"
+    # (Settings > Secrets and variables > Actions > Variables). Set it to "false" to pause.
+    if: github.event_name == 'workflow_dispatch' || vars.SCHEDULE_ENABLED == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-run.txt
+
+      - run: pip install -r requirements-run.txt
+
+      - name: Unit tests
+        run: python -m unittest discover -s tests -t .
+
+      - name: Run experiment
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          IS_TEST: ${{ github.event_name == 'workflow_dispatch' && inputs.is_test }}
+          LIMIT: ${{ github.event_name == 'workflow_dispatch' && inputs.limit || '' }}
+        run: |
+          ARGS=""
+          if [ "$IS_TEST" = "true" ]; then ARGS="$ARGS --test"; fi
+          if [ -n "$LIMIT" ]; then ARGS="$ARGS --limit $LIMIT"; fi
+          python -m src.run $ARGS
+
+      - name: Summary of captured URLs
+        if: always()
+        run: |
+          {
+            echo "### Cited URL categories and top domains"
+            echo '```'
+            python -m src.classify data/results.jsonl || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit results
+        if: always()
+        run: |
+          git config user.name "experiment-bot"
+          git config user.email "experiment-bot@users.noreply.github.com"
+          git add data
+          if git diff --cached --quiet; then echo "No new data."; exit 0; fi
+          git commit -m "data: run ${GITHUB_RUN_NUMBER} (${GITHUB_EVENT_NAME})"
+          for i in 1 2 3 4; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep $((i * 3))
+          done
+          echo "Push failed after retries" >&2; exit 1
