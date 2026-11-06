@@ -1,0 +1,18 @@
+[
+  {"type": "text", "text": "Let me search for that."},
+  {"type": "server_tool_use", "id": "srvtoolu_01", "name": "web_search", "input": {"query": "Alaska Airlines SEA to ANC price November 13 2026 basic economy"}},
+  {"type": "web_search_tool_result", "tool_use_id": "srvtoolu_01", "content": [
+    {"type": "web_search_result", "url": "https://www.alaskaair.com/en/flights/seattle-to-anchorage", "title": "Alaska", "encrypted_content": "abc", "page_age": "November 1, 2026"},
+    {"type": "web_search_result", "url": "https://www.kayak.com/flight-routes/Seattle-SEA/Anchorage-ANC", "title": "Kayak", "encrypted_content": "def", "page_age": null},
+    {"type": "web_search_result", "url": "https://www.google.com/travel/flights/search?tfs=abc", "title": "Google Flights", "encrypted_content": "ghi"}
+  ]},
+  {"type": "server_tool_use", "id": "srvtoolu_02", "name": "web_search", "input": {"query": "SEA ANC flights nov 13"}},
+  {"type": "web_search_tool_result", "tool_use_id": "srvtoolu_02", "content": {"type": "web_search_tool_result_error", "error_code": "unavailable"}},
+  {"type": "text", "text": "Fares start around $99 ", "citations": [
+    {"type": "web_search_result_location", "url": "https://www.kayak.com/flight-routes/Seattle-SEA/Anchorage-ANC", "title": "Kayak", "encrypted_index": "x", "cited_text": "from $99"}
+  ]},
+  {"type": "text", "text": "on Kayak, or book direct on Alaska.\nSOURCES: kayak.com, alaskaair.com", "citations": [
+    {"type": "web_search_result_location", "url": "https://www.alaskaair.com/en/flights/seattle-to-anchorage", "title": "Alaska", "encrypted_index": "y", "cited_text": "Book"},
+    {"type": "web_search_result_location", "url": "https://www.kayak.com/flight-routes/Seattle-SEA/Anchorage-ANC", "title": "Kayak", "encrypted_index": "z", "cited_text": "dup"}
+  ]}
+]

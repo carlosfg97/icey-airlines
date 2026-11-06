@@ -1,0 +1,15 @@
+[
+  {"type": "reasoning", "id": "rs_1", "summary": []},
+  {"type": "web_search_call", "id": "ws_1", "status": "completed", "action": {"type": "search", "query": "Delta ATL to MCO price", "sources": [
+    {"type": "url", "url": "https://www.expedia.com/Flights-Search?trip=oneway"},
+    {"type": "url", "url": "https://www.delta.com/flight-search/book-a-flight"},
+    {"type": "url", "url": "https://www.expedia.com/Flights-Search?trip=oneway"}
+  ]}},
+  {"type": "web_search_call", "id": "ws_2", "status": "completed", "action": {"type": "open_page", "url": "https://www.delta.com/x"}},
+  {"type": "message", "id": "msg_1", "status": "completed", "role": "assistant", "content": [
+    {"type": "output_text", "text": "Roughly $120 on Expedia.\n**SOURCES:** expedia.com, delta.com", "annotations": [
+      {"type": "url_citation", "start_index": 0, "end_index": 10, "url": "https://www.expedia.com/Flights-Search?trip=oneway", "title": "Expedia"},
+      {"type": "url_citation", "start_index": 11, "end_index": 20, "url": "https://www.delta.com/flight-search/book-a-flight", "title": "Delta"}
+    ]}
+  ]}
+]
