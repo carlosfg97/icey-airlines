@@ -36,9 +36,11 @@ python -m src.classify data/results.jsonl    # category counts, top domains, unk
 ## GitHub setup
 1. Secrets (Settings → Secrets and variables → Actions → Secrets): `ANTHROPIC_API_KEY`, `OPENAI_API_KEY`.
 2. Run the first test from the Actions tab: **Run experiment → Run workflow** (leave test = true, limit = 12).
-3. Create the repo **variable** `SCHEDULE_ENABLED` = `true` (Variables tab) to start the hourly runs (minute 7 of
-   each hour, UTC). Set it to `false` to pause. Manual runs always work.
-   GitHub can still start scheduled runs a few minutes late; the real start time is in `timestamp_utc`.
+3. Hourly runs: GitHub's own cron fired too irregularly here, so the workflow has **no `schedule`**. A cron-job.org job
+   calls the GitHub API (`workflow_dispatch`) at minute 7 of every hour with body
+   `{"ref":"main","inputs":{"is_test":"false","batches":"1"}}` and a fine-grained token (Actions: read/write on this repo only).
+   To pause: disable that cronjob. Revoke the token when the experiment ends.
+   Manual catch-up: Run workflow with `is_test` off and `batches` up to 8 (36 calls each).
 
 ## Analysis and dashboard
 ```

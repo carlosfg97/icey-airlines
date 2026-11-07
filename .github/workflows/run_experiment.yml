@@ -1,8 +1,8 @@
 name: Run experiment
 
 on:
-  schedule:
-    - cron: "7 * * * *"          # hourly at minute 7 (avoids the congested top of the hour); re-registered 2026-11-07
+  # No GitHub cron on purpose: it fired irregularly in this repo. The hourly trigger is an external
+  # cron-job.org job that calls workflow_dispatch (minute 7, is_test=false, batches=1).
   workflow_dispatch:             # manual "Run workflow" button
     inputs:
       is_test:
@@ -28,9 +28,9 @@ permissions:
 
 jobs:
   run:
-    # Manual runs always go. Hourly runs only go when repo variable SCHEDULE_ENABLED is "true"
-    # (Settings > Secrets and variables > Actions > Variables). Set it to "false" to pause.
-    if: github.event_name == 'workflow_dispatch' || vars.SCHEDULE_ENABLED == 'true'
+    # Only manual / API dispatches run this job. To pause the hourly external trigger, disable the
+    # cron-job.org job (or revoke its token).
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
