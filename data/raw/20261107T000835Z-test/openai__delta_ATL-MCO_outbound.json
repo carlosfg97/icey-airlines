@@ -1,0 +1,198 @@
+{
+ "id": "resp_0eb927331b755603006aee6c0fad0087d29599e2f3eefebeba",
+ "created_at": 1794010127.0,
+ "metadata": {},
+ "model": "gpt-6-astra",
+ "object": "response",
+ "output": [
+  {
+   "id": "ws_0eb927331b755603006aee6c123db887d2b8121d37f395b976",
+   "action": {
+    "type": "search",
+    "queries": [
+     "Atlanta Orlando November 14 2026 one way economy flights",
+     "ATL MCO Nov 14 2026 flights price"
+    ],
+    "query": "Atlanta Orlando November 14 2026 one way economy flights",
+    "sources": [
+     {
+      "type": "url",
+      "url": "https://www.flyxworld.com/flights-from-atlanta-usa-to-orlando-usa.html"
+     },
+     {
+      "type": "url",
+      "url": "https://flights.flyfrontier.com/en/flights-from-atlanta-to-orlando"
+     },
+     {
+      "type": "url",
+      "url": "https://www.southwest.com/en/flights/flights-from-atlanta-to-orlando"
+     },
+     {
+      "type": "url",
+      "url": "https://www.flights.com/lp/flights/atl/mco/atlanta-to-orlando"
+     },
+     {
+      "type": "url",
+      "url": "https://www.southwest.com/en/flights/flights-from-atlanta-to-orlando?channel=mweb"
+     },
+     {
+      "type": "url",
+      "url": "https://us.trip.com/flights/airport-atl-mco/"
+     },
+     {
+      "type": "url",
+      "url": "https://www.expedia-aarp.com/lp/flight-routes/jetblue-airways-from-hartsfield-jackson-atlanta-intl-to-orlando-intl/b6/atl/mco?flightType=ROUND_TRIP"
+     },
+     {
+      "type": "url",
+      "url": "https://helloaxel.com/en/flights/cheap-flights-from-atlanta-to-orlando"
+     },
+     {
+      "type": "url",
+      "url": "https://www.priceline.com/flight-routes/en-us/ATL/ORL/flights-from-atlanta-to-orlando.ssp?msockid=1c5ae8ea98ae638a018cfe2e99da6234"
+     },
+     {
+      "type": "url",
+      "url": "https://www.trip.com/flights/atlanta-to-orlando/airfares-atl-orl/"
+     },
+     {
+      "type": "url",
+      "url": "https://www.orbitz.com/lp/flights/178232/178294/atlanta-to-orlando?flightType=multicity"
+     },
+     {
+      "type": "url",
+      "url": "https://vacaymatch.co/from/atlanta/to/orlando/2026-11-14/"
+     },
+     {
+      "type": "url",
+      "url": "https://asse.com/site_media/forms/ASSE_Airline_Form.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://downloads.regulations.gov/DOT-OST-2025-0436-0009/attachment_1.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://loc.edu/wp-content/uploads/event-manager-uploads/event_banner/2026/01/BestTimetoBookAmericanFlightsMonth-by-MonthPricingCalendar2026.pdf"
+     }
+    ]
+   },
+   "status": "completed",
+   "type": "web_search_call"
+  },
+  {
+   "id": "rs_0eb927331b755603006aee6c14b0c487d2bba0a3bafe03eb07",
+   "summary": [],
+   "type": "reasoning",
+   "content": [],
+   "encrypted_content": "gAAAAABq7mwbPAuNY_AB3g3yxiu0gzANsKd2IEeksEn9GD6EvZ5x7gvFheRrWbB6i4NlxsJfeZHJW0q-nYU9pmXGbRkzAi4ZB1ofL4rkxqA6eEy7qM6V374iURC6vqIzvLkZg3AQPhrLLL4bV685eve5xy2m0zcz2qEQ8A8FoA-GAsL3uvh-izZ2rPKjE8MWlhhK-Xoankjght4IN2ZkJk_vd8iHulpqXU1s-piJdvgfXIdUCjugUuKHRJCV6Wn8mYyqro44Hxxcp8A-9Kds9IeNMft81_2KpUFk2uuUetxMj85zr14rNsl5yP35i8ptv-mMb_UW6hGCHzGQTD9hj_DflSmZlw4J9R43Dk7r79QsjM-XXo4I089DhmbQivq11dfOGpeAZNgFYO0QXrKcJKdhdvDbgTZ1mjm_2TfI_4GVnAf2aA9hPyCioYV2a5bUkJbmjgo4k-9f7UVuoaB6S5dHP6A8HCqc_OGCrvCROq-6kg9pnR6vg2a1VmDsAQYFRVAzToHEgB-7Up1tm-SBcbMbFOpKFmhzXf1Y8ih7HdzvUOlQQ8e9ieaAI8h-wLzrosJQTU42IryGR8EnEJTHShowDoQogK1nITevJzHNy5iWqKNm1ivFUhZpHIFD1MODEgroej2er7T3PnqWhSxn9PgvsuDCpNLPp4ISsVqtVgNIUl-Jlqbh2g8b2hLKsbTGkXylZ2DZ9v4_0J7S7oxnhr8m71DdEhmTxf3z2FOCeV2xYDDeFmaQMNaDiXBtRXtRa-mSX6h4Q-AVQAo6n_WkXIw1Tz_6t3TuvwznD8U3MnSeULY_GcP7vyiai_3aHFm1BRHDsDRppJTVMpZkIjOHpMH7R2v8OZwTt62VC0-rYtGOQZYITCg4d0xDnZSDfsYfxIquWtokl9O5qx1Y72u_AutbmMabq7CjiWy0_eFaySwhOKnehflxOWFU5e2q_5nvK22m0HIpIbEpvus-zZ4ypxx0Jp3q4etifJh083it3zslU5PwUZYvkRwB3gXd_1v7VNQn8uRhJBCVz-G4S_ndF3gYs1FsIWVg320ix_26ge1SYpKCDauDvlC1crchj5KYJOa8-yXP8SS3iEakpGlsB-FQvORgf_Cb12Uts1ew-wyvU-PyzRGk7oF3QxQ4goMzIlGm9a7ZQ2JCVbPyU8TKuPo8ftCrVqyqvFzTlTH-iIKklnRvND_5OmpgZ5cD4dfVHMKvzDfo9oa75QudQK_vnY2MDSoHa7sNGYLX2JhqD8sQbbIBkOvu-a7qDNUygVaAV3X-r7SIqDSxU52sbHPAZtKA_cOInfF58Inm_Zy0WMUF8coAsRl0luB0g1-hHB_Z2jeiR24JAMzAbkU5KRtAIq2SlgcD7yieOq0M1oAMK9abUFn9DCvCDxwQQwG_7vE4riQr6umS1O--5ZeFX5OBfHi_rqjVAtzkXjTOOux-uCOIPBv5JOYHEuWhT-WutBX8oxRYhj-3dZIsv9v5GXeoaRVcVNBNjJ66ybsfe8MlBvFKbggge-8kpFZjjsGO-ya4MWftiKbAOB5_cekvf8LbNBk42L-I6OlZnNX330zUziFaLg_g_zhMv8JrhFkr9I1S2ZA8TZQvt2_UzQaHkw39yhx3D1gCmgJi1F6pHSBikjYLyFl5SY1YlEaHd1HTzZOB3tp4eOnRdHRHmGCh8Rro1cu8QB5n4x9yhL4vr38tBzfjQb7QNlJ-NCSI2Zpe5wSFEKUA0m18-g-zATOWTPRZAQTq8PQev--52S-NfqVJKZWFtjpLFXlCrWo="
+  },
+  {
+   "id": "ws_0eb927331b755603006aee6c1547cc87d29aefc09b1f26b246",
+   "action": {
+    "type": "open_page",
+    "url": "https://www.flyxworld.com/flights-from-atlanta-usa-to-orlando-usa.html"
+   },
+   "status": "completed",
+   "type": "web_search_call"
+  },
+  {
+   "id": "msg_0eb927331b755603006aee6c170e5487d2ae5c3627d7fb1f9e",
+   "content": [
+    {
+     "annotations": [
+      {
+       "end_index": 714,
+       "start_index": 625,
+       "title": "Atlanta to Orlando Flights | Cheap ATL to MCO Air Tickets | FlyX",
+       "type": "url_citation",
+       "url": "https://www.flyxworld.com/flights-from-atlanta-usa-to-orlando-usa.html"
+      }
+     ],
+     "text": "Assuming **one adult, one-way, Atlanta (ATL) → Orlando International (MCO)** on **November 14, 2026**, I found this advertised economy option:\n\n| Airline | Flight | Listed price | Where to book |\n|---|---|---:|---|\n| Delta | DL2204, nonstop, 7:05–8:40 a.m. | **$86 USD** | [FlyX booking page](https://www.flyxworld.com/flights-from-atlanta-usa-to-orlando-usa.html) |\n\nThe listing shows economy, nonrefundable, one cabin bag and no checked baggage. **It does not identify whether this is regular economy or Basic Economy**, so I can’t confirm it meets your regular-economy requirement or that $86 is the final checkout total. ([flyxworld.com](https://www.flyxworld.com/flights-from-atlanta-usa-to-orlando-usa.html))\n\nBefore paying, confirm the fare is **regular economy—not Basic Economy**—and decline optional paid seats, bags, insurance and upgrades. I found a price lead, but not a verified, bookable final price for your exact fare requirements.\n\nSOURCES: FlyX (flyxworld.com); Southwest Airlines (southwest.com); Trip.com; Frontier Airlines (flyfrontier.com).",
+     "type": "output_text",
+     "logprobs": []
+    }
+   ],
+   "role": "assistant",
+   "status": "completed",
+   "type": "message",
+   "phase": "final_answer"
+  }
+ ],
+ "parallel_tool_calls": true,
+ "temperature": 1.0,
+ "tool_choice": "auto",
+ "tools": [
+  {
+   "type": "web_search",
+   "search_context_size": "medium",
+   "user_location": {
+    "country": "US",
+    "type": "approximate"
+   },
+   "return_token_budget": "default",
+   "search_content_types": [
+    "text"
+   ]
+  }
+ ],
+ "top_p": 0.98,
+ "background": false,
+ "completed_at": 1794010139.0,
+ "image": {
+  "context_compression": "disabled"
+ },
+ "prompt_cache_retention": "24h",
+ "reasoning": {
+  "context": "all_turns",
+  "effort": "low",
+  "mode": "standard"
+ },
+ "service_tier": "default",
+ "status": "completed",
+ "text": {
+  "format": {
+   "type": "text"
+  },
+  "verbosity": "medium"
+ },
+ "tool_usage": {
+  "image_gen": {
+   "input_tokens": 0,
+   "input_tokens_details": {
+    "image_tokens": 0,
+    "text_tokens": 0
+   },
+   "output_tokens": 0,
+   "total_tokens": 0,
+   "output_tokens_details": {
+    "image_tokens": 0,
+    "text_tokens": 0
+   }
+  },
+  "web_search": {
+   "num_requests": 1
+  }
+ },
+ "top_logprobs": 0,
+ "truncation": "disabled",
+ "usage": {
+  "input_tokens": 16773,
+  "input_tokens_details": {
+   "cache_write_tokens": 59,
+   "cached_tokens": 4435
+  },
+  "output_tokens": 376,
+  "output_tokens_details": {
+   "reasoning_tokens": 110
+  },
+  "total_tokens": 17149
+ },
+ "billing": {
+  "payer": "developer"
+ },
+ "frequency_penalty": 0.0,
+ "presence_penalty": 0.0,
+ "store": true
+}

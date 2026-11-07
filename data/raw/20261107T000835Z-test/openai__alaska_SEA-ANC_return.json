@@ -1,0 +1,219 @@
+{
+ "id": "resp_092ba322937e2934006aee6c05fdb487d2b3693177a81a77e0",
+ "created_at": 1794010118.0,
+ "metadata": {},
+ "model": "gpt-6-astra",
+ "object": "response",
+ "output": [
+  {
+   "id": "ws_092ba322937e2934006aee6c087dc887d289a2b801170b3e13",
+   "action": {
+    "type": "search",
+    "queries": [
+     "Anchorage Seattle November 14 2026 one way flights",
+     "site.alaskaair.com Anchorage Seattle November 14 2026"
+    ],
+    "query": "Anchorage Seattle November 14 2026 one way flights",
+    "sources": [
+     {
+      "type": "url",
+      "url": "https://www.kayak.com/flight-routes/Anchorage-ANC/Seattle-Tacoma-Intl-SEA?sck=SEM&skipapp=true&tags=l%3Ao_ap-ANC_d_ap-SEA_t_rt_v_f%2Ct%3A423"
+     },
+     {
+      "type": "url",
+      "url": "https://www.flyxworld.com/flights-from-anchorage-usa-to-seattle-usa.html"
+     },
+     {
+      "type": "url",
+      "url": "https://www.alaskaair.com/en/flights-from-anchorage-to-seattle?msockid=02f6d55e980c64ed37c1c3d5999d652d"
+     },
+     {
+      "type": "url",
+      "url": "https://www.alaskaair.com/en/flights-from-anchorage-to-seattle"
+     },
+     {
+      "type": "url",
+      "url": "https://www.trip.com/flights/city-anc-airport-sea/"
+     },
+     {
+      "type": "url",
+      "url": "https://us.trip.com/flights/airport-anc-sea/"
+     },
+     {
+      "type": "url",
+      "url": "https://ph.trip.com/flights/anchorage-to-seattle/airfares-anc-sea/"
+     },
+     {
+      "type": "url",
+      "url": "https://www.trip.com/hot/flight-time-from-anchorage-to-seattle/"
+     },
+     {
+      "type": "url",
+      "url": "https://www.trip.com/flights/anchorage-to-seattle/airfares-anc-sea/?locale=en"
+     },
+     {
+      "type": "url",
+      "url": "https://us.trip.com/flights/anchorage-to-seattle/airfares-anc-sea/"
+     },
+     {
+      "type": "url",
+      "url": "https://ca.trip.com/flights/anchorage-to-seattle/airfares-anc-sea/"
+     },
+     {
+      "type": "url",
+      "url": "https://us.trip.com/flights/anchorage-to-seattle/airfares-ANC-SEA/"
+     },
+     {
+      "type": "url",
+      "url": "https://www.reddit.com/r/anchorage/comments/1x92rr6/help_flights_from_anchorage_to_seattle_for/"
+     },
+     {
+      "type": "url",
+      "url": "https://www.nca.aero/service/schedule/documents/S26_Timetable.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://news.alaskaair.com/wp-content/uploads/2025/07/Alaska-Air-Group-reports-second-quarter-2025-results.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://dot.alaska.gov/aias/assets/2025-AIAS-Annual-Report.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://www.travelready.org/PDF%20Files/Timetables/Alaska%20Air%20-%20Time%20Table%20-%202015.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://www.hollandamerica.com/content/dam/hal/marketing-assets/PDFs/2026-hal-alaska-planner.pdf?msockid=1973df395ddb6c44348ac9e45c816d45"
+     },
+     {
+      "type": "url",
+      "url": "https://news.alaskaair.com/wp-content/uploads/2026/01/Alaska-Air-Group-reports-fourth-quarter-and-full-year-2025-results.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://en.wikipedia.org/wiki/List_of_Alaska_Airlines_destinations"
+     },
+     {
+      "type": "url",
+      "url": "https://en.wikipedia.org/wiki/Ted_Stevens_Anchorage_International_Airport"
+     },
+     {
+      "type": "url",
+      "url": "https://www.reddit.com/r/windowseat/comments/1x6snmm/flight_from_anchorage_to_seattle/"
+     }
+    ]
+   },
+   "status": "completed",
+   "type": "web_search_call"
+  },
+  {
+   "id": "ws_092ba322937e2934006aee6c0bae0887d2a37b5dc222f99d3e",
+   "action": {
+    "type": "open_page",
+    "url": "https://www.alaskaair.com/en/flights-from-anchorage-to-seattle?msockid=02f6d55e980c64ed37c1c3d5999d652d"
+   },
+   "status": "completed",
+   "type": "web_search_call"
+  },
+  {
+   "id": "msg_092ba322937e2934006aee6c0cfff087d2a8abf5ac605cc0b8",
+   "content": [
+    {
+     "annotations": [
+      {
+       "end_index": 924,
+       "start_index": 802,
+       "title": "Anchorage to Seattle flights - Alaska Airlines",
+       "type": "url_citation",
+       "url": "https://www.alaskaair.com/en/flights-from-anchorage-to-seattle?msockid=02f6d55e980c64ed37c1c3d5999d652d"
+      }
+     ],
+     "text": "Assuming **one adult, one-way**, Anchorage (ANC) → Seattle (SEA) on **November 14, 2026**:\n\n| Option | Advertised price | Where to book |\n|---|---:|---|\n| Alaska Airlines **Saver** | **From $238 USD** | [Alaska Airlines](https://www.alaskaair.com/en/flights-from-anchorage-to-seattle). Its opened page lists this date and fare type, but another indexed version shows $389, so the price needs confirmation at checkout. |\n| Delta Air Lines | **From $152 USD** | [Trip.com](https://www.trip.com/flights/city-anc-airport-sea/). This price is listed for your exact date, but the page does **not** confirm whether it is basic economy. |\n\nThese are **advertised fares, not verified checkout quotes**. The Alaska listing explicitly identifies Saver; the cheaper Delta listing leaves the fare category unclear. ([alaskaair.com](https://www.alaskaair.com/en/flights-from-anchorage-to-seattle?msockid=02f6d55e980c64ed37c1c3d5999d652d))\n\nFor no extras, search for your exact date and decline optional paid seats, checked bags, insurance, and upgrades. Confirm the fare type and final total before paying.\n\nSOURCES: Alaska Airlines (alaskaair.com); Trip.com (trip.com).",
+     "type": "output_text",
+     "logprobs": []
+    }
+   ],
+   "role": "assistant",
+   "status": "completed",
+   "type": "message",
+   "phase": "final_answer"
+  }
+ ],
+ "parallel_tool_calls": true,
+ "temperature": 1.0,
+ "tool_choice": "auto",
+ "tools": [
+  {
+   "type": "web_search",
+   "search_context_size": "medium",
+   "user_location": {
+    "country": "US",
+    "type": "approximate"
+   },
+   "return_token_budget": "default",
+   "search_content_types": [
+    "text"
+   ]
+  }
+ ],
+ "top_p": 0.98,
+ "background": false,
+ "completed_at": 1794010129.0,
+ "image": {
+  "context_compression": "disabled"
+ },
+ "prompt_cache_retention": "24h",
+ "reasoning": {
+  "context": "all_turns",
+  "effort": "low",
+  "mode": "standard"
+ },
+ "service_tier": "default",
+ "status": "completed",
+ "text": {
+  "format": {
+   "type": "text"
+  },
+  "verbosity": "medium"
+ },
+ "tool_usage": {
+  "image_gen": {
+   "input_tokens": 0,
+   "input_tokens_details": {
+    "image_tokens": 0,
+    "text_tokens": 0
+   },
+   "output_tokens": 0,
+   "total_tokens": 0,
+   "output_tokens_details": {
+    "image_tokens": 0,
+    "text_tokens": 0
+   }
+  },
+  "web_search": {
+   "num_requests": 1
+  }
+ },
+ "top_logprobs": 0,
+ "truncation": "disabled",
+ "usage": {
+  "input_tokens": 16780,
+  "input_tokens_details": {
+   "cache_write_tokens": 4494,
+   "cached_tokens": 0
+  },
+  "output_tokens": 373,
+  "output_tokens_details": {
+   "reasoning_tokens": 88
+  },
+  "total_tokens": 17153
+ },
+ "billing": {
+  "payer": "developer"
+ },
+ "frequency_penalty": 0.0,
+ "presence_penalty": 0.0,
+ "store": true
+}

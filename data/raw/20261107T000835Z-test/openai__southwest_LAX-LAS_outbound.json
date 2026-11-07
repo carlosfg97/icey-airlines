@@ -1,0 +1,270 @@
+{
+ "id": "resp_0750f74af4eb0622006aee6c1a383c87d2b355665814e8510d",
+ "created_at": 1794010138.0,
+ "metadata": {},
+ "model": "gpt-6-astra",
+ "object": "response",
+ "output": [
+  {
+   "id": "ws_0750f74af4eb0622006aee6c1b8f3487d2ab110e8879da9ad9",
+   "action": {
+    "type": "search",
+    "queries": [
+     "Los Angeles Las Vegas November 14 2026 first class one way",
+     "site.united.com LAX LAS November 14 2026 first",
+     "site.aa.com Los Angeles Las Vegas November 2026 first class"
+    ],
+    "query": "Los Angeles Las Vegas November 14 2026 first class one way",
+    "sources": [
+     {
+      "type": "url",
+      "url": "https://www.alaskaair.com/en-nz/en/flights-from-los-angeles-to-las-vegas"
+     },
+     {
+      "type": "url",
+      "url": "https://www.aa.com/en-us//flights-from-los-angeles-to-las-vegas"
+     },
+     {
+      "type": "url",
+      "url": "https://www.momondo.com/flights/First-Class-United-States-US0/Las-Vegas-Harry-Reid-Intl-LAS.fc.ksp"
+     },
+     {
+      "type": "url",
+      "url": "https://www.southwest.com/en/flights/flights-from-los-angeles-to-las-vegas"
+     },
+     {
+      "type": "url",
+      "url": "https://www.kayak.com/flight-routes/First-Class-Los-Angeles-LAX/Las-Vegas-Harry-Reid-Intl-LAS.fc.ksp"
+     },
+     {
+      "type": "url",
+      "url": "https://helloaxel.com/en/flights/from-los-angeles-to-las-vegas-las"
+     },
+     {
+      "type": "url",
+      "url": "https://www.aa.com/en-us/flights-from-los-angeles-to-las-vegas"
+     },
+     {
+      "type": "url",
+      "url": "https://data.flightradar24.com/data/flights/ua1546"
+     },
+     {
+      "type": "url",
+      "url": "https://www.awardtool.com/award-flights/los-angeles-lax-to-las-vegas-las/first-class"
+     },
+     {
+      "type": "url",
+      "url": "https://www.flight.info/AA2785"
+     },
+     {
+      "type": "url",
+      "url": "https://www.flight.info/UA1546"
+     },
+     {
+      "type": "url",
+      "url": "https://www.google.com/travel/flights/flights-from-los-angeles-to-las-vegas.html?f=0"
+     },
+     {
+      "type": "url",
+      "url": "https://nta.nv.gov/uploadedFiles/ntanvgov/content/About/Meetings/2025/11-November/06November2025GSM%20Supporting%20Documents%202_ADA.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://www.flylcpa.com/app/uploads/2026/06/ASU-June-2026-V2-Final.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://www.swamedia.com/vforcesite/SwmDownload?boilerPlateContentKey=MCDIRMIT62VBDE7P3D2QZM7KMXLM&contentKey=MC4FS7VVESNZAMRL4R3CVS72PLFA&siteId=0DMHu000000NZBROA4"
+     },
+     {
+      "type": "url",
+      "url": "https://www.aveloair.com/wp-content/uploads/2024/04/BUR-to-LAS-Route-Announcement.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://aaplusvacation.com/storage/pdf/2026-01-13-16-36-23-142021-EN-BGF8_20260113.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://aaplusvacation.com/storage/pdf/2026-01-13-16-53-04-290895-EN-LBW9_20260113.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://en.wikipedia.org/wiki/Los_Angeles_International_Airport"
+     },
+     {
+      "type": "url",
+      "url": "https://www.reddit.com/r/americanairlines/comments/1u62bie/alls_well_that_ends_well_on_american_today/"
+     }
+    ]
+   },
+   "status": "completed",
+   "type": "web_search_call"
+  },
+  {
+   "id": "ws_0750f74af4eb0622006aee6c1ec7dc87d2b3975bc3b88f06b5",
+   "action": {
+    "type": "search",
+    "queries": [
+     "\"LAX\" \"LAS\" \"Nov 14\" \"2026\" \"first\" price",
+     "\"Los Angeles\" \"Las Vegas\" \"November 14, 2026\" \"First Class\""
+    ],
+    "query": "\"LAX\" \"LAS\" \"Nov 14\" \"2026\" \"first\" price",
+    "sources": [
+     {
+      "type": "url",
+      "url": "https://us.trip.com/flights/los-angeles-to-las-vegas/airfares-lax-las/"
+     },
+     {
+      "type": "url",
+      "url": "https://helloaxel.com/en/flights/from-los-angeles-to-las-vegas-las"
+     },
+     {
+      "type": "url",
+      "url": "https://flyupleg.com/empty-legs/los-angeles-to-las-vegas"
+     },
+     {
+      "type": "url",
+      "url": "https://www.momondo.com/flights/los-angeles/las-vegas"
+     },
+     {
+      "type": "url",
+      "url": "https://www.expedia.com/lp/flights/lax/las/los-angeles-to-las-vegas?msockid=135e7f80b09167e33975691bb1fa668d"
+     },
+     {
+      "type": "url",
+      "url": "https://www.momondo.com/flights/los-angeles/nevada-united-states"
+     },
+     {
+      "type": "url",
+      "url": "https://www.travelocity.com/lp/flight-routes/frontier-airlines-from-los-angeles-intl-to-harry-reid-intl/f9/lax/las"
+     },
+     {
+      "type": "url",
+      "url": "https://www.traveloka.com/en-jp/flight/route/Los-Angeles-Las-Vegas.LAXA.LAS"
+     },
+     {
+      "type": "url",
+      "url": "https://helloaxel.com/en/flights/from-las-vegas-to-los-angeles-lax"
+     },
+     {
+      "type": "url",
+      "url": "https://www.priceline.com/flight-routes/en-us/LAX/SLC/flights-from-los-angeles-to-salt-lake-city.ssp"
+     },
+     {
+      "type": "url",
+      "url": "https://awardwallet.com/airlines/american-aadvantage/domestic-first-class-lie-flat-seats/"
+     },
+     {
+      "type": "url",
+      "url": "https://bookallo.com/en/domestic-flights-usa"
+     },
+     {
+      "type": "url",
+      "url": "https://www.aa.com/en-us//flights-from-los-angeles-to-las-vegas?utm_source=openai"
+     }
+    ]
+   },
+   "status": "completed",
+   "type": "web_search_call"
+  },
+  {
+   "id": "msg_0750f74af4eb0622006aee6c22029c87d29b235c2eaef334a1",
+   "content": [
+    {
+     "annotations": [
+      {
+       "end_index": 422,
+       "start_index": 329,
+       "title": "Flights from Los Angeles to Las Vegas | American Airlines",
+       "type": "url_citation",
+       "url": "https://www.aa.com/en-us//flights-from-los-angeles-to-las-vegas?utm_source=openai"
+      }
+     ],
+     "text": "Assuming **one adult, one-way, from LAX to Las Vegas (LAS) on November 14, 2026, in First Class**, with no optional add-ons:\n\n**I couldn’t verify a live First Class price for your exact date.** The prices I found were either economy fares or First Class offers for different dates, so I won’t present them as matching your trip. ([aa.com](https://www.aa.com/en-us//flights-from-los-angeles-to-las-vegas?utm_source=openai))\n\n**Where to search and book:**\n- [KAYAK — First Class search for November 14](https://www.kayak.com/flights/LAX-LAS/2026-11-14/first?sort=price_a)\n- [American Airlines — Los Angeles to Las Vegas](https://www.aa.com/en-us/flights-from-los-angeles-to-las-vegas): select **one-way, November 14, 2026, 1 adult, First Class**.\n\nFor “no extras,” decline optional insurance, hotels, rental cars, and other paid add-ons; check the final total including mandatory taxes before paying.\n\nSOURCES: KAYAK (kayak.com); American Airlines (aa.com).",
+     "type": "output_text",
+     "logprobs": []
+    }
+   ],
+   "role": "assistant",
+   "status": "completed",
+   "type": "message",
+   "phase": "final_answer"
+  }
+ ],
+ "parallel_tool_calls": true,
+ "temperature": 1.0,
+ "tool_choice": "auto",
+ "tools": [
+  {
+   "type": "web_search",
+   "search_context_size": "medium",
+   "user_location": {
+    "country": "US",
+    "type": "approximate"
+   },
+   "return_token_budget": "default",
+   "search_content_types": [
+    "text"
+   ]
+  }
+ ],
+ "top_p": 0.98,
+ "background": false,
+ "completed_at": 1794010149.0,
+ "image": {
+  "context_compression": "disabled"
+ },
+ "prompt_cache_retention": "24h",
+ "reasoning": {
+  "context": "all_turns",
+  "effort": "low",
+  "mode": "standard"
+ },
+ "service_tier": "default",
+ "status": "completed",
+ "text": {
+  "format": {
+   "type": "text"
+  },
+  "verbosity": "medium"
+ },
+ "tool_usage": {
+  "image_gen": {
+   "input_tokens": 0,
+   "input_tokens_details": {
+    "image_tokens": 0,
+    "text_tokens": 0
+   },
+   "output_tokens": 0,
+   "total_tokens": 0,
+   "output_tokens_details": {
+    "image_tokens": 0,
+    "text_tokens": 0
+   }
+  },
+  "web_search": {
+   "num_requests": 2
+  }
+ },
+ "top_logprobs": 0,
+ "truncation": "disabled",
+ "usage": {
+  "input_tokens": 17188,
+  "input_tokens_details": {
+   "cache_write_tokens": 61,
+   "cached_tokens": 4435
+  },
+  "output_tokens": 429,
+  "output_tokens_details": {
+   "reasoning_tokens": 173
+  },
+  "total_tokens": 17617
+ },
+ "billing": {
+  "payer": "developer"
+ },
+ "frequency_penalty": 0.0,
+ "presence_penalty": 0.0,
+ "store": true
+}

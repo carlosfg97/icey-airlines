@@ -1,0 +1,209 @@
+{
+ "id": "resp_0c197967891de71e006aee6c121d0087d2b5697f0b966c5bf1",
+ "created_at": 1794010130.0,
+ "metadata": {},
+ "model": "gpt-6-astra",
+ "object": "response",
+ "output": [
+  {
+   "id": "ws_0c197967891de71e006aee6c13914087d298381569825a2810",
+   "action": {
+    "type": "search",
+    "queries": [
+     "Orlando Atlanta November 14 2026 one way economy flight",
+     "MCO ATL 2026-11-14 flights price"
+    ],
+    "query": "Orlando Atlanta November 14 2026 one way economy flight",
+    "sources": [
+     {
+      "type": "url",
+      "url": "https://www.southwest.com/en/flights/flights-from-orlando-to-atlanta"
+     },
+     {
+      "type": "url",
+      "url": "https://www.flyxworld.com/flights-from-orlando-usa-to-atlanta-usa.html"
+     },
+     {
+      "type": "url",
+      "url": "https://flights.flyfrontier.com/en/flights-from-orlando-to-atlanta"
+     },
+     {
+      "type": "url",
+      "url": "https://us.trip.com/flights/airport-mco-atl"
+     },
+     {
+      "type": "url",
+      "url": "https://www.orbitz.com/lp/flights/178294/178232/orlando-to-atlanta?flightType=oneway"
+     },
+     {
+      "type": "url",
+      "url": "https://www.cheapflights.com/flights-to-atlanta/orlando-intl/?cp_df=true&sck=SEM&skipapp=true"
+     },
+     {
+      "type": "url",
+      "url": "https://www.cheapflights.com/flights-to-atlanta/orlando-intl/?sck=SEM&skipapp=true"
+     },
+     {
+      "type": "url",
+      "url": "https://www.trip.com/hot/jetblue-airways%28b6%29-flights-from-orlando-to-atlanta/"
+     },
+     {
+      "type": "url",
+      "url": "https://deals.airhint.com/cheapest-deals/one-way/MCO/ATL/11"
+     },
+     {
+      "type": "url",
+      "url": "https://us.jetcost.com/en/flights/orlando-international/atlanta-hartsfield-jackson/MCO-ATL?type=ow"
+     },
+     {
+      "type": "url",
+      "url": "https://helloaxel.com/en/flights/from-orlando-to-southeast"
+     },
+     {
+      "type": "url",
+      "url": "https://www.priceline.com/flight-routes/en-us/MCO/ATL/flights-from-orlando-international-airport-to-atlanta.ssp"
+     },
+     {
+      "type": "url",
+      "url": "https://downloads.regulations.gov/DOT-OST-2025-0436-0009/attachment_1.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://assets.ctfassets.net/qiecpoxp4bka/1hBpRi3UELGIliaO7yy07Y/73d04e0514f4402669738201fa14a2bd/202605_Destinations_by_Airline.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://asse.com/site_media/forms/ASSE_Airline_Form.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://en.wikipedia.org/wiki/Orlando_International_Airport"
+     }
+    ]
+   },
+   "status": "completed",
+   "type": "web_search_call"
+  },
+  {
+   "id": "rs_0c197967891de71e006aee6c16462087d2917203ea8a57b71e",
+   "summary": [],
+   "type": "reasoning",
+   "content": [],
+   "encrypted_content": "gAAAAABq7mwd6xYcbAZFbiVM8alItkLINOzNLzSlc0ilCGpheO_NQgYn93r8XbnY9JhhkA4DjZgk9ICcLlDq1UmTp5pKLv-yNOuHI2JwuRZyoh_9uEm8zJKFofHCQ6VKeB0D71dLud_8vzqcAR9pt0ZzYI-N76hRrUecHuAHBAwLYph-MXAEnv2N4PpfKaEht8exztLOoftCea-D5jsD4VB-mHNCw_qKVtM9MbbjBdAyD9OOwDEJWAlUW3eLjs1-bP2DX2fwnP9XCSyCeJg8mlzm2CjqterbY7qM47bU2OjnL5xykUxmTEqAzSGsII_od2-ycB_HL25wCbr8mZ-6Q25EP5ge9C4yz06QJD1YW41blQ9Ff771RaQj3t9HA4lNh0joxPl1k27bFKcgJwJtvvZvuBmdPBBM23VFsxYvaXLdWJ_wjAr8Wszlw7bqJlVzXCRUFFzs8mr_Y0h3H82rfD0TPREotNJOSzEjg6BcG8wqr-ktPg8H_v0Lw95okEP0tL-i2h1OeASZ8sc3BpUKhY2mUJu16jdYzoNmwRRlGzdjFLKxVJVLN72hu5awaeg7vz8D03Ag1SOJ9R2SlXPD1mDuxOqLbgG1JaXcaRZdTD2OlvBuQVbWmWzjY1wcGCUXbpDIC3ljmLmTMyZ6YxE2k0fAZQ_qX_hNMosTyQvchpwOExVdocQcMkLwQ9cT9snRmbgjTIWhA5Zy79HsQIedqzH7kAydCN9C7zSQwGrQA4G1iawMiK46NGaVoIF2fkDnwvs43c3LpN2BHqIBS0jwdrvBdZYaHzkpcU51rizMuJ4u6T_7WcSzWJHHNm8riHTpCFO1RU1Nf1qHcjANuLyWFMs9SMKqecXPmqFtMjjVApLJwaguqb9DIQ7Ywr7RvJHyKtEex1DL2DAlRpulmVfHrNnU_ZknbSlYiZyc8UPK5gmO0xHPlWuVihTfOlMHWT5v0on2cf5nXaDPXrRW-Xc1xGdTUib9loSCFQStcuj0S5SBBe6BYkYQ8PFKGPLjibiEg8CexbIXdPmyHmzaPaomyEBkb_BdVph5i0Lcv-TQZYxGArXMNHX5etl16B3uNxRTQhDFqvUk28w8bw_k6QHTY6VizO-yCkv2HrGv08xVzg6MXn2tE64Rs76uy-kefGYvqIHuucWpXQEOFKHtVxk6rhJyDgUWB_TzKtGm3NGnxQC7iZS-EdBxhMQpC6jYlSX5eLvOj21tgTTyN_XiCPIhRrDe5R51ouNGapMlq_EtxW1rHOYs60lQ-GhO4JemfYub-nlmzcmppfYpGsTefWeW7bCmUbz_ZqGv6owT5X1M1D_iMjV25BScUnXYNv3lp33wp0YXMzRqeUfapWPWHJgnouwfHI23ccpoMjHRUtgl2fvUYUfDuXRAafSD0tcm80rGD_kXLkTsSp1FYMs83t0PGAAqtRMOBsnYwmyB2L7nhyFS1edJsJC5uypUtziijgyjywQ83tsazbQjR3pJF3w1qw16Yl13tXlEppjHHXHkNgrJaQ2i7HgbekMdwi5XqY91_Qq40Li4PKXShd9JmmgmucZ_X95huNv-zeUHyMReGQSuV6KQ2sF30MeD01e3HWaSXVnyF9yruZnScsWoktmTcDefdjapIyuLxTQcsT0HhZDHqeSQas41Mf_iv_2PKk1OhgnylxKuwUJu3V0KAjhMqoTaIEkVBxgBg-k-oH5WZ9iGCaYmRlFVTDwcQGf-VgxW2NH3sLNvkVPb7a8xjHYUdaSB2QBVN9o1HOGOb6jZlxiqCPS5qq0b0CS4Ah-Eoc01uyyj8fctfBC2BgUa7gq9IlLjq3LLnQ_bMgy8sqGZJVgnxpo4iMJRB_WAUWD4BZoX6_fdybUvmzZcfzEk40rP6mQvoTSIdVAHsVpXofVkAIu-DLe7Fmrnq24="
+  },
+  {
+   "id": "ws_0c197967891de71e006aee6c17275087d29aea4cdfa1dcd6c6",
+   "action": {
+    "type": "open_page",
+    "url": "https://us.trip.com/flights/airport-mco-atl"
+   },
+   "status": "completed",
+   "type": "web_search_call"
+  },
+  {
+   "id": "msg_0c197967891de71e006aee6c18a02487d2a0f985c12162bcf7",
+   "content": [
+    {
+     "annotations": [
+      {
+       "end_index": 372,
+       "start_index": 294,
+       "title": "Cheap Flights from Orlando Intl. Airport to Hartsfield–Jackson Atlanta International Airport (MCO - ATL) 2026 ✈ from $19 | Trip.com",
+       "type": "url_citation",
+       "url": "https://us.trip.com/flights/airport-mco-atl?utm_source=openai"
+      },
+      {
+       "end_index": 925,
+       "start_index": 830,
+       "title": "Orlando, FL to Atlanta, GA Flights | Route Options | Frontier Airlines",
+       "type": "url_citation",
+       "url": "https://flights.flyfrontier.com/en/flights-from-orlando-to-atlanta"
+      }
+     ],
+     "text": "Assuming **one adult, one-way, from Orlando International (MCO) to Atlanta (ATL)** on **November 14, 2026**:\n\n| Airline | Flight | Advertised price | Where to book |\n|---|---|---:|---|\n| Frontier | Nonstop, 4:48 p.m.–6:37 p.m. | **$55 USD one-way** | Trip.com’s Orlando–Atlanta flight listing. ([us.trip.com](https://us.trip.com/flights/airport-mco-atl?utm_source=openai)) |\n\n**Important:** I found this advertised fare, but couldn’t verify that it is **regular economy rather than basic economy**, or confirm the final checkout total. It’s a booking lead—not a confirmed price matching all your requirements.\n\nFrontier’s own website also advertises **from $44 for November 14**, but its disclaimer says membership may be required and includes conflicting round-trip wording, so I wouldn’t treat $44 as a confirmed one-way price. ([flights.flyfrontier.com](https://flights.flyfrontier.com/en/flights-from-orlando-to-atlanta))\n\nWhen booking, select November 14, one-way, one adult, and decline optional bags, paid seat selection, insurance, and bundles.\n\nSOURCES: Trip.com; Frontier Airlines (flights.flyfrontier.com).",
+     "type": "output_text",
+     "logprobs": []
+    }
+   ],
+   "role": "assistant",
+   "status": "completed",
+   "type": "message",
+   "phase": "final_answer"
+  }
+ ],
+ "parallel_tool_calls": true,
+ "temperature": 1.0,
+ "tool_choice": "auto",
+ "tools": [
+  {
+   "type": "web_search",
+   "search_context_size": "medium",
+   "user_location": {
+    "country": "US",
+    "type": "approximate"
+   },
+   "return_token_budget": "default",
+   "search_content_types": [
+    "text"
+   ]
+  }
+ ],
+ "top_p": 0.98,
+ "background": false,
+ "completed_at": 1794010140.0,
+ "image": {
+  "context_compression": "disabled"
+ },
+ "prompt_cache_retention": "24h",
+ "reasoning": {
+  "context": "all_turns",
+  "effort": "low",
+  "mode": "standard"
+ },
+ "service_tier": "default",
+ "status": "completed",
+ "text": {
+  "format": {
+   "type": "text"
+  },
+  "verbosity": "medium"
+ },
+ "tool_usage": {
+  "image_gen": {
+   "input_tokens": 0,
+   "input_tokens_details": {
+    "image_tokens": 0,
+    "text_tokens": 0
+   },
+   "output_tokens": 0,
+   "total_tokens": 0,
+   "output_tokens_details": {
+    "image_tokens": 0,
+    "text_tokens": 0
+   }
+  },
+  "web_search": {
+   "num_requests": 1
+  }
+ },
+ "top_logprobs": 0,
+ "truncation": "disabled",
+ "usage": {
+  "input_tokens": 16571,
+  "input_tokens_details": {
+   "cache_write_tokens": 59,
+   "cached_tokens": 4435
+  },
+  "output_tokens": 377,
+  "output_tokens_details": {
+   "reasoning_tokens": 114
+  },
+  "total_tokens": 16948
+ },
+ "billing": {
+  "payer": "developer"
+ },
+ "frequency_penalty": 0.0,
+ "presence_penalty": 0.0,
+ "store": true
+}

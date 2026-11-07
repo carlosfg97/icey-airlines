@@ -1,0 +1,281 @@
+{
+ "id": "resp_0849aa6f1e853d93006aee6c1d38d487d2a0c6cd51ac316723",
+ "created_at": 1794010141.0,
+ "metadata": {},
+ "model": "gpt-6-astra",
+ "object": "response",
+ "output": [
+  {
+   "id": "ws_0849aa6f1e853d93006aee6c1ec50c87d2ac18c85d1421bb86",
+   "action": {
+    "type": "search",
+    "queries": [
+     "Las Vegas Los Angeles November 14 2026 first class one way flight",
+     "site.aa.com Las Vegas Los Angeles flights November 2026 first",
+     "site.united.com Las Vegas Los Angeles November 14 2026"
+    ],
+    "query": "Las Vegas Los Angeles November 14 2026 first class one way flight",
+    "sources": [
+     {
+      "type": "url",
+      "url": "https://www.flightsfrom.com/LAS/departures?departureDate=2026-11-14"
+     },
+     {
+      "type": "url",
+      "url": "https://www.kayak.com/flight-routes/First-Class-Las-Vegas-Harry-Reid-Intl-LAS/Los-Angeles-LAX.fc.ksp"
+     },
+     {
+      "type": "url",
+      "url": "https://www.priceline.com/flight-routes/business/en-us/LAS/LAX/business-class-flights-from-las-vegas-to-los-angeles.ssp"
+     },
+     {
+      "type": "url",
+      "url": "https://www.priceline.com/flight-routes/en-us/LAS/LAX/flights-from-las-vegas-to-los-angeles.ssp"
+     },
+     {
+      "type": "url",
+      "url": "https://www.flight.info/AA2690"
+     },
+     {
+      "type": "url",
+      "url": "https://www.cheapflights.com/First-Class-USA-US0/Los-Angeles-LAX.fc.ksp?a=bingadssearch&enc_adid=72705668411853&enc_aid=1163285199372280&enc_bmt=bb&enc_cmpid=580255820&enc_d=c&enc_mt=b&enc_n=o&enc_oiid=2324505021177706&enc_pid=&enc_tid=dat-2324505021177706%3Aloc-190&encoder=7_1&r9.a=bingadssearch&r9.e=7_1&r9ck=iq"
+     },
+     {
+      "type": "url",
+      "url": "https://www.flightsfrom.com/LAS-LAX"
+     },
+     {
+      "type": "url",
+      "url": "https://www.google.com/travel/flights/flights-from-las-vegas-to-los-angeles.html"
+     },
+     {
+      "type": "url",
+      "url": "https://www.kayak.com/flight-routes/United-States-US0/Los-Angeles-LAX.November.M11.ksp"
+     },
+     {
+      "type": "url",
+      "url": "https://helloaxel.com/en/flights/from-las-vegas-to-los-angeles-lax"
+     },
+     {
+      "type": "url",
+      "url": "https://www.kayak.com/flight-routes/American-Airlines-Las-Vegas-Harry-Reid-Intl-LAS/Los-Angeles-LAX.b.AA.ksp"
+     },
+     {
+      "type": "url",
+      "url": "https://www.directflights.com/LAS-LAX"
+     },
+     {
+      "type": "url",
+      "url": "https://aaplusvacation.com/storage/pdf/2026-01-13-15-46-28-787849-EN-LB6_20260113.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://aaplusvacation.com/storage/pdf/2026-01-15-09-50-13-729159-EN-VA6_20260115.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://aaplusvacation.com/storage/pdf/2026-01-13-16-53-04-290895-EN-LBW9_20260113.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://en.wikipedia.org/wiki/Los_Angeles_International_Airport"
+     },
+     {
+      "type": "url",
+      "url": "https://www.nca.aero/service/schedule/documents/S26_Timetable.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://www.aveloair.com/wp-content/uploads/2024/01/Avelo-LAS-Escape-the-Crowds.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://www.airtimes.com/cgat/usb/hughes/PDF/1960s/rw690701.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://en.wikipedia.org/wiki/Harry_Reid_International_Airport"
+     }
+    ]
+   },
+   "status": "completed",
+   "type": "web_search_call"
+  },
+  {
+   "id": "ws_0849aa6f1e853d93006aee6c21b96887d28126fc7aa3b49b11",
+   "action": {
+    "type": "search",
+    "queries": [
+     "\"Las Vegas\" \"11/14/26\" \"First\" \"$\"",
+     "\"Las Vegas\" \"Nov 14\" \"2026\" \"first class\""
+    ],
+    "query": "\"Las Vegas\" \"11/14/26\" \"First\" \"$\"",
+    "sources": [
+     {
+      "type": "url",
+      "url": "https://www.airlineinformation.com/LAS-LAX"
+     },
+     {
+      "type": "url",
+      "url": "https://www.kayak.com/flight-routes/First-Class-Newark-EWR/Las-Vegas-Harry-Reid-Intl-LAS.fc.ksp"
+     },
+     {
+      "type": "url",
+      "url": "https://www.awardtool.com/award-flights/las-vegas-las-to-salt-lake-city-slc/first-class"
+     },
+     {
+      "type": "url",
+      "url": "https://www.awardtool.com/award-flights/las-vegas-las-to-indianapolis-ind/first-class"
+     },
+     {
+      "type": "url",
+      "url": "https://www.wegotravel.jp/en/airlines/frontier-airlines-inc-f9"
+     },
+     {
+      "type": "url",
+      "url": "https://www.kayak.com/flight-routes/First-Class-Raleigh-Durham-RDU/Las-Vegas-Harry-Reid-Intl-LAS.fc.ksp"
+     },
+     {
+      "type": "url",
+      "url": "https://awardwallet.com/airlines/american-aadvantage/domestic-first-class-lie-flat-seats/"
+     },
+     {
+      "type": "url",
+      "url": "https://www.kayak.com/flight-routes/First-Class-Dallas-A78/Las-Vegas-Harry-Reid-Intl-LAS.fc.ksp"
+     },
+     {
+      "type": "url",
+      "url": "https://www.awardtool.com/award-flights/raleigh-durham-rdu-to-las-vegas-las/first-class"
+     },
+     {
+      "type": "url",
+      "url": "https://www.awardtool.com/award-flights/greensboro-gso-to-las-vegas-las/first-class"
+     },
+     {
+      "type": "url",
+      "url": "https://www.awardtool.com/award-flights/las-vegas-las-to-pittsburgh-pit/first-class"
+     },
+     {
+      "type": "url",
+      "url": "https://www.awardtool.com/award-flights/washington-iad-to-las-vegas-las/first-class"
+     },
+     {
+      "type": "url",
+      "url": "https://www.kayak.com/flight-routes/First-Class-Las-Vegas-Harry-Reid-Intl-LAS/Los-Angeles-LAX.fc.ksp?utm_source=openai"
+     },
+     {
+      "type": "url",
+      "url": "https://www.priceline.com/flight-routes/business/en-us/LAS/LAX/business-class-flights-from-las-vegas-to-los-angeles.ssp?utm_source=openai"
+     }
+    ]
+   },
+   "status": "completed",
+   "type": "web_search_call"
+  },
+  {
+   "id": "msg_0849aa6f1e853d93006aee6c25f56c87d2bfd0bc2b7ec8b25f",
+   "content": [
+    {
+     "annotations": [
+      {
+       "end_index": 469,
+       "start_index": 336,
+       "title": "First Class Flights from Las Vegas (LAS) to Los Angeles (LAX) from $287 | KAYAK",
+       "type": "url_citation",
+       "url": "https://www.kayak.com/flight-routes/First-Class-Las-Vegas-Harry-Reid-Intl-LAS/Los-Angeles-LAX.fc.ksp?utm_source=openai"
+      },
+      {
+       "end_index": 1104,
+       "start_index": 948,
+       "title": "Business Class Flights Las Vegas to Los Angeles from $200",
+       "type": "url_citation",
+       "url": "https://www.priceline.com/flight-routes/business/en-us/LAS/LAX/business-class-flights-from-las-vegas-to-los-angeles.ssp?utm_source=openai"
+      }
+     ],
+     "text": "Assuming **one adult, one-way, Las Vegas (LAS) → Los Angeles (LAX), November 14, 2026, First Class, with no optional extras**:\n\n**I couldn’t verify an exact bookable price for that date.** KAYAK lists first-class fares on this route, but its displayed deals are for other dates—not November 14—so I wouldn’t present those as your fare. ([kayak.com](https://www.kayak.com/flight-routes/First-Class-Las-Vegas-Harry-Reid-Intl-LAS/Los-Angeles-LAX.fc.ksp?utm_source=openai))\n\n**Where to check and book:** Use this [KAYAK search for November 14, First Class](https://www.kayak.com/flights/LAS-LAX/2026-11-14/first?sort=price_a), then follow the selected offer to its booking provider. Decline optional insurance, hotels, car rentals, and other add-ons, and confirm the total including mandatory taxes before paying.\n\nI also found a November 14 listing on Priceline, but it was **round-trip and labeled business class**, so it does not meet your request. ([priceline.com](https://www.priceline.com/flight-routes/business/en-us/LAS/LAX/business-class-flights-from-las-vegas-to-los-angeles.ssp?utm_source=openai))\n\nSOURCES: KAYAK (kayak.com), Priceline (priceline.com)",
+     "type": "output_text",
+     "logprobs": []
+    }
+   ],
+   "role": "assistant",
+   "status": "completed",
+   "type": "message",
+   "phase": "final_answer"
+  }
+ ],
+ "parallel_tool_calls": true,
+ "temperature": 1.0,
+ "tool_choice": "auto",
+ "tools": [
+  {
+   "type": "web_search",
+   "search_context_size": "medium",
+   "user_location": {
+    "country": "US",
+    "type": "approximate"
+   },
+   "return_token_budget": "default",
+   "search_content_types": [
+    "text"
+   ]
+  }
+ ],
+ "top_p": 0.98,
+ "background": false,
+ "completed_at": 1794010154.0,
+ "image": {
+  "context_compression": "disabled"
+ },
+ "prompt_cache_retention": "24h",
+ "reasoning": {
+  "context": "all_turns",
+  "effort": "low",
+  "mode": "standard"
+ },
+ "service_tier": "default",
+ "status": "completed",
+ "text": {
+  "format": {
+   "type": "text"
+  },
+  "verbosity": "medium"
+ },
+ "tool_usage": {
+  "image_gen": {
+   "input_tokens": 0,
+   "input_tokens_details": {
+    "image_tokens": 0,
+    "text_tokens": 0
+   },
+   "output_tokens": 0,
+   "total_tokens": 0,
+   "output_tokens_details": {
+    "image_tokens": 0,
+    "text_tokens": 0
+   }
+  },
+  "web_search": {
+   "num_requests": 2
+  }
+ },
+ "top_logprobs": 0,
+ "truncation": "disabled",
+ "usage": {
+  "input_tokens": 20723,
+  "input_tokens_details": {
+   "cache_write_tokens": 61,
+   "cached_tokens": 4435
+  },
+  "output_tokens": 461,
+  "output_tokens_details": {
+   "reasoning_tokens": 205
+  },
+  "total_tokens": 21184
+ },
+ "billing": {
+  "payer": "developer"
+ },
+ "frequency_penalty": 0.0,
+ "presence_penalty": 0.0,
+ "store": true
+}
