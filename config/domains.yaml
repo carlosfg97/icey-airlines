@@ -48,6 +48,8 @@ ota_aggregator:
   - hipmunk.com
   - ixigo.com
   - onetravel.com
+  - flightconnections.com   # route/price finder
+  - flightsfrom.com         # route/price finder
   - cheaptickets.com
 
 # google.com is only an aggregator under these paths (Google Flights / Travel)

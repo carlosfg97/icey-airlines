@@ -2,7 +2,7 @@ name: Run experiment
 
 on:
   schedule:
-    - cron: "0 * * * *"          # hourly, on the hour (GitHub may start it a few minutes late)
+    - cron: "7 * * * *"          # hourly at minute 7 (avoids the congested top of the hour)
   workflow_dispatch:             # manual "Run workflow" button
     inputs:
       is_test:
@@ -24,7 +24,9 @@ permissions:
 
 jobs:
   run:
-    # To pause the hourly runs: Actions tab > Run experiment > "..." menu > Disable workflow.
+    # Manual runs always go. Hourly runs only go when repo variable SCHEDULE_ENABLED is "true"
+    # (Settings > Secrets and variables > Actions > Variables). Set it to "false" to pause.
+    if: github.event_name == 'workflow_dispatch' || vars.SCHEDULE_ENABLED == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:

@@ -58,6 +58,8 @@ class Classify(unittest.TestCase):
         self.assertEqual(c("https://www.google.com/travel/flights", "delta"), "ota_aggregator")
         self.assertEqual(c("https://www.google.com/search?q=x", "delta"), "other")
         self.assertEqual(c("https://en.wikipedia.org/wiki/X", "delta"), "other")
+        self.assertEqual(c("https://www.flightconnections.com/x", "delta"), "ota_aggregator")
+        self.assertEqual(c("https://www.flightsfrom.com/x", "delta"), "ota_aggregator")
 
 
 if __name__ == "__main__":
