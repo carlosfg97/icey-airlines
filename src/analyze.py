@@ -69,7 +69,15 @@ def build_frame(rows, cfg):
         rec["selfreport_n"] = len(rep)
         rec["selfreport_in_used"] = (len(rep & used) / len(rep)) if rep else None
         out.append(rec)
-    return pd.DataFrame(out)
+    df = pd.DataFrame(out)
+    # If a provider's model changed mid-experiment, split it in all views ("openai:gpt-6-luna") so the
+    # two models are never silently mixed. With a single model per provider the label stays plain.
+    if not df.empty:
+        multi = df.groupby("provider")["model"].nunique()
+        for prov in multi[multi > 1].index:
+            m = df["provider"] == prov
+            df.loc[m, "provider"] = prov + ":" + df.loc[m, "model"]
+    return df
 
 
 def wilson(k, n, z=1.96):

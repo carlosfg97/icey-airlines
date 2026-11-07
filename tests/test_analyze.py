@@ -48,6 +48,13 @@ class Frame(unittest.TestCase):
         self.assertEqual(a.selfreport_in_used, 1.0)
         self.assertTrue(d.absent and d.cited_ota and not d.cited_target)
 
+    def test_provider_split_when_model_changes(self):
+        a = row("alaska", "openai", ["https://www.kayak.com/a"]); a["model"] = "gpt-6.1-sol"
+        b = row("alaska", "openai", ["https://www.kayak.com/a"]); b["model"] = "gpt-6-luna"
+        c = row("alaska", "anthropic", ["https://www.kayak.com/a"])
+        df = build_frame([a, b, c], CFG)
+        self.assertEqual(sorted(df.provider), ["anthropic", "openai:gpt-6-luna", "openai:gpt-6.1-sol"])
+
     def test_compare_airlines(self):
         rows = [row("alaska", "openai", ["https://www.kayak.com/a"]) for _ in range(3)] + \
                [row("delta", "openai", ["https://www.delta.com/a"]) for _ in range(3)]
