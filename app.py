@@ -6,7 +6,9 @@ Chart colors were validated with the dataviz skill's palette validator (light mo
 """
 import base64
 import html
+from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import altair as alt
 import pandas as pd
@@ -121,6 +123,14 @@ def load(include_tests):
     return rows, build_frame(rows, cfg), cfg
 
 
+ET = ZoneInfo("America/New_York")
+
+
+def to_et(ts, fmt):
+    """ISO UTC timestamp from the data -> Eastern Time (EST/EDT handled by the tz database)."""
+    return datetime.fromisoformat(ts).astimezone(ET).strftime(fmt).replace(" 0", " ").lstrip("0")
+
+
 def provider_label(p):
     kind, _, model = p.partition(":")
     base = {"anthropic": "Claude", "openai": "OpenAI"}.get(kind, kind)
@@ -178,7 +188,7 @@ if df.empty:
     st.info("Pick at least one model.")
     st.stop()
 flag_ota, flag_own = f"{view}_ota", f"{view}_target"
-last = str(df.timestamp_utc.max())[:16].replace("T", " ")
+last = to_et(df.timestamp_utc.max(), "%b %d, %I:%M %p %Z")
 n_fail = sum(1 for r in rows if r.get("error"))
 
 # ---- hero + KPIs -------------------------------------------------------------------------------------
@@ -189,7 +199,7 @@ html_block(f"""
   <p>Claude and OpenAI, with web search, price the same trips on Alaska, Delta and Southwest every hour,
   and we log which websites they actually point travelers to.</p>
   <span class="pill">AS · DL · WN</span><span class="pill">36 searches / hour</span>
-  <span class="pill">last departure <b>{last}Z</b></span>
+  <span class="pill">last departure <b>{last}</b></span>
 </div></div>
 <div class="kpis">
   <div class="kpi"><div class="l">Answers logged</div><div class="v">{len(df):,}</div></div>
@@ -341,12 +351,12 @@ for r in recent:
     dom, cat = (classify_url(urls[0], r["airline_target"], cfg) if urls else (None, "other"))
     chip = (f'<span class="tag" style="background:{CAT[cat]};color:{"#0d2238" if cat == "other" else "#fff"}">'
             f"{CAT_SHORT[cat]}</span>") if urls else '<span class="dim">no link</span>'
-    trs.append(f'<tr><td class="dim">{html.escape(r["timestamp_utc"][11:16])}Z</td>'
+    trs.append(f'<tr><td class="dim">{to_et(r["timestamp_utc"], "%I:%M %p")}</td>'
                f'<td>{AIRLINES[r["airline_target"]][0]}</td>'
                f'<td>{r["origin"]} → {r["destination"]}</td>'
                f'<td class="dim hm">{html.escape(provider_label(r["provider"]))}</td>'
                f'<td>{html.escape(dom or "—")}</td><td>{chip}</td></tr>')
-html_block('<div class="board"><table><tr><th>TIME</th><th>FLT</th><th>ROUTE</th><th class="hm">MODEL</th><th>FIRST LINK</th>'
+html_block('<div class="board"><table><tr><th>TIME (ET)</th><th>FLT</th><th>ROUTE</th><th class="hm">MODEL</th><th>FIRST LINK</th>'
            '<th>TYPE</th></tr>' + "".join(trs) + "</table></div>")
 
 with st.expander("Route board: all routes"):
@@ -361,7 +371,7 @@ with st.expander("Route board: all routes"):
 
 with st.expander("Sample responses (full text)"):
     sample = [r for r in rows if not r.get("error")][-30:][::-1]
-    st.dataframe(pd.DataFrame([{"time": r["timestamp_utc"][:16], "model": provider_label(r["provider"]),
+    st.dataframe(pd.DataFrame([{"time (ET)": to_et(r["timestamp_utc"], "%b %d %I:%M %p"), "model": provider_label(r["provider"]),
                                 "airline": r["airline_target"], "route": f"{r['origin']}→{r['destination']}",
                                 "fare": r["fare_type"], "window": r["booking_window"],
                                 "cited": ", ".join(sorted({u.split('/')[2].removeprefix('www.')
