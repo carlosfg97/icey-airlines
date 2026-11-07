@@ -1,0 +1,212 @@
+[
+ {
+  "id": "srvtoolu_01Wgtk7U8y1gqN7niHSVxXev",
+  "input": {
+   "query": "Los Angeles to Las Vegas flights November 14 2026 first class"
+  },
+  "name": "web_search",
+  "type": "server_tool_use"
+ },
+ {
+  "caller": {
+   "type": "direct"
+  },
+  "content": [
+   {
+    "encrypted_content": "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",
+    "title": "$39 Cheap Flights from Los Angeles to Las Vegas in 2026/27",
+    "type": "web_search_result",
+    "url": "https://www.momondo.com/flights/los-angeles/las-vegas"
+   },
+   {
+    "encrypted_content": "Es8NCioIFRgCIiQ5YjljNGE5Ny0xYTkyLTRlNDMtOGI4ZC04ZDg0YTcxNGU5MTUSDArXy2bjKMskRiwuwRoMRjav/Km5W+0bZB48IjCYDln9AKI/xb8mOqnimCn0j1oTSCgInlhVFJ6NTr9qG0rtbwVbkDtLMKqOAAz6wa4q0gwkw+6TG42th9K5rzrbDGj0TFeOQXlBslhCok2kjiQX6f1unQCF+/KsWWa/ACVSzxV0bBx2mstmx+MyW3ugvd65jtU63NuwHmnW+Y+ynHknWiGJPad1vjZh7zj4GG3U7pSRMRDmproE+BRpuSe4o7EAFXvjgdjOvav+OivKn3BHkCnjQa+0dL4/rfFDSmQVaUTGIIEIO6Mn8ItGL7pw/LOvBUd+SWNu27Xwbe6fT/4HgFyyk9+uruicO6eV7MEpkvwT+MRsVfb7Y/AL0MAPECQY4B5jP2aShRY8aJURg50PleqRlg5QsYpediZ59s+qa760GfCp6+Lpl6HhX2kjmM0NjqCjUh4Fx/rtgLwd38Dn2ayHOwBhaoCxWOlvJpi10XmQIWx+3Vi/LkBt2kpnuMWXyo2iVxM7HD5sctTztsJSSaFWyL8ckpfG3z/8Bo56NgHIrWiV/5AY+V5Vxbav7SWKsOTtmbdi2x3dUg3r5U0s8FvaNui8T6hUz/HXqUpAtYTdhZ72ZfCcBuZrHamHUQ7eF2UMWw7cAax9mKCcJv4p2QPm3FqGnBL5zkRDE59KYRQ0iXrHY/d1MVn8RfcSfxO1+0frpboKWtWsxAF4CBSYIzZcLDyGa7ahJU1AeT5wwaQ4YzYch39x9yEzwhP8JjEv807drdw/vLono1elxchMrh9FnJjPCoHCQAxiKDAhPPDL9wfAAlWorw0i/w8ZGGdprpRmGE6gLJ2srnCNyFlbgIGgPlvodSt6tbO9EC9OvPQ04HueHCjQvwsea+KHuwMMKfoTKoOzKDuenCUwPnrB9oOcKQpq/FAJdbqPhlLpa7psCk0ovyy77hk++zuzrwu/5K69H+pvH7pJCDHm0fDENqlQN2YtiyDapXX58TJplIjAtGl8bZ3m7uej4mBxYvZBTD7dYLiNlsLa9DPa44pL40Hqi2Lb4ZJQyGiNrT0PYYBc4j8bK+t1MaIx5EJhQntDesx47IkJ4GxqWTgFm49IGYpj7Uw6QJDwawp8FcdIjkCjoZ/TZ6X8wEmpDuOHFkfx8a3o3xUq6JWzBvUFGutWTyvDLCM4+B33SI2pOy25F6DNQtbzo+d7J2vD96fFG0vi8s8wa+/LQt3/uTCh2UoGjsj2wKhBjhxqfLjrYZbmF+lGO30rKj6NpTvLody3yxP+WiSxhMsmEG0PHId3TfVPozJwMVeYCK6DVSV3mMSOgpkQKi0x3O218fRgUoCUYxnkjz+ie4e1iMjkEPLUmrKJCvRtkoHOpTPUxoWDJGiPBjmEvihxeBFFB8nxga33dT2u2ZZ/kuC9YWuudSZptk4GO5odA7QlAsLqvcjUqZV4TxAWZQC3CzlaYeceOCHk5TNQblQkYZg/bZQ3AfE8ghb3AQdCSBV6EK40LWHVS4DIpOZ8kwGDO1FH3S4LhMzSZgaWsRnC7tpPOUW+HlwuLDZxLlTccOQVq90hJYcBFgS5p8ZDiJJh6iLfM9BYB757Fr906v6+KlL8PbtT2/K8ejapAtewqVcZFF1kSG7gvk1JJdroNSZqezH27T2aOQInQAELaRKQWJGItnv4UDcJ7AshtlaW7RXKvXB2OgYWThS8xOUjxOImRfCzdlYvGw0vVqWacuHM4nBxDEdp5Yh1G49F7Uyf0z1oUnl1ObziaLbGsgUniaOdMNnFMCPAuM/2F2E+nz5HuQP4t5KuPbWfjF7jMKU02qQrDsArfi93j+GpWDji8cEbMKadcCLQUSWmxTxCuTZC8G2vDZz9j3SxJMPyF9lmDoewZheSF+CLX0wQ0U22BuEI5g/pLR+pHXBQtQRqN4cYSPA64iVjGlJmYsLfeOXZL3z4lbI3JizD3SRK0PK5HnyQXK1Fvjtm74L6WDIpSzVNwYkGP+oc/ngd7vRs12LOAc6Pu24cVM43Lw1KBkWzbDvqnjCcdN+1Pl0ewu0DzAoO8iPGSdAaGSekbFtXXrbU3YqNiKnVlPHoJakJZqg9M4B8sBeqAPrkt1guhNbHjn4+Dc4Rm+qdTbWxvCiedm+aONqN2LbOmOklJg9W0v2EoRrPgxOWdX+dll1WR4bp1+YkkORlwmdapoJpe4pu5g9AwFkI2bivBeQ1mei+IPUQ5kmFs6eEp3X0OUUm8T/WpU8CTvpYoUvpLNLG1r8YRAmzGAM=",
+    "title": "First Class Flights to Las Vegas",
+    "type": "web_search_result",
+    "url": "https://www.momondo.com/flights/First-Class-United-States-US0/Las-Vegas-Harry-Reid-Intl-LAS.fc.ksp"
+   },
+   {
+    "encrypted_content": "EuIGCioIFRgCIiQ5YjljNGE5Ny0xYTkyLTRlNDMtOGI4ZC04ZDg0YTcxNGU5MTUSDJyPoq1KzsxWBq495BoMhNcw4Wz5ZHT+nWD5IjC+iGFB0QfUhqmPMINFu3k14WPKYPJpGgKJywOrgWSwvMB3+MprlZC3VSurMansdcgq5QXR3Vn8R/YW4EEUyOeezmcGwkDmksRVSr2GhFDN87USxxcNL+3IUtfde52jOehhGt1DehZpRJjxL/G4EPu91w+1vezUhNA2P2rzN3rk47oFbVBoqbmmgFXrBF+uBd1BmqVAKlq2Bvq5xY3inXpu9mnNiozRFxolWJGig5x/EMVNvU9eaiXM7dqlg2hBEwAMe7OW403OV9EIazZKsvm7yl0RwvErg0VNKJrrFlFUv9DpEj3gv2KDAqZYJzZzKlBX0UbCVWMW4y/fGc2pColt9DbaC7dAqmiaaDMkzAGXH8jE4+EOmJcuORt9/AXuFT8cUA4sgL1BdE7IHXdcAMe/yKIEHSh6M7CJEZgPBPiDx0lBLUlfJHmLavsAOLZZXPBIwS3LxBP0wX1hfXfq5lqgbaM3/6qsMrxAtkXW8oZKPgZxah/PnFQkE7MmaDAPXcR4pD9yDnVZgqZ4jSuj32baPg2HfpYq/HClAKuesiPNtV4o/BiHV0N/tdVA+DvyGnd4gFM+5vmcgOnpwt+dGHxdWiMU00+seXbegJAtiJ8KV9lzuRusl7tP8jF8S8NTNf9S4Bye9AS9zUdxMV8MPlUMChPUDd65oLgvut6TK6xiCk5xLy16FFjKj0HFmaVK4OUkcgEILrXEtW/Vi37aGrJyOLoTjtxIOk9XVbVOEhflWIrkJHqMn6boWYdl5WMAZtgZv/EDPuzRDjdGz4t52ARUhs382oePZRpS36A1h6LSP4pWn9+in5swRRYKorIBjE0beX5ExuuxjpDZlnok5HXpQwCngJRIRwUNQ5pa1uI8le3xKVlEGOHJTHhBGhnHxmezfIt2Pzyiy7LG1/UrNvs40JfYEFZg2Pj5JwpCRNf139FClkudXVtQYBLqFYr2SGt9rPi+DQZoMZOR4XDmoG6wpL+DCFVx4SPKSciSKlGVJoFsXBxItT0L5KPS4NkhmWPcqhUknChgLJIIRtODaF3ZERoaXvOAaiwYAw==",
+    "page_age": "0 days ago",
+    "title": "Flights from Los Angeles to Las Vegas",
+    "type": "web_search_result",
+    "url": "https://www.aa.com/en-us/flights-from-los-angeles-to-las-vegas"
+   },
+   {
+    "encrypted_content": "Et4GCioIFRgCIiQ5YjljNGE5Ny0xYTkyLTRlNDMtOGI4ZC04ZDg0YTcxNGU5MTUSDM3D2FTeLcveJbBAYRoMW+e6UmIbx71p0M1AIjCCSskxXY+GsJNEWd54tb+cqBtTxJNdYratrDTB62ibP9K2AKBD5gZ41aO3P3XPTawq4QXkcY/aDfTH4d/MWTN5/qEANT5NQnr9YlIzE0I+i2VPx5hm7wIApxC8zMrGolJQS+0UTIjdztP9qnNZMPpSKyJrG0zndTp52SQmv8zfGAOsN+kibTxwRLnEFEvDqiSlRlSGs9KuF+d5OoBBUuj/dWeSNnsUyzuyxZdTRDUpfyxDV6U2rPwZ3rjkibj7YC0BgEAuMVPsOAA3lpALT4fZSE2vpVt/H7WhzkI9JQxkMqCcfVjcPe5P/iksqhwYv+Omk4t7mq/CNXEl1x+eM7IqmRoHEtNBRqkzPUo/LDCzs7tC6vgYHkwkoZPbCe6ejYOt+edQvSVXJhdXISN6jKss4bOMGDVTa67k5dH0RMSU8orzSuWSxYcPzRsG5cIWJ6wIcJbRIbKzf4vQLjBqvCEakWQdp39pB2YZgqg8hN6KgLkO0ceaS3t5Ky3E3HedWfhCtPc7Pokxz85PnRmGqhEVIw/6pika4N7irNUNFQ8w5DKf0uK+oLL8M8gEg3Lb92myiQoWdE+K4Wb3SRK3XdDnK9KagTylXyy3FeiVt3iJsymlXPAnNJD60m9LYgE/toFpPx2XJn73/ZY9S34+mYYmcrandmytJcc+dUdHmx+U5fwPu18SwyqKeOTlK2U5lE6W9W0xFiNZzkTICT4/r3hb6AVN0nlbz3HrpkcnQ/+HV0Aea4Ro//gVdt9mCcN6YWr7p/SA8FabR/xiQwNyAQ3Y1fFZRvdW5hEe4Ti5kly2GMNJiBFkiysUb+MqfSzvuXyL+hrunhDpSK5aH+7h9lfXiQGk5KT+Nn95BLI1g5oeVf6X7Tea5yJ1ZMQxzx+mnINb+6XSbpOGHKCMKeiDdyIxjg5Y05S7XxKp/RiFC4ah4SlPPKWbjhlADAy79qoKj+h3JkHekP/Ls/NgMpJc9Gn9pvtYj5+q0hduZgBo/Di2KW7T9/6HqTVGnLASet1zqRQdgl9Z9k6iRlSapH0gEkFR0sjxWhgD",
+    "page_age": "322 days ago",
+    "title": "Cheap flights from Los Angeles (LAX) to Las Vegas (LAS)",
+    "type": "web_search_result",
+    "url": "https://www.southwest.com/en/flights/flights-from-los-angeles-to-las-vegas"
+   },
+   {
+    "encrypted_content": "EtMLCioIFRgCIiQ5YjljNGE5Ny0xYTkyLTRlNDMtOGI4ZC04ZDg0YTcxNGU5MTUSDNVZDVEzs28b6VbvQhoMb2WzXtcU347pFZHCIjAHW2e+gdjQXYkXip0f9Fql4p+nYoQSH/F0S7riE4YgFdfMJZqeypezoh4zYLAQS20q1gqj/Dt85gzJR9r92jzLGvbmRkYGIXLTbbcyNyCh0RCeHqvsLBnuIONsV7xa5OHN33rM555g20oea673dP39sDuPi2/c5OFwYOuzwpAoAxKRcePKQKd5APAwcljVjcgsKpD0Dd7YyyUufIoQ6HShfLw2ju0TQtDkftO/VETL9D3GS5mQoxLwuoInXamOFTV1C30K/voOky/giAJ72nsXh/2nsbj+VO19ehgT4LLDYruQBdX0f7muPKd3+VDqEQoBcgGx8whCHLwkYbehUJvh/2m8iWkXRZOIGzhMQn7ZtV/UpOrhNM3xc10NHESQH5Vl79PjAiFVlKdXP+YhC/fX4Ugs/rgVuQGm8p0lph8FdQD4C2A7JfSlFN1KgmjssJjMiMUfueNxN+vSZCoCtg1/dc7XSupypSLCBb37N2AVyKsgkX9P01fBFRqgPETMmkVc6d14r+cgj9ZLCsNZf6CZQMpzNARi+3t9cz1y47aSV23Z1gTP5NSc3gLd0sOIkWNndxqZqhzROHE0YSOK647Jt6Z/v7K16rcC4ltjK6xRtgzoNoObEoETBP0WGfHdcsDPYRCvwUamQRyBcUtG55QWbmxmUyey6/5GE/0MrN8UlGTOyGUTz9BPugV6EODRNS3L8aHStPdj29xzKDiJiyN3yL8QhWdO2IvJ2t/b/FDro4g7kf3XXiV+e6shckV4K9rgJYfxqo5LOubt1BqOKhMyJXzOlwECWFoEM+dlT2PMfE8GhdBGZ5U6uLo4gWFhJYCPYGw7VqQyUZtqS4RysKQxnxXgRqlu5HoBfEjr2hfCtz80T8s6lM55zhWmTLgdAKZ6MqjTPf4SPTXfig5Z0vhRx9q+6nBk9wwg+XoVfA4nLO/qFanWJAThwloTA1UQtYi/UziJYZ4UGqb9Rrz0ABy6o2l2gzkL5vNaEVstRfF9MzqfWoUV/s1PQIYivCERX762047ZKWmmVUbdxAdK9h66p50QlwLIRhBWQeLZrL4pRqlpOY4AHFV5Ws0Tw7F5ohrW/t1GPOSOTRtFrpafxmEVczKRxwdHn3xMeI2xva1J2T5kKWgYttL5t+B3rwN5gUGmRQ/Y5BM58MA8js0y902c4uV+SiSx8ddsQKjG0a27KATEcClmrxdkoKBI/qeQOBRsfJS18zYKgZ5IOmFEFbt029obuBpjV7tTEf+TI88w/yOlgg69/9nJQ4w/M3qLcr9FHO2HNfrWfOWtswIynkk38o6YwASnut/+imOIrGF2avOzZCpDGwKX2I5Msi5Ictmv+vXww4yWoEPV/FvKp+O7D87CzN0IyxjzVqVdycKCs1EKIMW2u28ETZQTXFd5VnKgc9VX543KOAouu3I8tmVSshkWN8i4GMbht7Cg3ItM8u/gZbzWUJGiZvcaZJWOpqlhg1aGjaS5Xm74RrlEA7w3XSZXlorwRJVFjuzvU5mtQbPueuX4+tw1/ht8hanY1iOrhJcg2wrTeBGytYoGA15i7Eae3va4DTcizEnFXtWEtu/Hcl3/5meAWsYLhwrpxg48tD5Zy/w34dvABfI6vLIfH1RjTbtRNEGJpEITlNAZVY/WqGoy98VFYuDdyYQ9tXhxIfMvN+/cK6T3+ZafEz5+uvmBzhVthaJCb20iSxQMUYDrOkVo4LvXn1GYj0t2QuWPR/MCgtS9hFwtsnDj+yRqVhcDCXL/Uw2MyjFCqeo33qmNGVXFPpO4IPhZ7ngpSkOpXfg1aIv0+1Dt2B039fcQwfDwhiEYyXUS0KoT8lZZpqoCLhncMstrKnbfTs9kvoxV2vxpS1oYsEk1h1JcEuL3/vG5V7haNkerGAM=",
+    "title": "$41 CHEAP FLIGHTS from Los Angeles to Las Vegas (LAX - LAS)",
+    "type": "web_search_result",
+    "url": "https://www.kayak.com/flight-routes/Los-Angeles-LAX/Las-Vegas-McCarran-LAS"
+   },
+   {
+    "encrypted_content": "EvEGCioIFRgCIiQ5YjljNGE5Ny0xYTkyLTRlNDMtOGI4ZC04ZDg0YTcxNGU5MTUSDB6S2HQ/+1k72m41/hoMNur2pwnSG7aIf3nIIjA2BR5q6g3VnmqjBmDRpgI6jp/TEu8rtKiaCyZrNRDr9HylfW17X7aHTB3Tht1oa0Iq9AU65bZzQJc5zQnRUXU5o3xB4eHpmGjK1r5NZpdczJ9N3NhfMhLCTnTRSkNEX4g6WOAhr0F50eN9wT4OyKx2wF97fgCZMIhtu4a+1AteNtYYpdujOkQqXo5avBRY39vCnnqm2xh/8+wiOjrG8/NGAi6EOnjEAZ3SEGO/hXPiaEb/+WGHaZ2pFPnNYQJb9XzRKuYhbv1HDnXuYNA9kWK03TXMzDP46qkQOI42u4Uy+lsHim85SfcJXFXvA5+6eSxq3JVQyt3NkCvPTrXVK/erJzjb9kYQUa+FMalLfH6K6f9l6W+WWmsX02kA2MhXDwpzmqD8ZDrTG4TzzOndbTsHudtBzeV3DNEJTj68g871NEW5yJtclqwMPzuyHoKbWhtd6DKTeJ+bEzUfk8ZmchkGruLhwh/s69sVW78/c1Yc6biCexzr92EaKs1VPCgfwFAn/gaLiCzqVC1WDIQEMBMSVEFrkLUGaV2qM4+9VbLzrMOTqPb/Kt4osHTot0MBSkwxhohS4pAtlF7101TWTArJugalkbNuQ7Bp5s90Low+yFDOM0GWBi3qaI57o9wggYSGMlUJjW/ly1FA0prh2KFBsdPXKPQNS7miElh7JvBCszrUfvEZr0gT3BSqdWTgPnVHUg96o+Ht2LkgBXkFDLD5IvodQI9+Lsw4XnrFzT1DH9DwI8T90ZGbC6CSC7Oac8jAxulCdPx7WOq08S38lbH3P5+DFlJwp/Yi3en/ymcf1Xzb/gx/wjHg/ODbdKUxSDrZY21Aiu7+Up9pADORtHTFCW5bYqkhkHEIYhUzAwnmT2AIrfw7C3s14NozUi9rhFr/sOl4iqD49nYLgXqN1YEkGx9xpEW+mdsPTtImBDtO2Z4NwDmTEvdzFSKZsuHTL+prYXIBwc/S4GBzv+WA9WjOtx3EHy5Wr5NAp3wkOr7XpYp4b2KBkO+8OF5A8JJVUEjxK7eu7jN2YEFoR2H+jWH22C0eMglCzGN2qZsHKIDbGcu1HwhSSc8YAw==",
+    "title": "Cheap flights from Los Angeles (LAX) to Las Vegas (LAS) - Alaska Airlines",
+    "type": "web_search_result",
+    "url": "https://www.alaskaair.com/en/flights-from-los-angeles-to-las-vegas"
+   },
+   {
+    "encrypted_content": "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",
+    "page_age": "257 days ago",
+    "title": "$35 Cheap Flights to Las Vegas in 2026/27",
+    "type": "web_search_result",
+    "url": "https://www.momondo.com/flights/las-vegas"
+   },
+   {
+    "encrypted_content": "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",
+    "title": "$111 First Class Flights to Las Vegas (LAS)",
+    "type": "web_search_result",
+    "url": "https://www.cheapflights.com/First-Class-USA-US0/Las-Vegas-Harry-Reid-Intl-LAS.fc.ksp"
+   },
+   {
+    "encrypted_content": "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",
+    "page_age": "11 days ago",
+    "title": "Cheap flights to Las Vegas (LAS)",
+    "type": "web_search_result",
+    "url": "https://www.southwest.com/en/flights/flights-to-las-vegas"
+   }
+  ],
+  "tool_use_id": "srvtoolu_01Wgtk7U8y1gqN7niHSVxXev",
+  "type": "web_search_tool_result"
+ },
+ {
+  "signature": "CAQSgQgKEAgTGAI4AUIIdGhpbmtpbmcSDMWfPvPc0/VsxPMxGhoMeB/NBbNSyO/m44CGIjAjtXEUrNhjYEF9QdtvlQJ7jEBJHa0FVmh6pSzMjbrE1wTdcnqMLmCbvtrE9faEqCMqnge7B/Y3+M6PqS01jKJ19TJahHUWS4OwB70gkriH8ZJeh+nlxmlfWRvysmrW/ClApUHXXpJyd7xmYfSVJIABdE4dqJaQIH2Zb7D/fXajDibIINSAR6dhyTxnK3NNTRF3LyC1HkUDdGfKssaQKp4EoHIjPvwo5SOL9UbyxAVA6Tyt68zKi7WTGP7q2EOFPTvPT/YSG6mHxQ4gBvfzWhSuU1CHTTacyhYtJXBd61AKttwOTpGEyme5e9pV319lC8oUD4HSpBozGmazUMLYRaiqAbmkhv53EXV4GGNl+G2ASlePvIeJvCFIYA6YnOBkhAyE1jhiE5tGBoJ+ZztOgc9N7VZT9HbEULH1f8B4HjlZQoBRzbzkSyTaJJiHaF9W/E2tvLRtbLLG+esT0VUYrZdSxNJNk0lhWg2G40ZQFxFkmLp2OL7DFqvyfOF3lF3nhOrRxO9m2cXQu6f9IAl+jo2B/EcaAQXDQF3QxsctNSrVQPOhwI/gnV3LTTK2aeZhmdmE+W+Jxnw7Z0nCh4JAI51SGlSIx7VquCmZs5w2rbdYs2njweDjpMWlsvBosgz58xwewuVOlxEKha8Lk2cDXiG3Ltqy33hDZH6Yr6f4jaIe1CXwD2NAEYcipqXhO4ze/sxWLc93Xso4j9bMTYPBq1ocXWyt5+EBGSStvvFC/hsgw+ePmt+WjeESSR3CC0Q1kgkJKIf1OHEpa8aoLHAydt3bVMoQfGOxBeORMsAquQ45M1qe6x3IW+dXlSVtszo5iuQhhBYC5jWDDkinO2gZtHP54c989DH18QoGZ2VvWHMsoi7Rh5pmjBfaZLPXdxVnJEufkJ8Mi991wNGy9gq9Z0vQca25pqPmo68Yj64r2fmadIjH6LO+kle9GIPl+Yo+3oeBbpCIMXze790nB9+7HZPIP5yc3mHJHXXNV+Ka7snU1mIFPaC4ktHI3nhj+tPOEzzjHixCuGQ78xfQBYUKFnJjJDRLFSlmeTv5NLHEs/MkECNdkCILHbLojHwDovg1Fbd109qjqlqGbEYQAqMTLRLZ+pX1X1UhmWozAGF42v+ol3ojuz/8r8vSmTnu7pFYrq1/1ai5kMJa0C+3OgB25S0zlQpss5K9eHB8eh/WyUnW1xnz9yrD+/ReSQWHq38On0zkuz4zwQYW1Qdcz6+NRmnhOIzzhtQbgTqenx2v8ElBgzxcMPTJ3i53JlG0t93f1CPcoYSSTYUcsxW1lAeKqc+r+xgB",
+  "thinking": "",
+  "type": "thinking"
+ },
+ {
+  "text": "I couldn't find a confirmed first-class price for LAX to LAS on November 14, 2026. The search results only show general first-class ranges and economy fares for that date. Live cabin-specific prices don't show up in search snippets, so you'll need to check the booking sites below.\n\n**Price estimates for first class on this route**\n- Momondo and Kayak both advertise ",
+  "type": "text"
+ },
+ {
+  "citations": [
+   {
+    "cited_text": "First Class to Las Vegas from $149\n\nFirst class flights from Los Angeles to Las Vegas from $149",
+    "encrypted_index": "EpABCioIFRgCIiQ5YjljNGE5Ny0xYTkyLTRlNDMtOGI4ZC04ZDg0YTcxNGU5MTUSDAgKSu0JOmD+GhgMeBoMSM6QJGmuE2i0y0poIjB+ZeBDYTPAzdgvG7OoPlhEHiQQoV+QyK5fZRYwCE5O1yrxI8ostXvme62cQlBoz9gqFMvtwAPOJdhJGFJEOBLvgIrKxA3wGAQ=",
+    "title": "$39 Cheap Flights from Los Angeles to Las Vegas in 2026/27",
+    "type": "web_search_result_location",
+    "url": "https://www.momondo.com/flights/los-angeles/las-vegas"
+   },
+   {
+    "cited_text": "## More options for your flight from Los Angeles to Las Vegas\n### Cabin class types available on flights from Los Angeles to Las Vegas\nFirst Class fli...",
+    "encrypted_index": "Eo8BCioIFRgCIiQ5YjljNGE5Ny0xYTkyLTRlNDMtOGI4ZC04ZDg0YTcxNGU5MTUSDEJHNllp0I/Q2zdUGRoM2TNI0KK7RUcy6T0OIjD3tOCb7e7l6zZ+b+dy8opA6v7A3pBqTnVzimxJOOfoFW5FNCbZv1jRZJ41xL8vBhsqE8v2f6lZ+v/OcQt4DO3AiSSwDr0YBA==",
+    "title": "$41 CHEAP FLIGHTS from Los Angeles to Las Vegas (LAX - LAS)",
+    "type": "web_search_result_location",
+    "url": "https://www.kayak.com/flight-routes/Los-Angeles-LAX/Las-Vegas-McCarran-LAS"
+   }
+  ],
+  "text": "first-class flights from Los Angeles to Las Vegas from $149",
+  "type": "text"
+ },
+ {
+  "text": ". That is a \"from\" price, not a quote for your date.\n- Cheapflights lists ",
+  "type": "text"
+ },
+ {
+  "citations": [
+   {
+    "cited_text": "American Airlines\n\nAmerican Airlines\n\nFrom $300\n\nUnited Airlines\n\nUnited Airlines\n\nFrom $410\n\nDelta\n\nDelta\n\nFrom $160\n\n## Frequently asked questions a...",
+    "encrypted_index": "Eo8BCioIFRgCIiQ5YjljNGE5Ny0xYTkyLTRlNDMtOGI4ZC04ZDg0YTcxNGU5MTUSDA0bWdWihuWZumK7XRoMQDSdCPakYcOHsvu4IjDj43SAnA7BOPUN6/zP0JS1m2B5dCYYiXkPDyGd3tls19LGZsd7thUKb90XJtmYKVYqE+tm7S/o59JQ9JJfBugvSto1dVkYBA==",
+    "title": "$111 First Class Flights to Las Vegas (LAS)",
+    "type": "web_search_result_location",
+    "url": "https://www.cheapflights.com/First-Class-USA-US0/Las-Vegas-Harry-Reid-Intl-LAS.fc.ksp"
+   }
+  ],
+  "text": "American from $300, United from $410 and Delta from $160",
+  "type": "text"
+ },
+ {
+  "text": " for first class to Las Vegas. It also says ",
+  "type": "text"
+ },
+ {
+  "citations": [
+   {
+    "cited_text": "Normally, First Class flights to Las Vegas fall around $1,473 per ticket. ",
+    "encrypted_index": "Eo8BCioIFRgCIiQ5YjljNGE5Ny0xYTkyLTRlNDMtOGI4ZC04ZDg0YTcxNGU5MTUSDJcIqwRJ0EdEKg+HNhoMA0YdAHOERHUIOMR+IjB+CiSCsrxZV1qpf14ZN2gzDWDMjeQ40PYYe+zlLcCGg9HCkhDIm+x4u6cLDzzO8sYqE5ub2t/ogOjsIyO4xF+q6bsv+ZAYBA==",
+    "title": "$111 First Class Flights to Las Vegas (LAS)",
+    "type": "web_search_result_location",
+    "url": "https://www.cheapflights.com/First-Class-USA-US0/Las-Vegas-Harry-Reid-Intl-LAS.fc.ksp"
+   }
+  ],
+  "text": "first class to Las Vegas normally runs around $1,473 per ticket",
+  "type": "text"
+ },
+ {
+  "text": ".\n- Cheapflights notes that ",
+  "type": "text"
+ },
+ {
+  "citations": [
+   {
+    "cited_text": "The most expensive months are October and November.\n\n",
+    "encrypted_index": "Eo8BCioIFRgCIiQ5YjljNGE5Ny0xYTkyLTRlNDMtOGI4ZC04ZDg0YTcxNGU5MTUSDKqdDzYcbVQAFgPlPhoM8UBB3zYnbQXsOILwIjCeq4ly0HjuhNur67eqzWc/ioBgx+vayhtVWv9PO2FLkK/AOnOQxYpKGS/ZYZaD/6sqE+OakLoSzV+BGwrSWMpFkxPUF7IYBA==",
+    "title": "$111 First Class Flights to Las Vegas (LAS)",
+    "type": "web_search_result_location",
+    "url": "https://www.cheapflights.com/First-Class-USA-US0/Las-Vegas-Harry-Reid-Intl-LAS.fc.ksp"
+   }
+  ],
+  "text": "October and November are the most expensive months",
+  "type": "text"
+ },
+ {
+  "text": " for first class on this route. For a Saturday in mid-November, expect the higher end of these ranges.\n\n**Economy fares for Nov 14 (for comparison)**\n- Alaska Airlines shows ",
+  "type": "text"
+ },
+ {
+  "citations": [
+   {
+    "cited_text": "Want to find the lowest fares by day and time flying from Los Angeles to Las Vegas on Alaska ...\n\n# Flights from Los Angeles (LAX) to Las Vegas (LAS) ...",
+    "encrypted_index": "Eo8BCioIFRgCIiQ5YjljNGE5Ny0xYTkyLTRlNDMtOGI4ZC04ZDg0YTcxNGU5MTUSDCU1XaAGElq0mVrZyxoMbt2IAdX1/joh2V8vIjBHWA6e1+busWo58EKQ6BfgyHpgWADtEG0LgTEGPZC8Ty3dfBGKOiOOyEbjkIs4cwcqEyBE06lihDH8DwDdxYP0FH571kQYBA==",
+    "title": "Cheap flights from Los Angeles (LAX) to Las Vegas (LAS) - Alaska Airlines",
+    "type": "web_search_result_location",
+    "url": "https://www.alaskaair.com/en/flights-from-los-angeles-to-las-vegas"
+   }
+  ],
+  "text": "one-way Saver fares from $273 for Nov 14, 2026",
+  "type": "text"
+ },
+ {
+  "text": ". That is the basic economy-type fare, not first class.\n- American shows a round-trip economy fare from ",
+  "type": "text"
+ },
+ {
+  "citations": [
+   {
+    "cited_text": "# American Airlines flights from Los Angeles to Las Vegas\n1 Adult, Economy class\n\n*today*\n\n*today*\n\n## Explore fares from Los Angeles to Las Vegas\nNov...",
+    "encrypted_index": "Eo8BCioIFRgCIiQ5YjljNGE5Ny0xYTkyLTRlNDMtOGI4ZC04ZDg0YTcxNGU5MTUSDNV5guE2lFB6Ag7ihBoM2lCGeLdnizCi5I4HIjAn9cDSZZbZHIdOBkVTPzDVhxWaIrP7PHWqufK6DqlqjmlEO+gbJZFEQbxQyvnyHtUqEwfI13yvlTO67PyRySoTUs7+8rkYBA==",
+    "title": "Flights from Los Angeles to Las Vegas",
+    "type": "web_search_result_location",
+    "url": "https://www.aa.com/en-us/flights-from-los-angeles-to-las-vegas"
+   }
+  ],
+  "text": "$442 for 11/14/26 – 11/21/26",
+  "type": "text"
+ },
+ {
+  "text": ".\n- Southwest shows ",
+  "type": "text"
+ },
+ {
+  "citations": [
+   {
+    "cited_text": "# Southwest® flights from Los Angeles to Las Vegas from $59\n## Low fares from Los Angeles to Las Vegas\nLos Angeles (LAX)to\n\nLas Vegas (LAS)\n\nDepart: 1...",
+    "encrypted_index": "Eo8BCioIFRgCIiQ5YjljNGE5Ny0xYTkyLTRlNDMtOGI4ZC04ZDg0YTcxNGU5MTUSDLO3DfbjXRAGwWFkxBoMM1S7cuoIrxMcqiV2IjCe+snSwtXkrTDsk7IfxKYY6DLdpRev9WgItd1zVVqEczteyDcytmzLINKu/ytNtY8qE/Vmjcv0E+nspZfmeq9ekEjCar4YBA==",
+    "title": "Cheap flights from Los Angeles (LAX) to Las Vegas (LAS)",
+    "type": "web_search_result_location",
+    "url": "https://www.southwest.com/en/flights/flights-from-los-angeles-to-las-vegas"
+   }
+  ],
+  "text": "from $233 for 11/14/2026",
+  "type": "text"
+ },
+ {
+  "text": ". Southwest has no first-class cabin, so skip it for this trip.\n\n**Where to book**\n1. **Airline sites (best for \"no extras\")**: Search aa.com, delta.com, united.com or alaskaair.com for LAX → LAS on 11/14/2026, one-way, and select First. Booking direct lets you skip add-ons like extra bags, seat upgrades and insurance.\n2. **Comparison sites**: Google Flights, Kayak, Momondo and Cheapflights all let you filter by First cabin. You can use them to compare prices, then book on the airline's site.\n\n**Tips**\n- On a flight of about 1 hour 15 minutes, first class is a domestic recliner seat with a snack or drink service. It's often priced well above economy.\n- Delta and American often show the lowest \"first\" fares. Check the exact departure times, since evening flights on a Saturday cost more.\n- Confirm the final total on the payment page before you pay, because taxes and fees are added there.\n\nIf you tell me your preferred time of day and airline, I can look for more specific options.\n\nSOURCES: momondo.com, kayak.com, cheapflights.com, aa.com, alaskaair.com, southwest.com",
+  "type": "text"
+ }
+]

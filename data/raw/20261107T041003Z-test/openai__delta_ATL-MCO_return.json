@@ -1,0 +1,242 @@
+{
+ "id": "resp_0120d356a1522e13006aeea4a8a5c487d2867d0030eb995ce7",
+ "created_at": 1794024616.0,
+ "metadata": {},
+ "model": "gpt-6.1-sol",
+ "object": "response",
+ "output": [
+  {
+   "id": "ws_0120d356a1522e13006aeea4aa41a487d2abc519d15cf9fd23",
+   "action": {
+    "type": "search",
+    "queries": [
+     "Orlando Atlanta November 14 2026 one way economy flights price",
+     "MCO ATL Nov 14 2026 Frontier flight"
+    ],
+    "query": "Orlando Atlanta November 14 2026 one way economy flights price",
+    "sources": [
+     {
+      "type": "url",
+      "url": "https://www.southwest.com/en/flights/flights-from-orlando-to-atlanta"
+     },
+     {
+      "type": "url",
+      "url": "https://www.kayak.com/flight-routes/Frontier-Orlando-MCO/Atlanta-Hartsfield-Jackson-ATL.b.F9.ksp"
+     },
+     {
+      "type": "url",
+      "url": "https://www.flyxworld.com/flights-from-orlando-usa-to-atlanta-usa.html"
+     },
+     {
+      "type": "url",
+      "url": "https://www.google.com/travel/flights/flights-from-orlando-to-atlanta.html"
+     },
+     {
+      "type": "url",
+      "url": "https://www.momondo.com/flights/Frontier-Atlanta-Hartsfield-Jackson-ATL.F9.ksp"
+     },
+     {
+      "type": "url",
+      "url": "https://flights.flyfrontier.com/en/flights-from-orlando-to-atlanta"
+     },
+     {
+      "type": "url",
+      "url": "https://lowcost.club/cheap-flights-from-orlando-to-atlanta-orl-atl/"
+     },
+     {
+      "type": "url",
+      "url": "https://us.trip.com/flights/airport-mco-atl"
+     },
+     {
+      "type": "url",
+      "url": "https://www.orbitz.com/lp/flights/178294/178232/orlando-to-atlanta?msockid=1ab4d20c060169641261c4ed07c76878"
+     },
+     {
+      "type": "url",
+      "url": "https://www.priceline.com/flight-routes/en-us/MCO/ATL/flights-from-orlando-international-airport-to-atlanta.ssp"
+     },
+     {
+      "type": "url",
+      "url": "https://www.directflights.com/MCO-ATL"
+     },
+     {
+      "type": "url",
+      "url": "https://deals.airhint.com/cheapest-deals/one-way/MCO/ATL/11"
+     },
+     {
+      "type": "url",
+      "url": "https://flycolumbus.com/wp-content/uploads/2026/05/NonstopPDF-5.4-1.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://flycolumbus.com/wp-content/uploads/2026/01/NonstopPDF-1.8.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://www.deltacargo.com/content/dam/cargo/pdfs/July2026DomesticFlightSchedule.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://downloads.regulations.gov/DOT-OST-2025-0436-0009/attachment_1.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://en.wikipedia.org/wiki/Orlando_International_Airport"
+     },
+     {
+      "type": "url",
+      "url": "https://en.wikipedia.org/wiki/List_of_Frontier_Airlines_destinations"
+     },
+     {
+      "type": "url",
+      "url": "https://es.wikipedia.org/wiki/Aeropuerto_Internacional_de_Orlando"
+     },
+     {
+      "type": "url",
+      "url": "https://www.reddit.com/r/frontierairlines/comments/1jafv6c"
+     },
+     {
+      "type": "url",
+      "url": "https://www.reddit.com/r/frontierairlines/comments/1m9fmxg"
+     },
+     {
+      "type": "url",
+      "url": "https://www.reddit.com/r/orlando/comments/1tjq3fy/the_spirit_vacuum_is_real_at_mco_same_nola_trip/"
+     },
+     {
+      "type": "url",
+      "url": "https://www.reddit.com/r/frontierairlines/comments/1x72nxl/go_wild_prices_increase/"
+     },
+     {
+      "type": "url",
+      "url": "https://www.reddit.com/r/Venturex/comments/1h57xzm"
+     },
+     {
+      "type": "url",
+      "url": "https://www.reddit.com/r/frontierairlines/comments/14q4flt"
+     },
+     {
+      "type": "url",
+      "url": "https://en.wikipedia.org/wiki/Frontier_Airlines"
+     }
+    ]
+   },
+   "status": "completed",
+   "type": "web_search_call"
+  },
+  {
+   "id": "ws_0120d356a1522e13006aeea4adb22c87d2b14c6d714517fe1f",
+   "action": {
+    "type": "open_page",
+    "url": "https://flights.flyfrontier.com/en/flights-from-orlando-to-atlanta"
+   },
+   "status": "completed",
+   "type": "web_search_call"
+  },
+  {
+   "id": "msg_0120d356a1522e13006aeea4af2d5087d2bac4a0102b9ea6e6",
+   "content": [
+    {
+     "annotations": [
+      {
+       "end_index": 543,
+       "start_index": 432,
+       "title": "$43 Cheap Frontier Flights from Orlando Airport to Atlanta | KAYAK",
+       "type": "url_citation",
+       "url": "https://www.kayak.com/flight-routes/Frontier-Orlando-MCO/Atlanta-Hartsfield-Jackson-ATL.b.F9.ksp"
+      },
+      {
+       "end_index": 1021,
+       "start_index": 910,
+       "title": "$43 Cheap Frontier Flights from Orlando Airport to Atlanta | KAYAK",
+       "type": "url_citation",
+       "url": "https://www.kayak.com/flight-routes/Frontier-Orlando-MCO/Atlanta-Hartsfield-Jackson-ATL.b.F9.ksp"
+      }
+     ],
+     "text": "Assuming **one adult, one-way, from Orlando International (MCO) to Atlanta (ATL)** on **Saturday, November 14, 2026**, I found:\n\n| Airline | Departure–arrival | Flight | Listed price |\n|---|---|---|---|\n| Frontier | 11:58 a.m.–1:41 p.m. | Nonstop, 1 hr 43 min | **$45 one-way** |\n| Frontier | 4:48 p.m.–6:37 p.m. | Nonstop, 1 hr 49 min | **$52 one-way** |\n\nThese are recent advertised fares on KAYAK, not checkout-confirmed prices. ([kayak.com](https://www.kayak.com/flight-routes/Frontier-Orlando-MCO/Atlanta-Hartsfield-Jackson-ATL.b.F9.ksp))\n\n**Where to book:** Open [KAYAK’s Frontier Orlando–Atlanta page](https://www.kayak.com/flight-routes/Frontier-Orlando-MCO/Atlanta-Hartsfield-Jackson-ATL.b.F9.ksp) and select **“Find Deal”** for November 14. You can also check [Frontier directly](https://flights.flyfrontier.com/en/flights-from-orlando-to-atlanta), which advertises fares **from $44** for that date. ([kayak.com](https://www.kayak.com/flight-routes/Frontier-Orlando-MCO/Atlanta-Hartsfield-Jackson-ATL.b.F9.ksp))\n\n**Fare-type caveat:** These are the lowest advertised economy fares; I could not verify a separate **standard/regular economy (rather than Basic)** price. Don’t treat them as confirmed regular-economy quotes. At checkout, decline optional extras and verify the final total before paying.\n\nSOURCES: KAYAK (kayak.com), Frontier Airlines (flyfrontier.com)",
+     "type": "output_text",
+     "logprobs": []
+    }
+   ],
+   "role": "assistant",
+   "status": "completed",
+   "type": "message",
+   "phase": "final_answer"
+  }
+ ],
+ "parallel_tool_calls": true,
+ "temperature": 1.0,
+ "tool_choice": "auto",
+ "tools": [
+  {
+   "type": "web_search",
+   "search_context_size": "medium",
+   "user_location": {
+    "country": "US",
+    "type": "approximate"
+   },
+   "return_token_budget": "default",
+   "search_content_types": [
+    "text"
+   ]
+  }
+ ],
+ "top_p": 0.98,
+ "background": false,
+ "completed_at": 1794024627.0,
+ "image": {
+  "context_compression": "disabled"
+ },
+ "prompt_cache_retention": "24h",
+ "reasoning": {
+  "context": "all_turns",
+  "effort": "low",
+  "mode": "standard"
+ },
+ "service_tier": "default",
+ "status": "completed",
+ "text": {
+  "format": {
+   "type": "text"
+  },
+  "verbosity": "medium"
+ },
+ "tool_usage": {
+  "image_gen": {
+   "input_tokens": 0,
+   "input_tokens_details": {
+    "image_tokens": 0,
+    "text_tokens": 0
+   },
+   "output_tokens": 0,
+   "total_tokens": 0,
+   "output_tokens_details": {
+    "image_tokens": 0,
+    "text_tokens": 0
+   }
+  },
+  "web_search": {
+   "num_requests": 1
+  }
+ },
+ "top_logprobs": 0,
+ "truncation": "disabled",
+ "usage": {
+  "input_tokens": 17058,
+  "input_tokens_details": {
+   "cache_write_tokens": 59,
+   "cached_tokens": 4435
+  },
+  "output_tokens": 454,
+  "output_tokens_details": {
+   "reasoning_tokens": 88
+  },
+  "total_tokens": 17512
+ },
+ "billing": {
+  "payer": "developer"
+ },
+ "frequency_penalty": 0.0,
+ "presence_penalty": 0.0,
+ "store": true
+}

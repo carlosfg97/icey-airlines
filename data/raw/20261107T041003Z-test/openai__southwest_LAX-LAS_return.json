@@ -1,0 +1,281 @@
+{
+ "id": "resp_0967c8116b50d042006aeea4b3cc1487d2a907c2bb07325c9a",
+ "created_at": 1794024627.0,
+ "metadata": {},
+ "model": "gpt-6.1-sol",
+ "object": "response",
+ "output": [
+  {
+   "id": "ws_0967c8116b50d042006aeea4b563bc87d2985cf56c3f164306",
+   "action": {
+    "type": "search",
+    "queries": [
+     "Las Vegas Los Angeles November 14 2026 first class one way flights",
+     "site.aa.com Las Vegas Los Angeles November 2026 first class",
+     "site.delta.com Las Vegas Los Angeles November 14 2026"
+    ],
+    "query": "Las Vegas Los Angeles November 14 2026 first class one way flights",
+    "sources": [
+     {
+      "type": "url",
+      "url": "https://www.kayak.com/flight-routes/First-Class-Las-Vegas-Harry-Reid-Intl-LAS/Los-Angeles-LAX.fc.ksp"
+     },
+     {
+      "type": "url",
+      "url": "https://us.trip.com/flights/las-vegas-to-los-angeles/airfares-las-lax/"
+     },
+     {
+      "type": "url",
+      "url": "https://www.priceline.com/flight-routes/business/en-us/LAS/LAX/business-class-flights-from-las-vegas-to-los-angeles.ssp"
+     },
+     {
+      "type": "url",
+      "url": "https://www.flight.info/DL1696"
+     },
+     {
+      "type": "url",
+      "url": "https://www.awardtool.com/award-flights/las-vegas-las-to-los-angeles-lax/first-class"
+     },
+     {
+      "type": "url",
+      "url": "https://www.google.com/travel/flights/flights-from-las-vegas-to-los-angeles.html"
+     },
+     {
+      "type": "url",
+      "url": "https://www.cheapflights.com/First-Class-USA-US0/Los-Angeles-LAX.fc.ksp?a=bingadssearch&enc_adid=72705668411853&enc_aid=1163285199372280&enc_bmt=bb&enc_cmpid=580255820&enc_d=c&enc_mt=b&enc_n=o&enc_oiid=2324505021177706&enc_pid=&enc_tid=dat-2324505021177706%3Aloc-190&encoder=7_1&r9.a=bingadssearch&r9.e=7_1&r9ck=iq"
+     },
+     {
+      "type": "url",
+      "url": "https://helloaxel.com/en/flights/from-las-vegas-to-los-angeles-lax"
+     },
+     {
+      "type": "url",
+      "url": "https://www.monde-du-voyage.com/en/united-states/flight-first-class-one-way-los-angeles/departure-las-vegas/"
+     },
+     {
+      "type": "url",
+      "url": "https://www.directflights.com/LAS-LAX"
+     },
+     {
+      "type": "url",
+      "url": "https://www.kayak.com/flight-routes/Las-Vegas-McCarran-LAS/Los-Angeles-LAX?sck=SEM&skipapp=true&tags=l%3Ao_ap-LAS_d_ap-LAX_t_rt_v_f%2Ct%3A423"
+     },
+     {
+      "type": "url",
+      "url": "https://zt.delta.com/flightsearch/book-a-flight?destinationCity=LAS&tripType=ROUND_TRIP"
+     },
+     {
+      "type": "url",
+      "url": "https://www.swamedia.com/vforcesite/SwmDownload?boilerPlateContentKey=MCDIRMIT62VBDE7P3D2QZM7KMXLM&contentKey=MC4FS7VVESNZAMRL4R3CVS72PLFA&siteId=0DMHu000000NZBROA4"
+     },
+     {
+      "type": "url",
+      "url": "https://www.reddit.com/r/delta/comments/1te1dnc/insane_pricing/"
+     },
+     {
+      "type": "url",
+      "url": "https://aaplusvacation.com/storage/pdf/2026-01-13-16-53-04-290895-EN-LBW9_20260113.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://www.reddit.com/r/AlaskaAirlines/comments/1g8xolz"
+     },
+     {
+      "type": "url",
+      "url": "https://aaplusvacation.com/storage/pdf/2026-01-15-09-50-13-729159-EN-VA6_20260115.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://en.wikipedia.org/wiki/Harry_Reid_International_Airport"
+     },
+     {
+      "type": "url",
+      "url": "https://flypittsburgh.com/wp-content/uploads/2026/04/May-2026.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://pro.delta.com/content/dam/agency/emea/hosted-content/EJV%20Network%20Map_Winter%202025_DL.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://www.airtimes.com/cgat/usb/hughes/PDF/1960s/rw690701.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://en.wikipedia.org/wiki/American_Airlines"
+     }
+    ]
+   },
+   "status": "completed",
+   "type": "web_search_call"
+  },
+  {
+   "id": "ws_0967c8116b50d042006aeea4b826cc87d2966eb6f1fbb8bb18",
+   "action": {
+    "type": "search",
+    "queries": [
+     "\"LAS\" \"LAX\" \"Nov 14\" \"2026\" \"First\" \"$\"",
+     "\"Las Vegas\" \"Los Angeles\" \"11/14/26\" \"first\""
+    ],
+    "query": "\"LAS\" \"LAX\" \"Nov 14\" \"2026\" \"First\" \"$\"",
+    "sources": [
+     {
+      "type": "url",
+      "url": "https://www.priceline.com/flight-routes/en-us/LAS/LAX/flights-from-las-vegas-to-los-angeles.ssp"
+     },
+     {
+      "type": "url",
+      "url": "https://www.priceline.com/flight-routes/en-us/US/LAX/flights-to-los-angeles.ssp"
+     },
+     {
+      "type": "url",
+      "url": "https://www.priceline.com/flight-routes/en-us/LAX/LAS/flights-from-los-angeles-to-las-vegas.ssp"
+     },
+     {
+      "type": "url",
+      "url": "https://www.priceline.com/flight-routes/en-us/US/LAX/flights-to-los-angeles.ssp?msockid=3f2422173d2762a32fcd349a3cdb633c"
+     },
+     {
+      "type": "url",
+      "url": "https://helloaxel.com/en/flights/from-orlando-to-los-angeles-lax"
+     },
+     {
+      "type": "url",
+      "url": "https://www.aa.com/en-us/flights-from-united-states"
+     },
+     {
+      "type": "url",
+      "url": "https://www.ticketmaster.com.mx/katseye-tickets/artist/3259344?language=en-mx"
+     },
+     {
+      "type": "url",
+      "url": "https://www.priceline.com/flight-routes/en-us/DEN/LAX/flights-from-denver-to-los-angeles.ssp"
+     },
+     {
+      "type": "url",
+      "url": "https://www.priceline.com/flight-routes/en-us/SFO/LAS/flights-from-san-francisco-to-las-vegas.ssp?msockid=157b387b9c2a69d21d482e0a9da46844"
+     },
+     {
+      "type": "url",
+      "url": "https://www.omio.com/de-at/fluege/las-vegas/los-angeles-qqymv"
+     },
+     {
+      "type": "url",
+      "url": "https://fandai.donguapan.workers.dev/https/www.ticketmaster.com/katseye-tickets/artist/3259344"
+     },
+     {
+      "type": "url",
+      "url": "https://www.priceline.com/flight-routes/en-us/LAS/LAX/flights-from-las-vegas-to-los-angeles.ssp?utm_source=openai"
+     }
+    ]
+   },
+   "status": "completed",
+   "type": "web_search_call"
+  },
+  {
+   "id": "rs_0967c8116b50d042006aeea4bb045487d2af3382d98a5fd396",
+   "summary": [],
+   "type": "reasoning",
+   "content": [],
+   "encrypted_content": "gAAAAABq7qS-O_-8xBPO4oLCptMEsfysltEzEk1ele1SNnHAgeSk8KRMzkF4kQgXO1jcWrclSwz5-92aSBHmlC-YjXFZIzx336KNoi__d-FFrMbDi6AHJgafmSpVPdyEQPfJ3mnUXif8V_yU4BEppOTggGiMig1kZ8DDnuW-xCeibhfcPIZEbq9nabhniGIi9fcaaOn7kvic3fEiq9mXfFgkV7mvrQY53S69-nk3YLvcELOhDAlpNXkUmWij35RuqKJGlYP5siyYiGbCLKOGt5sjLkOeLEC5EZGc_75_ObWM2DMUpYROuXJIBQTl3eT6aNiiA5J0Ci0qXYO61JlJFETJN2tT8pvkMejgtt1VWEGCk6iVj5HV-HvF_3ul8Qnob_I1O4o90rOqFLaPKi59LC6TeOf_LeMp6v1HLZ8vcDblK3pdnI5gdPPV0Un9IIFX4VzPFLCC_utAyj0jIIWPyNJx7KOChvbZjPM_OxVZz-W8334KcIAOgyBkFQ5VW1ZHP5zk6rP3XM8dllCCbVCF3EV5Mo50de3SjKzTBGmxKcmxsiSaCpoqs2F9FStMRtEb_HbYsZ2ugdZVi8r1LcVuWgtAJIld7c6Iox9Yk-NvVsXdRDuPZZq9qHKueN-dNAWBXj0NPGHubc0z8Op0C50VNaSXH27tUDI6lVzZtMAi1QVbWAq0EE0dwoWXIrGSmP-ZYPY23GdOXqSpCKa8_HrNllAqIuACqsKfLJBAgCDdhG4h72KaBY3kFW-BfjtfuD7j7I9SjAJsbAR7_VLys2XfGT91GNdLUQJ_BeiZ5t97sdYLm-1P3A9wryITJdYO94509dQzjkncrXIJI60n0VeCvVhTXQB2zP-yxyXz7cOiT9ZnwPC_t2frnd0OQEBt-k1H1qTbS6Tn8343-yN-utesqVhaWcLWDvRAYPdsI9qQS95XbeBCzxUQuCYuJ384mRMRyZKsLRcJnHiKRP5ZFmefBXK-57I3PUbqKhjOV7aGphhXQ48cpJHPYYk4HfdlxOM2JrvxCrlEjFQP1rOSusi-B1fymVBx5WQyi-1fQZU7HdC3rLTxcG6Eer5UDL9iAthFcYa8DE_nE6c7cKOcI4Vs4fKcDBE8wJcblEkI20Se3aoAO5M9YJmAtyTqEeePAXCHmvCSL0m9iL8Z5H6Vv8zMKbF4lqLfab2ayWO0tIzJzv0Cq2Ig0UY9058HwXfxVhXX-tGOzsvMwKmmZatCyAXmZDgidIIwIMw7Ya4_XvF4G0aVL-w8WTA_y0erERlBXpehKNC2H8tZQPXiBwupSCvHkrVFUV5hEzIGMPtyunoPzhb_eHpYGDazeIXG0KcWawAXqlbsd-Y72hdJP8buLg8OPpo6DKEe7tdS2s8u16XGamdgXQzH1F8B4Wo2XV4VWyY2mIExTZXH5omzbFfXvZj6NwcVYp7Gd_TKqsKzOQ0EOWVUfTDuGTbuXv0OH0-YnoUKPTEGWqWh9YF7Azi9tPL_Wp0CfHa0fTdaHsY8afiOhWJRe70ChAFs9c3CxVfWtMM2muJG2Y1rSi5VjzXu5hyzJb101O8HgXNi0y3EChnntQRWRYfeqhRwfYy5X8Qa4Xp0Dnpz6aI549Crav6aAiYhEAyENsKvA1ytppV2L5Bke6dZTc9ozcYNtXTdhdiE3GfLoxE0y8P5DPnkeADldwT2EpBZqeLrkvukCIqrW6TPrnabFcHWxC4Th2pezAJHmUVE3Y6cqb0LTcv0cicWMXoFVvyvkbps08PvilpWXs2oSmBcnsvbus_yw1A8iKJfogUa1CNGuh1-nP-L57J2P8r_ssLi7CPgOuMQweIIwsbY7ieJZzis3EjtoEtak-rtcl4kPwzgyoUO-2rPNR9jpV70GvnpabkRrLvEaLwlJNgaC3NHwANf1oDmyKJW_adDCk6IGoVCNv3YAkIHMudnBc1nvgh_KQqkIA8il0DnOfUOurXhzOeTSbeD0o3-2JQSzOGKSC5RRxyK0nwN"
+  },
+  {
+   "id": "msg_0967c8116b50d042006aeea4bb8dbc87d293fc7906a00d5d19",
+   "content": [
+    {
+     "annotations": [
+      {
+       "end_index": 437,
+       "start_index": 305,
+       "title": "Cheap Flights Las Vegas to Los Angeles from $50 | Priceline",
+       "type": "url_citation",
+       "url": "https://www.priceline.com/flight-routes/en-us/LAS/LAX/flights-from-las-vegas-to-los-angeles.ssp?utm_source=openai"
+      }
+     ],
+     "text": "Assuming **one adult, one-way, Las Vegas (LAS) → Los Angeles (LAX), First Class, November 14, 2026**, with no optional extras:\n\n**I couldn’t verify a live price for your exact date.** Priceline advertises First Class fares on this route from **$226**, but that price is **not confirmed for November 14**. ([priceline.com](https://www.priceline.com/flight-routes/en-us/LAS/LAX/flights-from-las-vegas-to-los-angeles.ssp?utm_source=openai))\n\n**Where to book:** Use this [KAYAK search for your date and First Class cabin](https://www.kayak.com/flights/LAS-LAX/2026-11-14/first?sort=price_a) to check current availability and proceed to booking. Skip optional insurance, hotels, rental cars, and other add-ons.\n\nSOURCES: Priceline.com, KAYAK.com",
+     "type": "output_text",
+     "logprobs": []
+    }
+   ],
+   "role": "assistant",
+   "status": "completed",
+   "type": "message",
+   "phase": "final_answer"
+  }
+ ],
+ "parallel_tool_calls": true,
+ "temperature": 1.0,
+ "tool_choice": "auto",
+ "tools": [
+  {
+   "type": "web_search",
+   "search_context_size": "medium",
+   "user_location": {
+    "country": "US",
+    "type": "approximate"
+   },
+   "return_token_budget": "default",
+   "search_content_types": [
+    "text"
+   ]
+  }
+ ],
+ "top_p": 0.98,
+ "background": false,
+ "completed_at": 1794024638.0,
+ "image": {
+  "context_compression": "disabled"
+ },
+ "prompt_cache_retention": "24h",
+ "reasoning": {
+  "context": "all_turns",
+  "effort": "low",
+  "mode": "standard"
+ },
+ "service_tier": "default",
+ "status": "completed",
+ "text": {
+  "format": {
+   "type": "text"
+  },
+  "verbosity": "medium"
+ },
+ "tool_usage": {
+  "image_gen": {
+   "input_tokens": 0,
+   "input_tokens_details": {
+    "image_tokens": 0,
+    "text_tokens": 0
+   },
+   "output_tokens": 0,
+   "total_tokens": 0,
+   "output_tokens_details": {
+    "image_tokens": 0,
+    "text_tokens": 0
+   }
+  },
+  "web_search": {
+   "num_requests": 2
+  }
+ },
+ "top_logprobs": 0,
+ "truncation": "disabled",
+ "usage": {
+  "input_tokens": 21036,
+  "input_tokens_details": {
+   "cache_write_tokens": 61,
+   "cached_tokens": 4435
+  },
+  "output_tokens": 380,
+  "output_tokens_details": {
+   "reasoning_tokens": 199
+  },
+  "total_tokens": 21416
+ },
+ "billing": {
+  "payer": "developer"
+ },
+ "frequency_penalty": 0.0,
+ "presence_penalty": 0.0,
+ "store": true
+}

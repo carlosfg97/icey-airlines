@@ -1,0 +1,214 @@
+{
+ "id": "resp_0cd7f81ae5f4fb16006aeea49c9fe487d2846d8ca9dcd562e7",
+ "created_at": 1794024604.0,
+ "metadata": {},
+ "model": "gpt-6.1-sol",
+ "object": "response",
+ "output": [
+  {
+   "id": "ws_0cd7f81ae5f4fb16006aeea49e3bb487d2863f1ecf78b3fb0d",
+   "action": {
+    "type": "search",
+    "queries": [
+     "Seattle Anchorage November 14 2026 one way flights economy",
+     "site.alaskaair.com Seattle Anchorage November 14 2026"
+    ],
+    "query": "Seattle Anchorage November 14 2026 one way flights economy",
+    "sources": [
+     {
+      "type": "url",
+      "url": "https://www.alaskaair.com/en/flights-from-seattle-to-anchorage"
+     },
+     {
+      "type": "url",
+      "url": "https://www.flyxworld.com/flights-from-seattle-usa-to-anchorage-usa.html"
+     },
+     {
+      "type": "url",
+      "url": "https://www.google.com/travel/flights/flights-from-seattle-to-anchorage.html"
+     },
+     {
+      "type": "url",
+      "url": "https://www.trip.com/flights/airport-sea-anc/"
+     },
+     {
+      "type": "url",
+      "url": "https://helloaxel.com/en/flights/from-seattle-area-to-anc"
+     },
+     {
+      "type": "url",
+      "url": "https://us.trip.com/flights/airport-sea-anc/"
+     },
+     {
+      "type": "url",
+      "url": "https://www.kiwi.com/us/cheap-flights/seattle-washington-united-states/anchorage-alaska-united-states/"
+     },
+     {
+      "type": "url",
+      "url": "https://www.directflights.com/SEA-ANC"
+     },
+     {
+      "type": "url",
+      "url": "https://helloaxel.com/en/flights/from-seattle-sea-to-anchorage-anc"
+     },
+     {
+      "type": "url",
+      "url": "https://flylemo.com/flights/seattle-to-anchorage/"
+     },
+     {
+      "type": "url",
+      "url": "https://helloaxel.com/en/flights/from-seattle-sea-to-alaska-in-november-2026"
+     },
+     {
+      "type": "url",
+      "url": "https://helloaxel.com/en/flights/from-seattle-sea-to-alaska"
+     },
+     {
+      "type": "url",
+      "url": "https://gse.rutgers.edu/wp-content/uploads/2026/05/best-time-to-book-alaska-airlines-cheapest-fares-2026.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://www.nca.aero/service/schedule/documents/S26_Timetable.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://www.travelready.org/PDF%20Files/Timetables/Alaska%20Air%20-%20Time%20Table%20-%202015.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://news.alaskaair.com/wp-content/uploads/2026/01/Alaska-Air-Group-reports-fourth-quarter-and-full-year-2025-results.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://www.reddit.com/r/AlaskaAirlines/comments/1xga1lg/unusually_high_fares/"
+     },
+     {
+      "type": "url",
+      "url": "https://www.reddit.com/r/anchorage/comments/1x92rr6/help_flights_from_anchorage_to_seattle_for/"
+     },
+     {
+      "type": "url",
+      "url": "https://en.wikipedia.org/wiki/List_of_Alaska_Airlines_destinations"
+     }
+    ]
+   },
+   "status": "completed",
+   "type": "web_search_call"
+  },
+  {
+   "id": "ws_0cd7f81ae5f4fb16006aeea4a0fb0487d295a9e299a080080c",
+   "action": {
+    "type": "open_page",
+    "url": "https://www.alaskaair.com/en/flights-from-seattle-to-anchorage"
+   },
+   "status": "completed",
+   "type": "web_search_call"
+  },
+  {
+   "id": "msg_0cd7f81ae5f4fb16006aeea4a2291087d2a23b2d2b03f78763",
+   "content": [
+    {
+     "annotations": [
+      {
+       "end_index": 316,
+       "start_index": 235,
+       "title": "Cheap flights from Seattle (SEA) to Anchorage (ANC) - Alaska Airlines",
+       "type": "url_citation",
+       "url": "https://www.alaskaair.com/en/flights-from-seattle-to-anchorage"
+      },
+      {
+       "end_index": 844,
+       "start_index": 763,
+       "title": "Cheap flights from Seattle (SEA) to Anchorage (ANC) - Alaska Airlines",
+       "type": "url_citation",
+       "url": "https://www.alaskaair.com/en/flights-from-seattle-to-anchorage"
+      }
+     ],
+     "text": "Assuming **one adult, one-way**, Alaska Airlines’ page currently advertises **from $391 USD in Saver economy** for **Seattle (SEA) → Anchorage (ANC), Saturday, November 14, 2026**. Saver is its most restrictive, no-frills fare option. ([alaskaair.com](https://www.alaskaair.com/en/flights-from-seattle-to-anchorage))\n\n**Where to book:** [Alaska Airlines’ Seattle–Anchorage booking page](https://www.alaskaair.com/en/flights-from-seattle-to-anchorage). Select **one-way**, **November 14, 2026**, and **Saver**, and decline optional extras.\n\n**Price caveat:** This is an advertised fare, not a confirmed checkout quote. Alaska says displayed prices were available within the past 24 hours and may change or sell out; optional baggage and other services cost extra. ([alaskaair.com](https://www.alaskaair.com/en/flights-from-seattle-to-anchorage))\n\nSOURCES: AlaskaAir.com",
+     "type": "output_text",
+     "logprobs": []
+    }
+   ],
+   "role": "assistant",
+   "status": "completed",
+   "type": "message",
+   "phase": "final_answer"
+  }
+ ],
+ "parallel_tool_calls": true,
+ "temperature": 1.0,
+ "tool_choice": "auto",
+ "tools": [
+  {
+   "type": "web_search",
+   "search_context_size": "medium",
+   "user_location": {
+    "country": "US",
+    "type": "approximate"
+   },
+   "return_token_budget": "default",
+   "search_content_types": [
+    "text"
+   ]
+  }
+ ],
+ "top_p": 0.98,
+ "background": false,
+ "completed_at": 1794024612.0,
+ "image": {
+  "context_compression": "disabled"
+ },
+ "prompt_cache_retention": "24h",
+ "reasoning": {
+  "context": "all_turns",
+  "effort": "low",
+  "mode": "standard"
+ },
+ "service_tier": "default",
+ "status": "completed",
+ "text": {
+  "format": {
+   "type": "text"
+  },
+  "verbosity": "medium"
+ },
+ "tool_usage": {
+  "image_gen": {
+   "input_tokens": 0,
+   "input_tokens_details": {
+    "image_tokens": 0,
+    "text_tokens": 0
+   },
+   "output_tokens": 0,
+   "total_tokens": 0,
+   "output_tokens_details": {
+    "image_tokens": 0,
+    "text_tokens": 0
+   }
+  },
+  "web_search": {
+   "num_requests": 1
+  }
+ },
+ "top_logprobs": 0,
+ "truncation": "disabled",
+ "usage": {
+  "input_tokens": 16537,
+  "input_tokens_details": {
+   "cache_write_tokens": 59,
+   "cached_tokens": 4435
+  },
+  "output_tokens": 282,
+  "output_tokens_details": {
+   "reasoning_tokens": 79
+  },
+  "total_tokens": 16819
+ },
+ "billing": {
+  "payer": "developer"
+ },
+ "frequency_penalty": 0.0,
+ "presence_penalty": 0.0,
+ "store": true
+}

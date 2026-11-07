@@ -1,0 +1,219 @@
+{
+ "id": "resp_01ae4e8ae3f16c7e006aeea4a61d9087d2be4e96c2b102e36b",
+ "created_at": 1794024614.0,
+ "metadata": {},
+ "model": "gpt-6.1-sol",
+ "object": "response",
+ "output": [
+  {
+   "id": "ws_01ae4e8ae3f16c7e006aeea4a73d1487d295bda037e6ea05e0",
+   "action": {
+    "type": "search",
+    "queries": [
+     "Atlanta ATL Orlando MCO November 14 2026 one way economy flight"
+    ],
+    "query": "Atlanta ATL Orlando MCO November 14 2026 one way economy flight",
+    "sources": [
+     {
+      "type": "url",
+      "url": "https://www.southwest.com/en/flights/flights-from-atlanta-to-orlando"
+     },
+     {
+      "type": "url",
+      "url": "https://www.southwest.com/en/flights/flights-from-atlanta-to-orlando?channel=mweb"
+     },
+     {
+      "type": "url",
+      "url": "https://flights.flyfrontier.com/en/flights-from-atlanta-to-orlando"
+     },
+     {
+      "type": "url",
+      "url": "https://www.flyxworld.com/flights-from-atlanta-usa-to-orlando-usa.html"
+     },
+     {
+      "type": "url",
+      "url": "https://www.priceline.com/flight-routes/en-us/ATL/ORL/flights-from-atlanta-to-orlando.ssp?msockid=1c5ae8ea98ae638a018cfe2e99da6234"
+     },
+     {
+      "type": "url",
+      "url": "https://www.trip.com/hot/delta-flight-atlanta-to-orlando/"
+     },
+     {
+      "type": "url",
+      "url": "https://www.trip.com/flights/atlanta-to-orlando/airfares-atl-orl/"
+     },
+     {
+      "type": "url",
+      "url": "https://helloaxel.com/en/flights/from-atlanta-florida-vacations"
+     },
+     {
+      "type": "url",
+      "url": "https://helloaxel.com/en/flights/cheap-flights-from-atlanta-to-orlando"
+     },
+     {
+      "type": "url",
+      "url": "https://www.kayak.com/flight-routes/Atlanta-Hartsfield-Jackson-ATL/Orlando-MCO?sck=SEM&skipapp=true&tags=l%3Ao_ap-ATL_d_ap-MCO_t_rt_v_f%2Ct%3A423"
+     },
+     {
+      "type": "url",
+      "url": "https://www.jetblue.com/en/flights-from-atlanta-to-orlando"
+     },
+     {
+      "type": "url",
+      "url": "https://helloaxel.com/en/flights/from-atlanta-theme-park-trips"
+     },
+     {
+      "type": "url",
+      "url": "https://flycolumbus.com/wp-content/uploads/2026/01/NonstopPDF-1.8.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://assets.ctfassets.net/qiecpoxp4bka/5crs0kyLlhBn5hIXbjGsZZ/40dc074b23f11616bc417e7dbaa1aac0/Fact-Sheet-2026.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://forum.spider-farmer.com/wp-content/uploads/2025/12/delta-flight-from-atlanta-to-orlando-and-other-key-routes-in-2025.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://www.orlandoairports.net/site/uploads/202410-Destinations-by-Airline.pdf"
+     },
+     {
+      "type": "url",
+      "url": "https://assets.ctfassets.net/qiecpoxp4bka/1hBpRi3UELGIliaO7yy07Y/73d04e0514f4402669738201fa14a2bd/202605_Destinations_by_Airline.pdf"
+     }
+    ]
+   },
+   "status": "completed",
+   "type": "web_search_call"
+  },
+  {
+   "id": "rs_01ae4e8ae3f16c7e006aeea4a9972087d2af636564639ca5b6",
+   "summary": [],
+   "type": "reasoning",
+   "content": [],
+   "encrypted_content": "gAAAAABq7qSufKPawAkkvK1C4gKxCN-Asg6eUXinZBHHCprRDqxyIE5CMmvWMMiJT8GrZ0lqcUHSiLRmo1FvmaCXadA5ScAXH3hJ1O8f769ewDawfvDttRN1bjWKucxHTzSDTjUUHyKvEIdCzXWddOV5TUmLFbWrPGk33Sm7BRb8097F_yKAgkvYPh5zWSSVjZTkjxk9rSbgUWxLnED6ktLXdz6T4Z5WIKMoH9-hJcvJIIh7gr5uvXQy5nvk_3LsVBzWZcT6eukwNEGmLWz6uTB16K2Bxy-8bcVSC8n-yfCV3wYhAFilLLLHkTRqIRPSEHfN07uWGJuP6IykmNLMXNx3Au0DCUz1r5jzcrmHArDIfJvsb4qa7hzV02EdDtUrJ_lmpO4W6KH6JZCrlgcxhHqvIKZcccoIWj7kDOJah5XFU0UfgvC1cxfTpLCk9BMSJ_b7SPtQeO4dwYQCVo9gON95mqNjfb1eXJcibXKfYh1ZuVgZ2sex4DquMtm0hxT4LXOWJo4AFwfBTR9ge0ODMOptDro2TjKr29_dUNR5GJPCeAPEbi86LwKLaNSH56FLLv9sPmNEmX1lXNvqtsxMMQVlqUsKtrjujsDjibrKl13exipzxmINLBzPqTxBCHmZEb2m4pbfr2CFKLvJp7HXrmYaKkI8NGviT2i6mDvzpsRg57XZssx3ZgcRB6K4D6z2u7sDkr8T7w-aeKwSFiq5Keme1SQTyJZRTwNcIMJHwk8mb8Po9cwVjN-0IBwjSOA9Q3sgoYwidcesl99zHoLPgI9zi35cOjn3eU9Qv6wtEMZsYWB2LyTmWP3g7rkIcf4vZTv0tSNi2Vt8wrjb4kijnXnM8GxyPNLJuR-kWRKxyrrqtWQgcnrrHaiypdHbmkzcGfRytqYAODLGxY-OhuAi9T1XDuTexAPMTZS_kB-fhn5Csu1p5jF7Bxqk_OBjINIMh3UIWG6FeVvCOwSjD-IwJkFdh87dRKcROzDo4bOJrxUL1vB4hRfyjYNwej1Nvka7U_blS4EucxuYcoueVBEDqS_FaFhx7l92VdUqsw34KZLovbomEKNROQlt254exhA__4c3e0qlgP7_6O2VfA1iPbDa8Gm58uiE5hz-NBBnDFHpCVslE4x-eQkhu3rFrTpuX6cxns2Ie9OL0LWKFy1pKMtfdHA31T60saNMTkTFZRkAKaE4zmSirPXjkrFgt2YWYejZIcoLBmpjKKKIRljY4yK9lc8shbJaY7hsdaeMX129A1Go6zvog7cUM9upUgNZkdoI_45WmSQNxChoxzWqSqff1Dk7ZCvPc7O-dFKtiLmw4HwzS1qoiEXvhHrEsRwv0GamrBl1iWKQypn9oNnqxpS8CVQ6-AUKXD5rVebvruiWrYd_o9FjdyKeO2c_A9pAsEZ2GVOKuO_zkYp27t7BCnLu3SifmxvGEDHbZj2hEXkw86oPyqfGoUkpJtfSW_1EohVxRied0RVfQJMLV9U-_jEIfyg2iRFVUd7ObdhvOtAiGUlEi9EQwDlFORjy4I7WTONpnCu0JYb4SOqDdI-0i8ZqEzpdfRB7FaeF5yVw08svuSlQhKPeS3Tz0ju3xq6YQx1dI0HBdmY-7mTYgWW1wRV3TYgeuGXma_ftHsw3qRHfydScwZ9uUHb1wmwXudKEC60of8Xoyk5u5iMkzZKpEIbo-hdqvQYBmKvL16BzXIvZmXUPH_AshLQLmQ0BSqN50A3SChF9Gz9zO4U96le-1HItCKI1DNwhcM1PqodRqI2mepdJ8FmmA3Y9dJ54JFKuGtHtDdNeXKe3EETZf7SDv6yJodrPAL7nIgg1XDduUdfeEjb2jGI2k-EbOiTLiusgVdKqRH1kjgdJHHcTL-ABNbUEQxyeVlsODNuSReygZap6AEhF0rEnid_vlsKih4BxIP0bUjTba85DgxC1WkDvg7gHnY5SXXSNzpwAR3YB5U66w6KCXcuUAuuIKrIor0ENeSuT5RvEYrL0"
+  },
+  {
+   "id": "ws_01ae4e8ae3f16c7e006aeea4aa405087d2adf81fd5e39c7362",
+   "action": {
+    "type": "open_page",
+    "url": "https://www.trip.com/flights/atlanta-to-orlando/airfares-atl-orl/"
+   },
+   "status": "completed",
+   "type": "web_search_call"
+  },
+  {
+   "id": "msg_01ae4e8ae3f16c7e006aeea4ab7e5487d2993e619cf448b993",
+   "content": [
+    {
+     "annotations": [
+      {
+       "end_index": 401,
+       "start_index": 306,
+       "title": "Atlanta, GA to Orlando, FL Flights | Route Options | Frontier Airlines",
+       "type": "url_citation",
+       "url": "https://flights.flyfrontier.com/en/flights-from-atlanta-to-orlando"
+      },
+      {
+       "end_index": 677,
+       "start_index": 559,
+       "title": "Cheap flights from Atlanta (ATL) to Orlando (MCO) | Southwest Airlines",
+       "type": "url_citation",
+       "url": "https://www.southwest.com/en/flights/flights-from-atlanta-to-orlando?channel=mweb&utm_source=openai"
+      },
+      {
+       "end_index": 1152,
+       "start_index": 1039,
+       "title": "Atlanta, GA to Orlando, FL Flights | Route Options | Frontier Airlines",
+       "type": "url_citation",
+       "url": "https://flights.flyfrontier.com/en/flights-from-atlanta-to-orlando?utm_source=openai"
+      }
+     ],
+     "text": "Assuming **one adult, one-way, Atlanta (ATL) → Orlando International (MCO)** on **November 14, 2026**:\n\n| Airline | Advertised price | Where to book |\n|---|---:|---|\n| Frontier | **From $44, economy** | [Frontier’s Atlanta–Orlando page](https://flights.flyfrontier.com/en/flights-from-atlanta-to-orlando). ([flights.flyfrontier.com](https://flights.flyfrontier.com/en/flights-from-atlanta-to-orlando)) |\n| Southwest | **From $60, Basic** | [Southwest’s Atlanta–Orlando page](https://www.southwest.com/en/flights/flights-from-atlanta-to-orlando?channel=mweb). ([southwest.com](https://www.southwest.com/en/flights/flights-from-atlanta-to-orlando?channel=mweb&utm_source=openai)) |\n\n**Important:** These are advertised fares, not checkout-confirmed totals. Frontier warns that some displayed prices may require Discount Den membership; Southwest’s price is explicitly **Basic**, not regular economy. I therefore **couldn’t verify an exact regular-economy fare** matching your request, and wouldn’t present either price as a confirmed match. ([flights.flyfrontier.com](https://flights.flyfrontier.com/en/flights-from-atlanta-to-orlando?utm_source=openai))\n\nTo book, use the airline links above, enter your date, and select the non-Basic economy fare without optional add-ons.\n\nSOURCES: flyfrontier.com, southwest.com, trip.com",
+     "type": "output_text",
+     "logprobs": []
+    }
+   ],
+   "role": "assistant",
+   "status": "completed",
+   "type": "message",
+   "phase": "final_answer"
+  }
+ ],
+ "parallel_tool_calls": true,
+ "temperature": 1.0,
+ "tool_choice": "auto",
+ "tools": [
+  {
+   "type": "web_search",
+   "search_context_size": "medium",
+   "user_location": {
+    "country": "US",
+    "type": "approximate"
+   },
+   "return_token_budget": "default",
+   "search_content_types": [
+    "text"
+   ]
+  }
+ ],
+ "top_p": 0.98,
+ "background": false,
+ "completed_at": 1794024622.0,
+ "image": {
+  "context_compression": "disabled"
+ },
+ "prompt_cache_retention": "24h",
+ "reasoning": {
+  "context": "all_turns",
+  "effort": "low",
+  "mode": "standard"
+ },
+ "service_tier": "default",
+ "status": "completed",
+ "text": {
+  "format": {
+   "type": "text"
+  },
+  "verbosity": "medium"
+ },
+ "tool_usage": {
+  "image_gen": {
+   "input_tokens": 0,
+   "input_tokens_details": {
+    "image_tokens": 0,
+    "text_tokens": 0
+   },
+   "output_tokens": 0,
+   "total_tokens": 0,
+   "output_tokens_details": {
+    "image_tokens": 0,
+    "text_tokens": 0
+   }
+  },
+  "web_search": {
+   "num_requests": 1
+  }
+ },
+ "top_logprobs": 0,
+ "truncation": "disabled",
+ "usage": {
+  "input_tokens": 16934,
+  "input_tokens_details": {
+   "cache_write_tokens": 59,
+   "cached_tokens": 4435
+  },
+  "output_tokens": 407,
+  "output_tokens_details": {
+   "reasoning_tokens": 105
+  },
+  "total_tokens": 17341
+ },
+ "billing": {
+  "payer": "developer"
+ },
+ "frequency_penalty": 0.0,
+ "presence_penalty": 0.0,
+ "store": true
+}

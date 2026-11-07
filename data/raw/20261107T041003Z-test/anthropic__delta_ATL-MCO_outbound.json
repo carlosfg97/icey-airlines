@@ -1,0 +1,169 @@
+[
+ {
+  "id": "srvtoolu_01Jn6pa8jnBTib3ZRWdunXLQ",
+  "input": {
+   "query": "Atlanta to Orlando flights November 14 2026 economy price"
+  },
+  "name": "web_search",
+  "type": "server_tool_use"
+ },
+ {
+  "caller": {
+   "type": "direct"
+  },
+  "content": [
+   {
+    "encrypted_content": "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",
+    "title": "Book Flights from Atlanta to Orlando",
+    "type": "web_search_result",
+    "url": "https://www.jetblue.com/en/flights-from-atlanta-to-orlando"
+   },
+   {
+    "encrypted_content": "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",
+    "title": "$17 Flights from Atlanta (ATLA) to Orlando (ORLB)",
+    "type": "web_search_result",
+    "url": "https://www.skyscanner.com/routes/atla/orlb/atlanta-to-orlando.html"
+   },
+   {
+    "encrypted_content": "ErYHCioIFRgCIiQ5YjljNGE5Ny0xYTkyLTRlNDMtOGI4ZC04ZDg0YTcxNGU5MTUSDJacqx4UQXnsodCuCBoMCSKhTahZrjIHNUPMIjB+TabrBa0YLTz07DRFEiPfl6k58dnAlzYFoxpGJ1U/CwAeQ5tLuMwVsy5JX5jGyIsquQaNP0ssac6U2Z/v2fa+dIIfPOiA4adO8nsy885a+So+0MfxY+AVWo7Vnz1B8NGiszX2/qtJqgm9+geGlUU8CMVXF4z8ivLEStiuCCeYe7lFlE3FVX1+F3SLkmDt+zZM47n3/bafrd7mCvrS/+bOvDx/puvSoYqPyd755Cglw2HfRD8Je8s2Dj4qZU7bdw3KkYlqwiUo84DKmWtEd/DIXWAetsOa5Z+JB9WvEd3tMPm/jG+MCjLO1RHTBJrjt3la6IJ/b3wCkBWvOUMBRYjxxCNAvPEzSvtxuY5xH3ILyQDCbO7VOQB0u3Y4QDgt0mBRPl9Z/+rom70bwaUnO/aFdT0r/oFOjKiIvlcKd/1GVlOdxjUKAv4FJxNB2J5MGOprHuk17Prrm7NP2BV5Mk3/ZOobaujD3Okcw1Ohyra6aTeU8bWkI+woo050JqrKH/2/eoY3QYq+103z9jDJ2ln0e5nGRyhUc2m2URj9TC7/xSOhBAoSaLH4VkaY9nT2ACepqMiohf0BV7wRrpMoeON/efTCe9Xyh9Rn6a/x2ijjlHoAcxtspkQ2H3/5NPDCpjoRPQkzJ5PZglRvHEaAQLKY6WMG/7vvlUV/Cd0pVvWJtqYntUMmq5Mja2vAhPKOsyHh9eqAmD1VfASz7WXGVFbSKyzcAZtfFABnIYq6yz9BnG972L9hyNJZ3nCzcKjGWYfYrROW+XqRw2pOtFW7CmdugjD6PdwXh0poOA+3iggp5YQqxFHmAWTLu4JlMXpE2CfEIISei/UkGhZFto0HehVPkBQUkfGUseIRH/RJhDIMT9C1ttk/qIl3n5D9t67bTb9gkojmZbrKq9iHFSu/qTKFFHKBJTF9QDMumASpN6bPPfP7v9XMl8w5oU8gCXwzZslwz+tpiJMRz3/FDu1alMUO1tOCMcMYzluzrLcE9VV9if7c3mSElbO+1q9wwLq4Oq2if1qKuCB2PN9XkfVKW4UtEx+zlYM+gJPzzGGLnCUzr+wyTenJHZFRd2fhmkhuu9JBGxI3Wq2+vFbqWAF7jRN5GV3GnG9950PDYsFk87xJQBAqIhlZkmH2VB2+jM36lRlSHOftM60ToQB06m8YAw==",
+    "page_age": "286 days ago",
+    "title": "Atlanta, GA to Orlando, FL Flights",
+    "type": "web_search_result",
+    "url": "https://flights.flyfrontier.com/en/flights-from-atlanta-to-orlando"
+   },
+   {
+    "encrypted_content": "EoYICioIFRgCIiQ5YjljNGE5Ny0xYTkyLTRlNDMtOGI4ZC04ZDg0YTcxNGU5MTUSDGbl31nunT9otvkdyhoMj1jdkD2qA020ePglIjAxsOm1SoRxQMHRCZjajHqDW0FPsCFHMmVV96ZQNDS1EdRjwfGSx5t/aTrqKUruUnEqiQfagbl8ymXn6RDjw+dY6Gog6tflOb7tkPe+KRXtQ7jtoHgbyUqUpdfVriF7bWeSWLqRXvj+DHLFe4f34VB26Gkphxkn/5mSOVEuZTVbUrfhWcNCuDGY2eWc3f34iOIvdPW83pO8jjfDPEhVMCAE8IIxNbA6ZLxh/XPfC8wPw8DS66D7f5T4HmDruwuymx2ij72Utr+XQINwl+HtpgPkdvgkP8YExgiT2D/aDwK5pJD4yxX/3z054SxPMr5+WVglKUxY6lMSY8Yh8fXSQAJvHc+JNBl78e349WPWT8BH6QTlHRWYpsOBJRlm+1Eaf1kOEmQDKQ96zkowj4EaJhb0lwPMOOUbr4V0lelv7OJ+ernWduPeMjvaANWF3OyO+ul8G6KDHxbwpViQjT0RQ95rB8resQnM7rpXApDr316eA0Wa/JONa51ZvbT0TJZaBDP82QCBAqmYO2gIXip75KjKzxV29Fyr8RQqcaRB/2Qz6fI/h1u4S9gMlrsNtDXDKLNhjuPZPUz/e3n+Hzsx3YqOw7lke6Hy9Qw/Pn7KFMfZIiS0EARIJbGCA5vpghzHx08Iu4aCSNcEspBzYSVKypyLytezB77JMjlFRrcXVN5NH6bUnburTR/Eu77hJxWQhkyaQ8jJhjIsRgfjJqh5Lm/L0cEGoVWCcSkqt0ZKRfh5kkaxZsRNihrdFdkYJAcA78s3riWtiVvU9xpnHlRTQka5FUdBNNVkdWdlmVr7QKzMnHR4Aj/rN+jF+PZvB8cFifSjgjtOn+Zr0rwdosTX3yoYYJzCFJ39QHL7eiuYjvpW7IhPZZ+R4qErZdwYo157MPFZ8+nuLQCDl8oGCvrBC7iXxAIqhZsWqINJed8bK3HmmMddYTarZlZwBt2IHpM+iFsFn2ru5srztE/82mAxfahK+8agsdivWxLYLOo/LazzEhGB6//3OveSWH4WoSH4bVR5Q03r3e6kpgqPmblwdnMbnDenE2olxVnB/rdXps8whX2I6yigtBY7/O5cn7pCTE0Zl3qFSeS5bg3Jirl3BYQz5D/aCm5Yl6tnZ6pJqhf3bU/Yv1/mJjEx/RWzDgNUu1nwSdKbp8dugS720f63n6Quc0V6i5wPbtPvg+wcZ/9HRNFVkr3Nb4sQSJEBZ+5CEGdAtDobPSr9Jq9op2CFvixax88weOD4Zve0G/+fUOcNg4U4Cx34wuCj51KMyhgD",
+    "title": "Cheap flights from Atlanta (ATL) to Orlando (MCO)",
+    "type": "web_search_result",
+    "url": "https://www.southwest.com/en/flights/flights-from-atlanta-to-orlando"
+   },
+   {
+    "encrypted_content": "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",
+    "page_age": "617 days ago",
+    "title": "$26 CHEAP FLIGHTS from Atlanta to Orlando (ATL - ORL)",
+    "type": "web_search_result",
+    "url": "https://www.kayak.com/flight-routes/Atlanta-Hartsfield-Jackson-ATL/Orlando-ORL"
+   },
+   {
+    "encrypted_content": "EsYJCioIFRgCIiQ5YjljNGE5Ny0xYTkyLTRlNDMtOGI4ZC04ZDg0YTcxNGU5MTUSDG24iPHdUmwzmzADrBoModcFrmr+nBES4CFBIjANakS8hAMX2anO2OzRvUFeGVCbO/oZKXQPYWcT5ez9LttbUeAWTFFSCm3U4IfrghMqyQirZSlyx1T7GDTgRE7JRNzfCamTBx391uSjjlarlJw6FPg/uaaFMU0Vwxj074lEZhwS0O9Cl+DU4CBY10zq2XphUjYSfTl8LR/OFVkhafbvBU06617fdHLmMzQLQz0ZlFUHrbkAFge0t6rA4Ug8zGvvAClqxVhjdE5o0mFIP0FQRrkfm/i1jDX3kSdiFuNR7Y9DQxRYcS561T6ocdcMigwKazCA1ZzIAVFFn25EX04lorXnlhhc3irHEHNaf6iGSv+oKGK6YH7lP/UvAMqrGLlfpl/mzYnpnQ2J01bfDMaTCW3Nkz0OfHUeffbSyqy3nCqZ75ku0/pQbH88eYLoCjMDsHI8jzFmzoXLnwRFcEvXgKia6sk3bOHadm+pPFXPv5PCHTvp1Bz8nbmlfgvWicH2brlC24VI0eQ2dlCLWQSItVnbkVKq4wXWwl/QJo++TVT+Iwvd3FBf1L9/xTuVOV1sqpB7M81tMMUiw1cYwxBKkls3948gKrBjnqunxtU6hTfHx1p9QRkGLIM6mAQeulytmCq6h09E2r0ZCJ43zqXd6vqCg9t0sIUiRa0ieX42wgLnT4BOo2NwwHsk0oCRoeVvCINgWchZ/OlGy/JVIU+DE6K+uUsHSeyr7sGpYss8uN7doUUH2rDhRrloHaOO0iDF+1Vw9q8VYHv+UIJ6ovqvd4lXbNJa2yc1Sm3E6gsoSQ+9UcFnGyOijK5qnJuNh7CLTW/9AEAkzPOapJw+WtWn+s5tmY8e9ArXn+vImDN3piNOYyEIw0oKZj7k9m8AiCJP1HqAt8dXG+0tVMmVFmEtlX0yWttfqkm/AmP5yL56CK/e4BMaG/pWWKf0YjtaLpR72+90TtDrCtb10LU9YUv26iFmsnMH5nvWoNmAzf68rm2yS2wd3SLVFUPzgmdEWo+/Pgs6hEtp2Ad9gFTHE9A/iqUaphqmMn7W1tOJS8oaXenXJGkMiLuQp0ithj1FhbOBjpaE2P/yuVug/q+urrWu8Icefij0lmhln7uxzTKs8ok1GZ7+GGeUvx0wLoYwzQnjP7Ym9LhVRecCF/5JNmEzwKsew7uMEr6hGml6NcK3NUXlw2rFdn9t0IHX/Zv3W1Mpn7R0qkLrtp90PvA4CNxMXTL7SCijb7AwTzjsHTLkW1S+mB1xklXlZ7GpEx48ZkAGbErcQCoVRE3JAMZcHy79tCMaYRgK58OohbwwArXDNFBHFgdG+MWXgjemv6o0Q3TQOqqGQ398T0uXOGTrAqQ2lGV2xpwBB5k7M7rmgB0H+Maxs2t3HCojoRE6V3K4KrGAjRGo31c6/g3X9JhEgMNHOrOM8b91Yz9g2hXryj/vaW6/zn6YshWJQ+sPhbPnI5FaMGvxCVwumGeKI7fxKA6J/MAZtunYeKrlIJ6iGIfU7hqTB2kHGOk+/9OztdABlYHPw6yBqrE/RpTTMt2ccjqAQKfuhyxo9or3CRgD",
+    "title": "Atlanta to Orlando (MCO) flight deals",
+    "type": "web_search_result",
+    "url": "https://helloaxel.com/en/flights/from-atlanta-to-orlando-mco"
+   },
+   {
+    "encrypted_content": "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",
+    "title": "Book Atlanta to Orlando (ATL to ORL) from $15",
+    "type": "web_search_result",
+    "url": "https://us.trip.com/flights/atlanta-to-orlando/airfares-atl-orl/"
+   },
+   {
+    "encrypted_content": "EuoICioIFRgCIiQ5YjljNGE5Ny0xYTkyLTRlNDMtOGI4ZC04ZDg0YTcxNGU5MTUSDDdB2xRheXFPrb+1BhoM0QYXrkDZbQeghMDEIjBriBJ+95+fRJlp64b7/Tnp0JYS96kjWJSPTWr4X4dJBgOJDyOaOS7Lzukq7Ee8CVwq7QfkbxsCzVnHyA4zcJm6bviphDOJxqMvBKO0eopjvxUcGtP/ynpo7p62xO/figcEyos6+CafwKrh8+GUbB6vD0PrTTgwzLuStVds3BGsXqIxs5jGlHl9pYi4NI9u1v4uW3TAc0+Gy0Nyot0b5H7RhDQofowrOItpK1AKyFsJNtzlZUaFvFN6htIHYAPlcOl6xsz1Oalc8veK+l0XqiDQ2l784NIhBRgUABGjFxESaORrqDUXAi3O1XR1o1fICUfLwZTw175kD+Ev5gGaYJgrdOZ0ymPJU1U0QIS5rbXZA5bkC3AobwAHdYOPH7hAup331Z+vCV4CLObKcBsNK9qPk9Pp5264klntbq2A6hNCzEzn280K/oDPG1JbN3ESLXvt7lvSkpT+xLNPQGd7AbGtfd6XyDqg3nOlR9M56cYpYddJ7KsU/BNVPnjflGQf5JVbCkkckSNWr2p0UWmQNAvlcN53rk0uInyYLVtFWn7hkUu+2N0ZjxuAPMu3DWMJkN0Cltz8qFMxgbxlw/guNBHnWmpbRtfSyz3tgmNErxbxZxYyEBMyhYIPjlysWTEpx86PoBDkD7LyDzQXUkCzKlcEebnVL4bTXS805yh+v/rxTluIQTs+tpH/sDNdah5CSUwKTh4vRCaWJ0jj8dJFzyv1ORUMnLswl8IbBtXhZ9vbpZHYdm4GLOYJGmIOtnB/5AqGgq6WIxis08CQuZXwvzOidEtcnDJMvCSYGrjfUJypBYKIe1O5vbiNxakmJhkbC7mwvGDY8t4CI3lbxYXvF7JZ+9s5sgwp010jEPya5vcnfLzX7xeExam0V6JRMTRJLtqX73aAig20BFTjoiqU3XEcWBq5Gd6vlb4Njkd8LpWq4zg913bbgRDBNBwschYVU/Tl83EvIn4qgqx4buTlqKKMiDgsWOgO68LPpHmm1znXCoMuYb/cr+4qM6OEVpJg25XCnt7dhYzG5iwgkmsevqBHEZrFUmIpI2rKWotfbneM2IvN0uoMfcdifM+AgGX3aHem8bugEIVKo67vhylxWtlhOVW2H8Uzr5KRWpVI+mK3u8SBd7Y9GY3JSrQ8SIFaZ9bCOZyUVn8gROZ/smyXSnfXhG1QPfgSgRzdjvMYy2s0lg98VmAWYL0ypfEs/aw1jpsVTuNoEbNQsFaIiOKBQqva2vM7Rwf5qrboHSf4tntbKBnuk78uR+HBHIYaCTMRsIYgmkWtvNa4MetaAa4nopIpvrBPk/HfLJlr9+A7ahhJU+6uMgdIcqt9XhybWmk5hTaRP9yYJcsTAa88DeC8HID9VmBRY6oVzcVpnXgGLlYx7eK5iaSoePM2b7GA1moDKvEYAw==",
+    "title": "Cheap Flights from Atlanta (ATLA) to Orlando International (MCO)",
+    "type": "web_search_result",
+    "url": "https://www.skyscanner.net/routes/atla/mco/atlanta-to-orlando-international.html"
+   },
+   {
+    "encrypted_content": "Es8KCioIFRgCIiQ5YjljNGE5Ny0xYTkyLTRlNDMtOGI4ZC04ZDg0YTcxNGU5MTUSDDaTXC2ZDQ1iSabV9BoMJUqwUQIyk8kgpxV9IjBRZxB0QOKaxm/PtrD4C5iaMJIJL+N2ZH/TEhnmpVifQE2WUPUsaPVcrL9i9HOd290q0glyuw4riXFfYbmGGZVHOQK5DINPJVj99KKRwC+YIFXwHn4sQlkX0ysGkr8DOHRrFujq3dXvONvV2mjoDpYvGAUB05rs3r6V/a2hzgjTptQBmK9HueTmxdngs7DfUH6EayFCOgBDWPgT9yXrOuEIrJEFsYzBQcEc8VRjYXjiXRKdircH17FLoaas9e/gz4chOqVEVZuriNKvplRe0HSQWe1cEP6g9rEEieY/82jTgTC+PQmwkqn72LLbl6OwzNJ1Txb++rGmAoWBoYCqjr2T903GRSvt/EK2iyt+v8I4jngWv8KnBPJRrZAuatMOumL3tGky6ZLx/aXYBclEsauVaQjkSqooQLeAoP8K9JBnbnMrT990/BBGMuVP3ETunC+8xwWY6SVbTEhBX1+UcGHYRrstB0JdT8jf0myjugVRIuMVhIfa+WJ03aWxORjXwYxqbbHxLTyqddjBLPB+dbTy1oz8Sp3Vhk4OJF/0/RBf7mUrS9vPxcqYaoFZc+GukMvoor0ngINDsI5lYANPh9KZINGKrJsa5DPB7iX25BjCdu++cH0IMLKUyMTtLcYOg/zu1NzdsWqTCZ7gpxbyolL7kQebiPLLdenmTncB/+9Zm/7+BZtu0SiFR/a3xwaz715tfyz0e/2V2m4w+DGvgEWr0pSejMxy1naDKWVxPuZAf/GifRUTGEoiI8eUgEiH/MLAUrFlDs7PmvOZvN7o4lqsEeUXzsdQ0W9SUSSlqa9b3hfqR+0+0x26AmHHwY4sG09OIH1TH886zEfdMuhiIm0wOF2UelgcXXNEUMBY3KwlR8rvC1KDl5dFH3Q7WE7/KgIQ6Hnbpopj9Avma2GTlSBzC42VVltUiwLoB4/XP/zoxp/SDyZV9zyW4Vt8Q+xRAxDMO4WcQitcZVcY7ZLSaf14MlDN+3IwHoyU2th/im4gktoAkioRLEvXR+cEhMkhGMtCbuInVcVVFDg43szb7UG3c3P5N1+jg3QQqKMaSL7PajBvk9aKLLCizzFurDB2yfpomOO5YXdxt5th73eJzG844BhsVBrrg+ytb0dR4nsfjrL7HTFQxlrjy8vJ8DEgUw00RxlYfSWXq8mzatz2SIp0w0OOgeUj+b0UVJOJo8+PuP3ezFZdRvKeGtyJiCnnCh9te08PkzbKI05pvjee16zzo2ous43ey3awhDE0Rp5sIhO3Y2kwkqq96TgSx9TNVyUauOtPpbcWXe5FG7WFqqk6gNK8WPuh3g+eGiNml6oxLWTkUPl8bRHinDe30bGL8dgu8edOJrNLL6WAHsCQ1VPDiOXpIs4faAGXO8cY72IL22FlUBgPICvU8XJGtg0Ou9PKnI0XfdjVvSbc2HpF6QelzSk7i9Kh3SsdSa2+jc6IX+VXLVFKEt7wZ1RqHPqk9XkqyEVZW/bEcwozA5uQ+AeUgDWHOJo7GHufFXdyTsW/Lcjusf/VLmuL1FWzA4716wPpN8ZF4+6NtJ8MhalOoOdxhS4MkCjmyIHMiEvoqaxYOh7O7O1k0G3JB+l12FVrx4CPoBOLkt56amOZiW4ZHmtzo9GBnOfaU5ShYoNwD6ULc0rmmWnLU1T7WnAllDk0tcpnU7RmAa2ludewlSDpCK28+b7BdqNaE9YS4JKDgdIRq236Gob+GAM=",
+    "title": "Cheap Flights from Atlanta (ATLA) to Orlando (ORLB)",
+    "type": "web_search_result",
+    "url": "https://www.skyscanner.net/routes/atla/orlb/atlanta-to-orlando.html"
+   }
+  ],
+  "tool_use_id": "srvtoolu_01Jn6pa8jnBTib3ZRWdunXLQ",
+  "type": "web_search_tool_result"
+ },
+ {
+  "signature": "CAQSwQgKEAgTGAI4AUIIdGhpbmtpbmcSDGIM3IXTR244K0nY0BoMsMeOKDXdzCwHkyJPIjBeWEvni2vBulgKLZSNGh2H6A3nSmC3IGGI5fdABrMt7QotOblI92nuwNaF6nH3MkEq3gcTcZaO3QYkORXufKwli2t/W/1xYrAdbQHZ+ie6WSLexSNBZ+7w+W7cnK0r124MO+5D55H30uuF9g+05dxwNNOL/19VI9IV70KcmeQnEBRU5OaFctVdcHoGFhTnTn2ECkaLCEhA8uIJq0aIfdTTfYX2ViKNa/hMxwCGHkb8SVsAtHpwQxNXADLVZhuAPMhJR1PEV6ICpSJv4YZxi9Neu9cK6hStDHZRaGbif0WGZstEYElHu1SQUL/cGNhzVEBrCtZXAVN77ojvsRsxXz3sLLr53ZpDvPfel/c2O394AfAfWPpkNJTBJ/uOf9hzDosq/lcL/WAd15BlTz5M1hWGaaf/ppOBZqn6v+ahxlZ75N4v8gqrKsnsXT3mmG4Re3o72Sh/NCEtrHAzDCtvCmrWyM4Edd5zyYEEJ5JAiD3auo6/e14upqGv1oI/Xc7xuS1VociYQbEsWoEN5DkMraGb4rB1Y1d1++9u1z9FHMdZZsyFWyyutK/R4xNzAjmPkjmO11OGtbz1+40ZRlUoQQxd/UzuDItoaJKT6YTXM2UcRUSzJNq+z/6LtIxJM3Yqz2E6Gs2IKqqoS9HGmLG0KRqQaYGaAVcPWSTchGVG6ZO+mJlSrp83tEktBr5CZOT8WheuwOCvA+z9S3i48nemb5YjplETaDe7wxk0zroRgQVyGzOsAkQ5nPfeyd/atT7/qRO2N4AG8P3nFLoesQ7z2/marG8HNmn4yn/wz0YAzwSOcvSn5K4ueMK/V6zdT8H2RldVqiN4PHH+M47nXbOePJHnUgGjzczFN0N4Z+Wzfh49anaJha6dOjnEXjd/1PT1PQlyqg/nYizPfmUv1PXAGA7ZDUSlf6aWgtJWLBe+TBPg8ly6KqmdIYKwGjtZtNvCczn7GIzK4UYwtMn1ki+Luqm6hCcqDk3tsUNyHPH/FPhWkFUlnTRhb++lOYfrX3dCpaoAtySb3rRG3TwH1PA8uOOpieRiF7dFqRxPAtnIj5BRcaJPXEamr6AdEjgrtcopeKyXZ6sw6u05YRYYEcNLS6aK5izOELM+q2frGC3iGoPmnI9k/46srg9XIBfaPeGLVhsiyena42uWZgC0oc3vYNz7Ryizd/HEPi5gFsfgnb6sY9I/d4oTVz6x0HKG2or2W8jJaYEwClJ1FV1DNbLsARGnWmroknOlIDJnBhLuIXysePr3FsYcRIDSs4RNffc0KinYPXmN9b1Hdpw1FGrrBxtyODbqgWafk290MQdVXQ9QzvQ8SBehrjngW+XPeETUr6x0OjaYEOvx+GFSKrv1y8+CLr0vDCN/cVVkoIYpy7U6GSMYAQ==",
+  "thinking": "",
+  "type": "thinking"
+ },
+ {
+  "text": "I couldn't find one confirmed price for November 14, 2026. The figures below are cached \"from\" fares on airline pages, not live availability, so check the final price at checkout.\n\n**One-way, Atlanta (ATL) to Orlando (MCO), November 14, 2026**\n- **Southwest:** ",
+  "type": "text"
+ },
+ {
+  "citations": [
+   {
+    "cited_text": "Find Offers\n\nATL–MCO, 11/06/2026: From $393\n\nATL–MCO, 11/13/2026: From $140\n\nATL–MCO, 11/14/2026: From $130\n\nATL–MCO, 11/15/2026: From $140",
+    "encrypted_index": "Eo8BCioIFRgCIiQ5YjljNGE5Ny0xYTkyLTRlNDMtOGI4ZC04ZDg0YTcxNGU5MTUSDNT7wt3IpALqZY2EQxoMRM+NYhAIED1NwcQbIjDyzKYJfJQ2acM56kNgHZY/2SKYXSevVaNUUCV3C15wIjj239tSGkAtPZND0eILBWMqE/20xF02XXMV1HwGKNtqvQRZcGsYBA==",
+    "title": "Cheap flights from Atlanta (ATL) to Orlando (MCO)",
+    "type": "web_search_result_location",
+    "url": "https://www.southwest.com/en/flights/flights-from-atlanta-to-orlando"
+   }
+  ],
+  "text": "ATL–MCO on 11/14/2026 is listed from $130",
+  "type": "text"
+ },
+ {
+  "text": ". The fare class is ",
+  "type": "text"
+ },
+ {
+  "citations": [
+   {
+    "cited_text": "# Southwest® flights from Atlanta to Orlando from $59\n## Low fares from Atlanta to Orlando\nDepart: 01/01/2027\n\nOne-way\n\n/\n\nBasic\n\nFrom\n\n$59*\n\nAtlanta ...",
+    "encrypted_index": "Eo8BCioIFRgCIiQ5YjljNGE5Ny0xYTkyLTRlNDMtOGI4ZC04ZDg0YTcxNGU5MTUSDC9Ei/f9zJTFwk3b/hoM9ZUIMJxpWnzUV+lNIjDS0vPUAidfrA/MbbFf//+hDAtSIUBgIe+lFu+30fo3F3Mk4CDBDDKaI0BqdZBZMjQqE4jRWhAK185nFNxiSqWygElAgBYYBA==",
+    "title": "Cheap flights from Atlanta (ATL) to Orlando (MCO)",
+    "type": "web_search_result_location",
+    "url": "https://www.southwest.com/en/flights/flights-from-atlanta-to-orlando"
+   }
+  ],
+  "text": "One Way/Basic",
+  "type": "text"
+ },
+ {
+  "text": ".\n- **Frontier:** ",
+  "type": "text"
+ },
+ {
+  "citations": [
+   {
+    "cited_text": "Find Offers\n\n06\n\nFri\n\nATL–MCO, Nov 7, 2026: from $214\n\n07\n\nSat\n\nATL–MCO, Nov 8, 2026: from $214\n\nATL–MCO, Nov 13, 2026: from $53\n\nATL–MCO, Nov 14, 202...",
+    "encrypted_index": "Eo8BCioIFRgCIiQ5YjljNGE5Ny0xYTkyLTRlNDMtOGI4ZC04ZDg0YTcxNGU5MTUSDCgRURRXuhSWK3atrxoMmWCnTP0s6UaiTfvvIjCXHa64DCI5Jb2h9732mBa64p1qXq+SYwBju9kZNyQUYfBF4SazYK7eX6sQnvokfFQqEwRQvAjYipzJj71jeGzafcYQAWAYBA==",
+    "title": "Atlanta, GA to Orlando, FL Flights",
+    "type": "web_search_result_location",
+    "url": "https://flights.flyfrontier.com/en/flights-from-atlanta-to-orlando"
+   }
+  ],
+  "text": "ATL–MCO on Nov 14, 2026 is listed from $53",
+  "type": "text"
+ },
+ {
+  "text": ". This page's cache looks old, so the fare may have changed. Frontier fares are also usually bare-bones, so bags and seat selection would cost extra, which goes against your \"no extras\" requirement. The page also notes that ",
+  "type": "text"
+ },
+ {
+  "citations": [
+   {
+    "cited_text": "Prices shown may also require membership in our travel club, Discount Den®. ",
+    "encrypted_index": "Eo8BCioIFRgCIiQ5YjljNGE5Ny0xYTkyLTRlNDMtOGI4ZC04ZDg0YTcxNGU5MTUSDM1NBY0QeG7nHBLCbhoMGa/dF16ZDwupTOqAIjBmv3KG0Jz1j0lUvbRy2wbuftHDvm2bUq17qkN+JorShnNxp/BKtBd0G4baW2jCqK8qEyNlMMY0mXbJikVPW2sXzpHOoeQYBA==",
+    "title": "Atlanta, GA to Orlando, FL Flights",
+    "type": "web_search_result_location",
+    "url": "https://flights.flyfrontier.com/en/flights-from-atlanta-to-orlando"
+   }
+  ],
+  "text": "prices shown may also require membership in our travel club, Discount Den",
+  "type": "text"
+ },
+ {
+  "text": ".\n- **JetBlue:** Its page showed November fares, but I didn't see a specific listing for Nov 14. ",
+  "type": "text"
+ },
+ {
+  "citations": [
+   {
+    "cited_text": "Price: from $94 *. ",
+    "encrypted_index": "Eo8BCioIFRgCIiQ5YjljNGE5Ny0xYTkyLTRlNDMtOGI4ZC04ZDg0YTcxNGU5MTUSDBqj0uzgQIz/q9vrbhoMHIYI20KIkEzVNfmsIjA/ay6mdwt7wpeSM81Q+y5e6T9CObLRzjs+RSHeH29tMmkqGArK1NAXLsUU5AheJL4qE8MatfuKY6EseYfntoKZzLANkmcYBA==",
+    "title": "Book Flights from Atlanta to Orlando",
+    "type": "web_search_result_location",
+    "url": "https://www.jetblue.com/en/flights-from-atlanta-to-orlando"
+   }
+  ],
+  "text": "Its fares start from $94",
+  "type": "text"
+ },
+ {
+  "text": " for popular dates, and none of those are in November.\n\n**Where to book**\n- Southwest: southwest.com\n- Frontier: flyfrontier.com\n- JetBlue: jetblue.com\n- Delta also flies this route, and Skyscanner or Kayak can compare all airlines at once. I didn't find a Delta fare for your date.\n\n**My suggestion:** Search Nov 14 on Southwest, Frontier and Delta, and compare the totals after any bag or seat fees you'd need. Southwest at about $130 is the best-documented price for your exact date. Frontier may be cheaper, but only if you can fly with no bags.\n\nSOURCES: southwest.com, flyfrontier.com, jetblue.com, skyscanner.com, kayak.com",
+  "type": "text"
+ }
+]
