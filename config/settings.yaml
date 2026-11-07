@@ -5,7 +5,7 @@ anthropic:
   max_uses: 5                      # max searches per call
   max_tokens: 2048
 openai:
-  model: gpt-6-astra
+  model: gpt-6.1-sol
   reasoning_effort: low            # set to null to omit
   search_context_size: medium
 
