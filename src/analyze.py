@@ -39,7 +39,7 @@ def self_reported_domains(text):
     return {d for d in (registrable_domain(m) for m in DOMAIN_RE.findall((text or "").lower())) if d}
 
 
-def build_frame(rows, cfg):
+def build_frame(rows, cfg, split_models=False):
     """One row per successful call, with per-call flags."""
     out = []
     for r in rows:
@@ -70,9 +70,9 @@ def build_frame(rows, cfg):
         rec["selfreport_in_used"] = (len(rep & used) / len(rep)) if rep else None
         out.append(rec)
     df = pd.DataFrame(out)
-    # If a provider's model changed mid-experiment, split it in all views ("openai:gpt-6-luna") so the
-    # two models are never silently mixed. With a single model per provider the label stays plain.
-    if not df.empty:
+    # Models are pooled per provider by default ("openai"). Pass split_models=True to label them separately
+    # ("openai:gpt-6-luna") when a provider's model changed mid-experiment; the `model` column is always kept.
+    if split_models and not df.empty:
         multi = df.groupby("provider")["model"].nunique()
         for prov in multi[multi > 1].index:
             m = df["provider"] == prov

@@ -242,12 +242,15 @@ for _, r in comp_all.iterrows():
                  f"{r.share_a:.0%} vs {r.share_b:.0%} of answers ({verdict}).")
 if lines:
     html_block('<div class="card"><p>' + "<br>".join(lines) + "</p></div>")
-st.caption("Pooled across the selected models. 'Never mention it' is a text heuristic: the answer does not name the "
+st.caption("Pooled across the selected models. 'Never named' is a text heuristic: the answer does not name the "
            "target airline at all. The airlines fly different markets, so gaps can reflect routes, not just the carrier.")
 
 # ---- chart 1: URL mix --------------------------------------------------------------------------------
 st.subheader("1 · Where do the links come from?")
-st.caption("Own site = the airline the trip was about. Each bar is 100% of the links in that group.")
+pooled = [f"{provider_label(p)} = " + " + ".join(sorted(df.loc[df.provider == p, "model"].unique()))
+          for p in providers if df.loc[df.provider == p, "model"].nunique() > 1]
+st.caption("Own site = the airline the trip was about. Each bar is 100% of the links in that group."
+           + (" Pooled models: " + "; ".join(pooled) + "." if pooled else ""))
 legend_html()
 d1 = url_category_share(df, ["airline_target", "provider"], view)
 SHORT = {k: v[1].split()[0] for k, v in AIRLINES.items()}
