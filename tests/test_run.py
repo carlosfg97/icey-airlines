@@ -67,6 +67,17 @@ class Execute(unittest.TestCase):
         self.assertIn("latency_ms", row)
         json.dumps(row)  # must be serialisable
 
+    def test_dry_run_batches_use_consecutive_run_numbers(self):
+        import contextlib, io
+        buf = io.StringIO()
+        with contextlib.redirect_stdout(buf):
+            code = run.main(["--dry-run", "--batches", "3", "--limit", "1", "--run-number", "10"])
+        out = buf.getvalue()
+        self.assertEqual(code, 0)
+        for n in (10, 11, 12):
+            self.assertIn(f"run_number {n})", out)
+        self.assertNotIn("run_number 13)", out)
+
     def test_missing_keys_exit_code(self):
         with mock.patch.dict("os.environ", {}, clear=True):
             self.assertEqual(run.main(["--limit", "2"]), 2)

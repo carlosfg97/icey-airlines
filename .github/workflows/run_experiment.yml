@@ -2,7 +2,7 @@ name: Run experiment
 
 on:
   schedule:
-    - cron: "7 * * * *"          # hourly at minute 7 (avoids the congested top of the hour)
+    - cron: "7 * * * *"          # hourly at minute 7 (avoids the congested top of the hour); re-registered 2026-11-07
   workflow_dispatch:             # manual "Run workflow" button
     inputs:
       is_test:
@@ -10,9 +10,13 @@ on:
         type: boolean
         default: true
       limit:
-        description: "Max calls (12 = one route per airline, both directions, both providers)"
+        description: "Max calls PER BATCH. Leave empty for a full batch (36). In test mode empty means 12."
         type: string
-        default: "12"
+        default: ""
+      batches:
+        description: "Real runs only: how many consecutive batches to run in one go (1-8, 36 calls each)"
+        type: string
+        default: "6"
 
 # Never let two runs overlap (they would race on data/results.jsonl).
 concurrency:
@@ -28,7 +32,7 @@ jobs:
     # (Settings > Secrets and variables > Actions > Variables). Set it to "false" to pause.
     if: github.event_name == 'workflow_dispatch' || vars.SCHEDULE_ENABLED == 'true'
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
 
@@ -51,10 +55,20 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           IS_TEST: ${{ github.event_name == 'workflow_dispatch' && inputs.is_test }}
           LIMIT: ${{ github.event_name == 'workflow_dispatch' && inputs.limit || '' }}
+          BATCHES: ${{ github.event_name == 'workflow_dispatch' && inputs.batches || '' }}
         run: |
+          # Inputs must be plain numbers (they end up on a command line).
+          for v in "$LIMIT" "$BATCHES"; do
+            if [ -n "$v" ] && ! [[ "$v" =~ ^[0-9]+$ ]]; then echo "Bad numeric input: $v" >&2; exit 1; fi
+          done
           ARGS=""
-          if [ "$IS_TEST" = "true" ]; then ARGS="$ARGS --test"; fi
-          if [ -n "$LIMIT" ]; then ARGS="$ARGS --limit $LIMIT"; fi
+          if [ "$IS_TEST" = "true" ]; then
+            ARGS="--test --limit ${LIMIT:-12}"
+          else
+            if [ -n "$LIMIT" ]; then ARGS="$ARGS --limit $LIMIT"; fi
+            if [ -n "$BATCHES" ]; then ARGS="$ARGS --batches $BATCHES"; fi
+          fi
+          echo "Running: python -m src.run $ARGS"
           python -m src.run $ARGS
 
       - name: Summary of captured URLs

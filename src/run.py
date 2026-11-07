@@ -170,33 +170,11 @@ def check_rotation(n_runs, run_date, settings, routes_cfg):
         print(f"  27 combos: min={min(vals)} max={max(vals)} (per-combo counts)")
 
 
-def main(argv=None):
-    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("--dry-run", action="store_true", help="print prompts and rotation, call no API, write nothing")
-    ap.add_argument("--limit", type=int, help="max calls this run (takes the first N of the batch)")
-    ap.add_argument("--run-number", type=int, help="override the computed run number")
-    ap.add_argument("--test", action="store_true", help="flag rows is_test, run_number 0, save raw responses")
-    ap.add_argument("--providers", help="comma list to restrict providers, e.g. anthropic")
-    ap.add_argument("--check-rotation", type=int, metavar="N", help="show rotation balance over N runs and exit")
-    ap.add_argument("--config", default=str(ROOT / "config"))
-    ap.add_argument("--date", help="override run date YYYY-MM-DD (for reproducible dry runs)")
-    args = ap.parse_args(argv)
-
-    settings, routes_cfg = load_config(args.config)
-    if args.providers:
-        settings["providers"] = [p for p in args.providers.split(",") if p in KEY_ENV]
+def run_batch(args, settings, routes_cfg, run_date, run_number):
+    """Build and execute (or dry-run) one batch. Returns an exit code (0 ok, 1 all failed, 2 missing keys)."""
     now = datetime.now(timezone.utc)
-    run_date = datetime.strptime(args.date, "%Y-%m-%d").date() if args.date else now.date()
-
-    if args.check_rotation:
-        check_rotation(args.check_rotation, run_date, settings, routes_cfg)
-        return 0
-
     results_path = ROOT / settings["paths"]["results"]
     existing = read_rows(results_path)
-    run_number = 0 if args.test else (args.run_number or next_run_number(existing))
-    if args.run_number is not None and args.test:
-        run_number = args.run_number
     run_id = now.strftime("%Y%m%dT%H%M%SZ") + ("-test" if args.test else f"-r{run_number}")
     meta = {"run_id": run_id, "run_number": run_number, "is_test": args.test,
             "timestamp_utc": now.isoformat(timespec="seconds")}
@@ -247,6 +225,47 @@ def main(argv=None):
                 ok += 1
     print(f"Done: {ok} ok, {failed} failed.")
     return 0 if ok else 1
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--dry-run", action="store_true", help="print prompts and rotation, call no API, write nothing")
+    ap.add_argument("--limit", type=int, help="max calls per batch (takes the first N of the batch)")
+    ap.add_argument("--batches", type=int, default=1,
+                    help="run N consecutive batches (run numbers n, n+1, ...) in one go; ignored with --test")
+    ap.add_argument("--run-number", type=int, help="override the computed run number")
+    ap.add_argument("--test", action="store_true", help="flag rows is_test, run_number 0, save raw responses")
+    ap.add_argument("--providers", help="comma list to restrict providers, e.g. anthropic")
+    ap.add_argument("--check-rotation", type=int, metavar="N", help="show rotation balance over N runs and exit")
+    ap.add_argument("--config", default=str(ROOT / "config"))
+    ap.add_argument("--date", help="override run date YYYY-MM-DD (for reproducible dry runs)")
+    args = ap.parse_args(argv)
+
+    settings, routes_cfg = load_config(args.config)
+    if args.providers:
+        settings["providers"] = [p for p in args.providers.split(",") if p in KEY_ENV]
+    run_date = datetime.strptime(args.date, "%Y-%m-%d").date() if args.date else datetime.now(timezone.utc).date()
+
+    if args.check_rotation:
+        check_rotation(args.check_rotation, run_date, settings, routes_cfg)
+        return 0
+
+    batches = 1 if args.test else max(1, min(args.batches, settings.get("max_batches_per_dispatch", 8)))
+    if not args.test and args.batches > batches:
+        print(f"--batches {args.batches} capped to {batches} (max_batches_per_dispatch).")
+    if args.test:
+        base = args.run_number if args.run_number is not None else 0
+    else:
+        base = args.run_number or next_run_number(read_rows(ROOT / settings["paths"]["results"]))
+
+    codes = []
+    for i in range(batches):
+        if batches > 1:
+            print(f"\n=== batch {i + 1}/{batches} (run_number {base + i}) ===")
+        codes.append(run_batch(args, settings, routes_cfg, run_date, base + i))
+        if codes[-1] == 2:  # missing keys: no point continuing
+            break
+    return 2 if 2 in codes else (0 if 0 in codes else 1)
 
 
 if __name__ == "__main__":

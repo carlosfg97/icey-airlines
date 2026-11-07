@@ -16,7 +16,8 @@ user_location:
 
 # Cost and safety
 max_calls_per_run: 40              # hard cap per hourly run
-max_total_calls: 3200              # budget cap across all non-test rows in results.jsonl
+max_total_calls: 3200
+max_batches_per_dispatch: 8       # cap for the manual "batches" input (8 x 36 calls)              # budget cap across all non-test rows in results.jsonl
 call_timeout_s: 180
 max_retries: 2                     # retries after the first attempt, with backoff
 max_pause_continues: 3             # Anthropic pause_turn continuations
