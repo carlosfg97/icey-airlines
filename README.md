@@ -8,6 +8,8 @@ describing itself. The model's own `SOURCES:` line is stored separately as a cro
 Caveat: the API with web search is not identical to the consumer ChatGPT/Claude apps. Read results as "how
 the models search and source flight prices", not exactly what end users see. No bookings are made.
 
+![How the experiment works: identical flight-search prompts go to OpenAI and Claude with web search; cited and consulted URLs are classified by domain, stored in a results dataset and shown in a Streamlit dashboard](docs/how-it-works.png)
+
 ## Layout
 - `config/settings.yaml` models, caps, rotation settings (change models here, not in code)
 - `config/routes.yaml` routes per airline (**drafts, not verified**; Southwest list is my own guess)
