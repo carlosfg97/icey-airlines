@@ -218,15 +218,14 @@ for key, (code, name) in AIRLINES.items():
     g = df[df.airline_target == key]
     if g.empty:
         continue
-    ota, own, absent = g[flag_ota].mean(), g[flag_own].mean(), g["absent"].mean()
+    ota, own = g[flag_ota].mean(), g[flag_own].mean()
     tiles.append(f"""<div class="bp"><div class="bp-main">
       <div class="bp-top"><span class="bp-code">{code}</span><span class="bp-name">{name}</span></div>
       <div class="bp-row"><div class="bp-l">{L_OTA}</div><div class="bp-h ota">{ota:.0%}</div>
         <div class="bp-track"><i style="width:{ota:.0%};background:var(--ota)"></i></div></div>
       <div class="bp-row"><div class="bp-l">{L_OWN}</div><div class="bp-h own">{own:.0%}</div>
         <div class="bp-track"><i style="width:{own:.0%};background:var(--own)"></i></div></div>
-    </div><div class="bp-stub"><div class="s">Answers</div><div class="n">{len(g)}</div>
-      <div class="s">Never named</div><div class="n">{absent:.0%}</div></div></div>""")
+    </div><div class="bp-stub"><div class="s">Answers</div><div class="n">{len(g)}</div></div></div>""")
 html_block('<div class="bps">' + "".join(tiles) + "</div>")
 
 comp = compare_airlines(df, flag_ota)
@@ -242,8 +241,8 @@ for _, r in comp_all.iterrows():
                  f"{r.share_a:.0%} vs {r.share_b:.0%} of answers ({verdict}).")
 if lines:
     html_block('<div class="card"><p>' + "<br>".join(lines) + "</p></div>")
-st.caption("Pooled across the selected models. 'Never named' is a text heuristic: the answer does not name the "
-           "target airline at all. The airlines fly different markets, so gaps can reflect routes, not just the carrier.")
+st.caption("Pooled across the selected models. The airlines fly different markets, so gaps can reflect routes, "
+           "not just the carrier.")
 
 # ---- chart 1: URL mix --------------------------------------------------------------------------------
 st.subheader("1 · Where do the links come from?")
