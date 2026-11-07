@@ -39,3 +39,15 @@ python -m src.classify data/results.jsonl    # category counts, top domains, unk
 3. Create the repo **variable** `SCHEDULE_ENABLED` = `true` (Variables tab) to start the hourly runs (minute 7 of
    each hour, UTC). Set it to `false` to pause. Manual runs always work.
    GitHub can still start scheduled runs a few minutes late; the real start time is in `timestamp_utc`.
+
+## Analysis and dashboard
+```
+python -m src.analyze                  # summary + z-tests; add --include-tests to count test runs
+streamlit run app.py                   # local dashboard
+```
+Deploy on Streamlit Community Cloud (share.streamlit.io): New app → repo `carlosfg97/icey-airlines`, branch `main`,
+main file `app.py`. Choose "Only specific people can view this app" in the sharing settings, since the repo is private
+and the data should not be public. The app re-reads `data/results.jsonl` (cached 5 min) each time the repo updates.
+
+Metrics use two URL sets: **cited** (in the answer) and **consulted** (everything the search returned). "Absence" is a text
+heuristic (the answer never mentions the target airline), so treat it as approximate.
