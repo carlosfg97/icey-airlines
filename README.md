@@ -16,6 +16,8 @@ the models search and source flight prices", not exactly what end users see. No 
 - `config/settings.yaml` models, caps, rotation settings (change models here, not in code)
 - `config/routes.yaml` routes per airline (**drafts, not verified**; Southwest list is my own guess)
 - `config/domains.yaml` domain → category map (`airline_direct_target`, `airline_direct_other`, `ota_aggregator`, `other`)
+- `app.py` Streamlit dashboard (flight-deck theme in `.streamlit/config.toml`, images in `assets/`)
+- `scripts/make_assets.py` regenerates the PNGs in `assets/` (banner, per-airline route maps, icon; needs `pip install matplotlib`)
 - `src/run.py` builds the batch, calls APIs, appends rows to `data/results.jsonl`
 - `src/providers.py` Anthropic + OpenAI wrappers and URL extraction · `src/classify.py` domain classification
 - `.github/workflows/run_experiment.yml` hourly schedule + manual "Run workflow"
@@ -54,6 +56,10 @@ streamlit run app.py                   # local dashboard
 Deploy on Streamlit Community Cloud (share.streamlit.io): New app → repo `carlosfg97/icey-airlines`, branch `main`,
 main file `app.py`. Choose "Only specific people can view this app" in the sharing settings, since the repo is private
 and the data should not be public. The app re-reads `data/results.jsonl` (cached 5 min) each time the repo updates.
+
+The dashboard uses a navy/blue look inspired by the airline industry (independent research, not affiliated with any airline).
+Chart colors were checked with the dataviz palette validator: blue = the airline's own site, orange = OTA/aggregator,
+grays = other airlines and everything else.
 
 Metrics use two URL sets: **cited** (in the answer) and **consulted** (everything the search returned). "Absence" is a text
 heuristic (the answer never mentions the target airline), so treat it as approximate.

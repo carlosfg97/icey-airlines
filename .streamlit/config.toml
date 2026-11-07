@@ -1,0 +1,11 @@
+# Light theme on purpose: the brand look (navy banner, white cards) is designed for a light page.
+[theme]
+base = "light"
+primaryColor = "#1768ad"
+backgroundColor = "#f3f6f9"
+secondaryBackgroundColor = "#e6edf4"
+textColor = "#0d2238"
+font = "sans serif"
+
+[client]
+toolbarMode = "viewer"

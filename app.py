@@ -1,26 +1,119 @@
-"""Streamlit dashboard. Reads data/results.jsonl from the repo (Streamlit Community Cloud redeploys on push)."""
+"""Streamlit dashboard. Reads data/results.jsonl from the repo (Streamlit Community Cloud redeploys on push).
+
+Look: a flight-deck theme (navy banner, boarding-pass stat tiles, departures-board tables). Colors are
+inspired by Alaska Airlines' deep blue; this is independent research, not an official or affiliated site.
+Chart colors were validated with the dataviz skill's palette validator (light mode, white surface).
+"""
+import base64
+import html
 from pathlib import Path
 
 import altair as alt
 import pandas as pd
 import streamlit as st
+from PIL import Image
 
-from src.analyze import (build_frame, compare_airlines, load_rows, share_table, top_domains,
-                         url_category_share)
-from src.classify import CATEGORIES, load_domains
+from src.analyze import build_frame, compare_airlines, load_rows, share_table, url_category_share
+from src.classify import CATEGORIES, classify_url, load_domains
 
-RESULTS = Path(__file__).parent / "data" / "results.jsonl"
-CAT_COLORS = {"airline_direct_target": "#2a6fdb", "airline_direct_other": "#8f98a3",
-              "ota_aggregator": "#e8833a", "other": "#d5d9de"}
-CAT_LABELS = {"airline_direct_target": "Target airline's own site", "airline_direct_other": "Other airline site",
-              "ota_aggregator": "OTA / aggregator", "other": "Other (news, blogs, ...)"}
+ROOT = Path(__file__).parent
+RESULTS = ROOT / "data" / "results.jsonl"
+ASSETS = ROOT / "assets"
 
-st.set_page_config(page_title="Agent channel experiment", layout="wide")
-st.title("Do AI agents send flight shoppers to airline sites or to OTAs?")
-st.caption("Claude and OpenAI with web search, asked for flight prices on Alaska, Delta and Southwest routes. "
-           "API behaviour, not exactly what ChatGPT/Claude app users see. No bookings are made.")
+# ---- design tokens ---------------------------------------------------------------------------------
+INK, INK2, MUTED = "#0d2238", "#4a5a6a", "#6b7a89"
+NAVY, SURFACE, PAGE, HAIR = "#0b2a45", "#ffffff", "#f3f6f9", "#e3e8ee"
+CAT = {"airline_direct_target": "#1768ad", "airline_direct_other": "#7d8b9a",
+       "ota_aggregator": "#eb6834", "other": "#c9d2db"}
+CAT_LABEL = {"airline_direct_target": "Target airline's own site", "airline_direct_other": "Other airline's site",
+             "ota_aggregator": "OTA / aggregator", "other": "Other (news, blogs, ...)"}
+CAT_SHORT = {"airline_direct_target": "OWN SITE", "airline_direct_other": "OTHER AIRLINE",
+             "ota_aggregator": "OTA", "other": "OTHER"}
+OTA_RAMP = ["#fdeee6", "#f9cdb6", "#f2a07a", "#eb6834", "#b8441a"]  # one-hue sequential for the heatmap
+AIRLINES = {"alaska": ("AS", "Alaska Airlines"), "delta": ("DL", "Delta Air Lines"),
+            "southwest": ("WN", "Southwest Airlines")}
+WINDOWS = ["next_week", "next_month", "holiday"]
+FARES = ["basic_economy", "main_economy", "first_premium"]
+FONT = "system-ui, -apple-system, 'Segoe UI', sans-serif"
+MONO = "ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+
+st.set_page_config(page_title="Agent Channel Watch", page_icon=Image.open(ASSETS / "icon.png"), layout="wide",
+                   initial_sidebar_state="collapsed")
 
 
+@st.cache_resource
+def b64(name):
+    return base64.b64encode((ASSETS / name).read_bytes()).decode()
+
+
+def html_block(s):
+    """st.markdown treats 4-space-indented lines as code, so flatten the HTML first."""
+    st.markdown(" ".join(line.strip() for line in s.splitlines()), unsafe_allow_html=True)
+
+
+html_block(f"""
+<style>
+:root {{ --ink:{INK}; --ink2:{INK2}; --muted:{MUTED}; --navy:{NAVY}; --surface:{SURFACE}; --page:{PAGE};
+  --hair:{HAIR}; --own:{CAT['airline_direct_target']}; --ota:{CAT['ota_aggregator']}; --amber:#ffb74d; }}
+.block-container {{ padding-top: 3.4rem; max-width: 1180px; }}
+html, body, [class*="css"], .stMarkdown {{ font-family: {FONT}; }}
+h2, h3 {{ color: var(--ink); letter-spacing: -0.01em; }}
+.hero {{ position: relative; border-radius: 18px; overflow: hidden; color: #fff; min-height: 250px;
+  background: #06182a url(data:image/png;base64,{b64('hero.png')}) center/cover no-repeat; margin-bottom: 1.1rem; }}
+.hero::before {{ content:""; position:absolute; inset:0;
+  background: linear-gradient(90deg, rgba(6,24,42,.94) 0%, rgba(6,24,42,.78) 46%, rgba(6,24,42,.15) 100%); }}
+.hero-in {{ position: relative; padding: 28px 30px 26px; max-width: 760px; }}
+.kicker {{ font: 600 12px {MONO}; letter-spacing: .18em; color: var(--amber); text-transform: uppercase; }}
+.hero h1 {{ font-size: clamp(26px, 4.4vw, 42px); line-height: 1.08; margin: 10px 0 10px; font-weight: 750;
+  letter-spacing: -0.02em; color:#fff; padding:0; }}
+.hero p {{ color: #cfe3f5; font-size: 15px; margin: 0 0 16px; max-width: 620px; }}
+.pill {{ display:inline-block; font: 600 12px {MONO}; padding: 5px 10px; border-radius: 999px;
+  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.22); margin: 0 6px 6px 0; color:#e8f4ff; }}
+.pill b {{ color: var(--amber); }}
+.kpis {{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 4px 0 18px; }}
+.kpi {{ background: var(--surface); border:1px solid var(--hair); border-radius: 14px; padding: 12px 16px; }}
+.kpi .l {{ font: 600 11px {MONO}; letter-spacing:.14em; color: var(--muted); text-transform: uppercase; }}
+.kpi .v {{ font-size: 28px; font-weight: 750; color: var(--ink); line-height: 1.15; }}
+.bps {{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 6px 0 8px; }}
+.bp {{ display:flex; background: var(--surface); border:1px solid var(--hair); border-radius: 16px; overflow:hidden;
+  box-shadow: 0 1px 2px rgba(11,42,69,.05); }}
+.bp-main {{ flex: 1; padding: 14px 16px 14px; min-width: 0; }}
+.bp-top {{ display:flex; align-items:baseline; gap:10px; margin-bottom: 10px; }}
+.bp-code {{ font: 800 22px {MONO}; color: var(--navy); background: #e6edf4; padding: 2px 8px; border-radius: 8px; }}
+.bp-name {{ font-weight: 650; color: var(--ink); }}
+.bp-row {{ margin-bottom: 9px; }}
+.bp-l {{ font: 600 10.5px {MONO}; letter-spacing:.12em; color: var(--muted); text-transform: uppercase; }}
+.bp-h {{ font-size: 34px; font-weight: 780; line-height: 1.05; color: var(--ink); }}
+.bp-h.ota {{ color: #b8441a; }} .bp-h.own {{ color: #11588f; }}
+.bp-track {{ height: 6px; border-radius: 6px; background: #e6edf4; margin-top: 4px; overflow: hidden; }}
+.bp-track i {{ display:block; height:100%; border-radius: 6px; }}
+.bp-stub {{ width: 92px; border-left: 2px dashed var(--hair); background: #f7fafc; padding: 14px 8px; text-align:center;
+  display:flex; flex-direction:column; justify-content:center; gap: 8px; }}
+.bp-stub .n {{ font: 800 20px {MONO}; color: var(--navy); }}
+.bp-stub .s {{ font: 600 9.5px {MONO}; letter-spacing:.1em; color: var(--muted); text-transform: uppercase; }}
+.card {{ background: var(--surface); border:1px solid var(--hair); border-radius: 14px; padding: 14px 18px; margin: 8px 0; }}
+.card p {{ margin: 0; color: var(--ink2); font-size: 14.5px; }}
+.card b {{ color: var(--ink); }}
+.board {{ background: #06182a; border-radius: 14px; padding: 10px 6px; overflow-x: auto; }}
+.board table {{ border-collapse: collapse; width: 100%; font: 500 13px {MONO}; color: #ffe0a3; }}
+.board th {{ text-align:left; font-weight: 600; color: #7fa6c8; font-size: 11px; letter-spacing:.14em; padding: 6px 12px;
+  border-bottom: 1px solid rgba(169,212,245,.2); white-space: nowrap; }}
+.board td {{ padding: 7px 12px; border-bottom: 1px solid rgba(169,212,245,.08); white-space: nowrap; }}
+.board td.dim {{ color: #a9d4f5; }}
+.tag {{ display:inline-block; padding: 1px 8px; border-radius: 6px; font-weight: 700; font-size: 11px; letter-spacing:.06em; }}
+.legend {{ display:flex; flex-wrap:wrap; gap: 6px 16px; margin: 2px 0 6px; font-size: 13px; color: var(--ink2); }}
+.lg i {{ display:inline-block; width:11px; height:11px; border-radius:3px; margin-right:6px; vertical-align:-1px; }}
+.foot {{ color: var(--muted); font-size: 12.5px; margin: 22px 0 6px; line-height: 1.5; }}
+@media (max-width: 760px) {{
+  .hm {{ display: none; }}
+  .kpis {{ grid-template-columns: repeat(2, 1fr); }} .bps {{ grid-template-columns: 1fr; }}
+  .hero-in {{ padding: 22px 18px; }} .bp-stub {{ width: 78px; }}
+}}
+</style>
+""")
+
+
+# ---- data ----------------------------------------------------------------------------------------
 @st.cache_data(ttl=300)
 def load(include_tests):
     cfg = load_domains()
@@ -28,86 +121,258 @@ def load(include_tests):
     return rows, build_frame(rows, cfg), cfg
 
 
-with st.sidebar:
-    include_tests = st.checkbox("Include test runs", value=False)
-    view = st.radio("URL set", ["cited", "seen"], format_func=lambda v: {
-        "cited": "Cited in the answer", "seen": "Consulted (all search results)"}[v])
-    st.caption("OpenAI cites few URLs but consults many, so compare both views.")
+def provider_label(p):
+    kind, _, model = p.partition(":")
+    base = {"anthropic": "Claude", "openai": "OpenAI"}.get(kind, kind)
+    if not model:
+        return base
+    short = model.split("-")[-1] if model.startswith("gpt") else model.replace("claude-", "")
+    return f"{base} {short}"
 
+
+def style(chart):
+    return (chart.configure(font=FONT, background=SURFACE)
+            .configure_view(stroke=None)
+            .configure_axis(gridColor=HAIR, domainColor=HAIR, tickColor=HAIR, labelColor=MUTED, titleColor=INK2,
+                            labelFontSize=12)
+            .configure_legend(labelColor=INK2, labelFontSize=12, symbolType="square", symbolSize=110, orient="top",
+                              padding=4)
+            .configure_header(labelColor=INK, labelFontSize=13, labelFontWeight=600))
+
+
+LEGEND_EXPR = ("{'airline_direct_target':'Own site','airline_direct_other':'Other airline',"
+               "'ota_aggregator':'OTA / aggregator','other':'Other'}[datum.label]")
+cat_color = alt.Color("category:N", title=None, sort=CATEGORIES,
+                      scale=alt.Scale(domain=CATEGORIES, range=[CAT[c] for c in CATEGORIES]), legend=None)
+LEGEND_NAMES = {"airline_direct_target": "Own site", "airline_direct_other": "Other airline",
+                "ota_aggregator": "OTA / aggregator", "other": "Other"}
+
+
+def legend_html():
+    """Legend as HTML so it wraps on narrow screens instead of being clipped inside the chart."""
+    items = "".join(f'<span class="lg"><i style="background:{CAT[c]}"></i>{LEGEND_NAMES[c]}</span>' for c in CATEGORIES)
+    html_block(f'<div class="legend">{items}</div>')
+
+# ---- filter row (one row above everything it scopes) --------------------------------------------------
+f1, f2, f3 = st.columns([1.5, 2, 1.1])
+with f3:
+    include_tests = st.toggle("Include test runs", value=False)
 rows, df, cfg = load(include_tests)
+
+with f1:
+    view = st.segmented_control("URL set", ["cited", "seen"], default="cited", key="view",
+                                format_func={"cited": "Cited in the answer", "seen": "All consulted"}.get) or "cited"
+
 if df.empty:
-    st.info("No data yet. Results appear here after the first successful run.")
+    html_block(f"""<div class="hero"><div class="hero-in"><div class="kicker">Flight deck</div>
+      <h1>Waiting for the first departures</h1><p>No data yet. Results appear here after the first successful run.</p>
+      </div></div>""")
     st.stop()
 
 providers = sorted(df.provider.unique())
-with st.sidebar:
-    chosen = st.multiselect("Providers", providers, default=providers)
+with f2:
+    chosen = st.multiselect("Models", providers, default=providers, format_func=provider_label)
 df = df[df.provider.isin(chosen)]
-rows = [r for r in rows if r["provider"] in chosen]
+rows = [r for r in rows if f"{r['provider']}:{r['model']}" in chosen or r["provider"] in chosen]
+if df.empty:
+    st.info("Pick at least one model.")
+    st.stop()
+flag_ota, flag_own = f"{view}_ota", f"{view}_target"
+last = str(df.timestamp_utc.max())[:16].replace("T", " ")
+n_fail = sum(1 for r in rows if r.get("error"))
 
-c1, c2, c3, c4 = st.columns(4)
-c1.metric("Successful calls", len(df))
-c2.metric("Runs", df.run_number.nunique())
-c3.metric("Failed calls", sum(1 for r in rows if r.get("error")))
-c4.metric("Last run (UTC)", str(df.timestamp_utc.max())[:16].replace("T", " "))
+# ---- hero + KPIs -------------------------------------------------------------------------------------
+html_block(f"""
+<div class="hero"><div class="hero-in">
+  <div class="kicker">Flight deck · AI shopping agents</div>
+  <h1>Do AI agents send flight shoppers to the airline, or to an OTA?</h1>
+  <p>Claude and OpenAI, with web search, price the same trips on Alaska, Delta and Southwest every hour,
+  and we log which websites they actually point travelers to.</p>
+  <span class="pill">AS · DL · WN</span><span class="pill">36 searches / hour</span>
+  <span class="pill">last departure <b>{last}Z</b></span>
+</div></div>
+<div class="kpis">
+  <div class="kpi"><div class="l">Answers logged</div><div class="v">{len(df):,}</div></div>
+  <div class="kpi"><div class="l">Hourly batches</div><div class="v">{df.run_number.nunique()}</div></div>
+  <div class="kpi"><div class="l">Failed calls</div><div class="v">{n_fail}</div></div>
+  <div class="kpi"><div class="l">Routes covered</div><div class="v">{df.route_id.nunique()}</div></div>
+</div>
+""")
 
-color = alt.Color("category:N", title=None, sort=CATEGORIES,
-                  scale=alt.Scale(domain=CATEGORIES, range=[CAT_COLORS[c] for c in CATEGORIES]),
-                  legend=alt.Legend(labelExpr="{'airline_direct_target':'Target airline site',"
-                                              "'airline_direct_other':'Other airline site',"
-                                              "'ota_aggregator':'OTA / aggregator','other':'Other'}[datum.label]"))
+# ---- boarding passes: one stat tile per airline -------------------------------------------------------
+st.subheader("Boarding passes: who gets the click?")
+L_OTA = "Answers linking an OTA" if view == "cited" else "Searches showing an OTA"
+L_OWN = "Answers linking own site" if view == "cited" else "Searches showing own site"
+tiles = []
+for key, (code, name) in AIRLINES.items():
+    g = df[df.airline_target == key]
+    if g.empty:
+        continue
+    ota, own, absent = g[flag_ota].mean(), g[flag_own].mean(), g["absent"].mean()
+    tiles.append(f"""<div class="bp"><div class="bp-main">
+      <div class="bp-top"><span class="bp-code">{code}</span><span class="bp-name">{name}</span></div>
+      <div class="bp-row"><div class="bp-l">{L_OTA}</div><div class="bp-h ota">{ota:.0%}</div>
+        <div class="bp-track"><i style="width:{ota:.0%};background:var(--ota)"></i></div></div>
+      <div class="bp-row"><div class="bp-l">{L_OWN}</div><div class="bp-h own">{own:.0%}</div>
+        <div class="bp-track"><i style="width:{own:.0%};background:var(--own)"></i></div></div>
+    </div><div class="bp-stub"><div class="s">Answers</div><div class="n">{len(g)}</div>
+      <div class="s">Never named</div><div class="n">{absent:.0%}</div></div></div>""")
+html_block('<div class="bps">' + "".join(tiles) + "</div>")
 
+comp = compare_airlines(df, flag_ota)
+comp_all = comp[comp.provider == "all"]
+lines = []
+for _, r in comp_all.iterrows():
+    if pd.isna(r.p_value):
+        verdict = "too little data to test"
+    else:
+        verdict = f"p = {r.p_value:.3f}, " + ("statistically distinguishable" if r.p_value < 0.05
+                                              else "not distinguishable yet")
+    lines.append(f"<b>{AIRLINES[r.airline_a][1]}</b> vs <b>{AIRLINES[r.airline_b][1]}</b>: OTA named in "
+                 f"{r.share_a:.0%} vs {r.share_b:.0%} of answers ({verdict}).")
+if lines:
+    html_block('<div class="card"><p>' + "<br>".join(lines) + "</p></div>")
+st.caption("Pooled across the selected models. 'Never mention it' is a text heuristic: the answer does not name the "
+           "target airline at all. The airlines fly different markets, so gaps can reflect routes, not just the carrier.")
 
-def stacked(data, x, **kw):
-    return (alt.Chart(data).mark_bar().encode(
-        x=alt.X(f"{x}:N", title=None, sort=kw.get("sort")),
-        y=alt.Y("share:Q", title="Share of URLs", axis=alt.Axis(format="%"), scale=alt.Scale(domain=[0, 1])),
-        color=color, order=alt.Order("category:N", sort="ascending"),
-        tooltip=["category", alt.Tooltip("share:Q", format=".0%"), "urls"]))
-
-
-st.subheader("1. Where do the URLs come from? (airline × model)")
+# ---- chart 1: URL mix --------------------------------------------------------------------------------
+st.subheader("1 · Where do the links come from?")
+st.caption("Own site = the airline the trip was about. Each bar is 100% of the links in that group.")
+legend_html()
 d1 = url_category_share(df, ["airline_target", "provider"], view)
-d1["group"] = d1["airline_target"] + " / " + d1["provider"]
-st.altair_chart(stacked(d1, "group").properties(height=320), width="stretch")
+SHORT = {k: v[1].split()[0] for k, v in AIRLINES.items()}
+d1["label"] = d1["airline_target"].map(SHORT) + " · " + d1["provider"].map(provider_label)
+order = [SHORT[a] + " · " + provider_label(p) for a in AIRLINES for p in providers
+         if ((df.airline_target == a) & (df.provider == p)).any()]
+seg = []
+for lab, sub in d1.groupby("label", sort=False):
+    start = 0.0
+    for c in CATEGORIES:
+        v = sub.loc[sub.category == c, "share"]
+        v = 0.0 if v.empty or pd.isna(v.iloc[0]) else float(v.iloc[0])
+        seg.append({"label": lab, "category": c, "start": start, "end": start + v, "mid": start + v / 2,
+                    "share": v, "pct": f"{v:.0%}", "urls": int(sub.urls.iloc[0])})
+        start += v
+seg = pd.DataFrame(seg)
+yenc = alt.Y("label:N", sort=order, title=None, axis=alt.Axis(ticks=False, domain=False, labelLimit=170))
+bars = alt.Chart(seg).mark_bar(size=26, stroke=SURFACE, strokeWidth=2).encode(
+    y=yenc, x=alt.X("start:Q", title=None, scale=alt.Scale(domain=[0, 1]), axis=alt.Axis(format="%", tickCount=5)),
+    x2="end:Q", color=cat_color,
+    tooltip=[alt.Tooltip("label:N", title="Who"), alt.Tooltip("category:N", title="Category"),
+             alt.Tooltip("share:Q", format=".0%", title="Share of URLs"), alt.Tooltip("urls:Q", title="URLs in total")])
+txt = alt.Chart(seg).transform_filter("datum.share >= 0.09").mark_text(fontSize=11, fontWeight=700).encode(
+    y=yenc, x="mid:Q", text="pct:N",
+    color=alt.condition("datum.category == 'other'", alt.value(INK), alt.value("#ffffff")))
+st.altair_chart(style((bars + txt).properties(height=max(120, 38 * len(order)))), width="stretch")
+with st.expander("Show the numbers"):
+    st.dataframe(d1.pivot_table(index="label", columns="category", values="share").reindex(order)
+                 .style.format("{:.0%}"), width="stretch")
 
-st.subheader("2. By booking window and fare type")
-col_a, col_b = st.columns(2)
-for col, dim, order in ((col_a, "booking_window", ["next_week", "next_month", "holiday"]),
-                        (col_b, "fare_type", ["basic_economy", "main_economy", "first_premium"])):
-    d = url_category_share(df, ["airline_target", dim], view)
-    chart = stacked(d, dim, sort=order).facet(column=alt.Column("airline_target:N", title=None)).properties(
-        title=dim.replace("_", " "))
-    col.altair_chart(chart, width="content")
+# ---- chart 2: heatmap --------------------------------------------------------------------------------
+st.subheader("2 · Does the trip type change it?")
+st.caption("Share linking an OTA, by how far ahead the trip is (a week, a month, or the Dec 23 holiday) and the fare. "
+           "Faded cells have fewer than 3 answers.")
+hm = (df.groupby(["airline_target", "fare_type", "booking_window"])
+      .agg(share=(flag_ota, "mean"), n=(flag_ota, "size")).reset_index())
+hm["airline"] = hm["airline_target"].map(lambda a: AIRLINES[a][1])
+hm["fare"] = hm["fare_type"].str.replace("_", " ")
+hm["window"] = hm["booking_window"].map({"next_week": "+1 week", "next_month": "+1 month", "holiday": "holiday"})
+wl, fl = ["+1 week", "+1 month", "holiday"], [f.replace("_", " ") for f in FARES]
+base = alt.Chart(hm).encode(
+    x=alt.X("window:N", sort=wl, title=None, axis=alt.Axis(orient="top", labelAngle=0, ticks=False, domain=False)),
+    y=alt.Y("fare:N", sort=fl, title=None, axis=alt.Axis(ticks=False, domain=False, labelLimit=100)))
+rect = base.mark_rect(stroke=SURFACE, strokeWidth=3).encode(
+    color=alt.Color("share:Q", title="OTA share", scale=alt.Scale(domain=[0, .25, .5, .75, 1], range=OTA_RAMP),
+                    legend=alt.Legend(format="%", orient="bottom", gradientLength=160)),
+    opacity=alt.condition("datum.n >= 3", alt.value(1), alt.value(0.45)),
+    tooltip=[alt.Tooltip("airline:N"), alt.Tooltip("fare:N"), alt.Tooltip("window:N"),
+             alt.Tooltip("share:Q", format=".0%", title="OTA share"), alt.Tooltip("n:Q", title="Answers")])
+cell_txt = base.mark_text(fontSize=11, fontWeight=700).encode(
+    text=alt.Text("share:Q", format=".0%"),
+    color=alt.condition("datum.share > 0.62", alt.value("#ffffff"), alt.value(INK)))
+heat = (rect + cell_txt).properties(width=240, height=96).facet(
+    row=alt.Row("airline:N", title=None, sort=[AIRLINES[a][1] for a in AIRLINES],
+                header=alt.Header(labelOrient="top", labelAngle=0, labelAlign="left", labelPadding=4,
+                                  labelFontSize=14)), spacing=10)
+st.altair_chart(style(heat), width="content")
 
-st.subheader("3. Top 15 cited domains")
+# ---- route map ---------------------------------------------------------------------------------------
+st.subheader("Where we are looking")
+tabs = st.tabs([AIRLINES[a][1] for a in AIRLINES])
+for tab, a in zip(tabs, AIRLINES):
+    with tab:
+        st.image(str(ASSETS / f"route_{a}.png"), width="stretch",
+                 caption="Ten routes (stylised map, not to scale). Every hour: 3 routes, both directions.")
+
+# ---- chart 3: domains --------------------------------------------------------------------------------
+st.subheader("3 · The 15 most-cited websites" if view == "cited" else "3 · The 15 most-consulted websites")
+legend_html()
 which = "cited_urls" if view == "cited" else "result_urls"
-td = top_domains(rows, cfg, 15, which)
-if not td.empty:
-    st.altair_chart(alt.Chart(td).mark_bar().encode(
-        y=alt.Y("domain:N", sort="-x", title=None), x=alt.X("count:Q", title="URLs"),
-        color=alt.Color("category:N", scale=alt.Scale(domain=CATEGORIES, range=[CAT_COLORS[c] for c in CATEGORIES]),
-                        title=None)).properties(height=380), width="stretch")
+cnt = {}
+for r in rows:
+    if r.get("error"):
+        continue
+    for u in r.get(which, []):
+        d, c = classify_url(u, r["airline_target"], cfg)
+        if d:
+            cnt[(d, c)] = cnt.get((d, c), 0) + 1
+cdf = pd.DataFrame([{"domain": d, "category": c, "count": n} for (d, c), n in cnt.items()])
+if not cdf.empty:
+    tot = cdf.groupby("domain")["count"].sum().sort_values(ascending=False).head(15)
+    td, order3 = cdf[cdf.domain.isin(tot.index)], list(tot.index)
+    tot_df = tot.reset_index().rename(columns={"count": "total"})
+    ydom = alt.Y("domain:N", sort=order3, title=None, axis=alt.Axis(ticks=False, domain=False))
+    bars3 = alt.Chart(td).mark_bar(size=16, stroke=SURFACE, strokeWidth=1).encode(
+        y=ydom, x=alt.X("count:Q", title=None, axis=alt.Axis(tickMinStep=1)), color=cat_color,
+        order=alt.Order("category:N"),
+        tooltip=["domain", alt.Tooltip("category:N"), alt.Tooltip("count:Q", title="URLs")])
+    lab3 = alt.Chart(tot_df).mark_text(align="left", dx=5, fontSize=11, color=INK2).encode(
+        y=ydom, x="total:Q", text="total:Q")
+    st.altair_chart(style((bars3 + lab3).properties(height=26 * len(tot))), width="stretch")
+    st.caption("A site can appear in two colors: southwest.com is 'own site' for Southwest trips and 'other airline' "
+               "when the trip was about another carrier.")
 
-st.subheader("Core comparison: share of calls that include an OTA/aggregator")
-flag = f"{view}_ota"
-comp = compare_airlines(df, flag)
-st.dataframe(comp.drop(columns="metric").rename(columns={"airline_a": "airline A", "airline_b": "airline B"})
-             .style.format({"share_a": "{:.0%}", "share_b": "{:.0%}", "diff": "{:+.0%}", "z": "{:.2f}",
-                            "p_value": "{:.3f}"}), hide_index=True, width="stretch")
-st.caption("Two-proportion z-test, Alaska (A) vs. each other airline (B). Small samples early on: read p-values with care. "
-           "Delta and Southwest serve different markets than Alaska, so differences can reflect routes, not only the airline.")
+# ---- departures boards ---------------------------------------------------------------------------------
+st.subheader("Departures: the latest answers")
+recent = [r for r in rows if not r.get("error")][-9:][::-1]
+trs = []
+for r in recent:
+    urls = r.get("cited_urls") or []
+    dom, cat = (classify_url(urls[0], r["airline_target"], cfg) if urls else (None, "other"))
+    chip = (f'<span class="tag" style="background:{CAT[cat]};color:{"#0d2238" if cat == "other" else "#fff"}">'
+            f"{CAT_SHORT[cat]}</span>") if urls else '<span class="dim">no link</span>'
+    trs.append(f'<tr><td class="dim">{html.escape(r["timestamp_utc"][11:16])}Z</td>'
+               f'<td>{AIRLINES[r["airline_target"]][0]}</td>'
+               f'<td>{r["origin"]} → {r["destination"]}</td>'
+               f'<td class="dim hm">{html.escape(provider_label(r["provider"]))}</td>'
+               f'<td>{html.escape(dom or "—")}</td><td>{chip}</td></tr>')
+html_block('<div class="board"><table><tr><th>TIME</th><th>FLT</th><th>ROUTE</th><th class="hm">MODEL</th><th>FIRST LINK</th>'
+           '<th>TYPE</th></tr>' + "".join(trs) + "</table></div>")
 
-st.subheader("Share of calls by airline × model (95% Wilson CI)")
-sh = share_table(df, ["airline_target", "provider"], flags=(f"{view}_target", f"{view}_ota", "absent"))
-st.dataframe(sh.style.format({"share": "{:.0%}", "ci_low": "{:.0%}", "ci_high": "{:.0%}"}),
-             hide_index=True, width="stretch")
-st.caption("'absent' = the answer never mentions the target airline (text heuristic, approximate).")
+with st.expander("Route board: all routes"):
+    rb = (df.groupby(["airline_target", "route_id"]).agg(n=("run_number", "size"), ota=(flag_ota, "mean"),
+                                                         own=(flag_own, "mean")).reset_index())
+    rb["o"] = rb["airline_target"].map(list(AIRLINES).index)
+    rb = rb.sort_values(["o", "route_id"])
+    rt = "".join(f'<tr><td>{AIRLINES[r.airline_target][0]}</td><td>{r.route_id.replace("-", " ⇄ ")}</td>'
+                 f'<td class="dim">{r.n}</td><td>{r.ota:.0%}</td><td>{r.own:.0%}</td></tr>' for r in rb.itertuples())
+    html_block('<div class="board"><table><tr><th>FLT</th><th>ROUTE</th><th>ANSWERS</th><th>OTA</th><th>OWN SITE</th></tr>'
+               + rt + "</table></div>")
 
-st.subheader("Sample responses")
-sample = [r for r in rows if not r.get("error")][-30:][::-1]
-tbl = pd.DataFrame([{"time": r["timestamp_utc"][:16], "provider": r["provider"], "airline": r["airline_target"],
-                     "route": f"{r['origin']}→{r['destination']}", "fare": r["fare_type"], "window": r["booking_window"],
-                     "cited": ", ".join(sorted({u.split('/')[2].removeprefix('www.') for u in r["cited_urls"] if "//" in u})),
-                     "response": (r.get("response_text") or "")[:400]} for r in sample])
-st.dataframe(tbl, hide_index=True, width="stretch")
+with st.expander("Sample responses (full text)"):
+    sample = [r for r in rows if not r.get("error")][-30:][::-1]
+    st.dataframe(pd.DataFrame([{"time": r["timestamp_utc"][:16], "model": provider_label(r["provider"]),
+                                "airline": r["airline_target"], "route": f"{r['origin']}→{r['destination']}",
+                                "fare": r["fare_type"], "window": r["booking_window"],
+                                "cited": ", ".join(sorted({u.split('/')[2].removeprefix('www.')
+                                                           for u in r["cited_urls"] if "//" in u})),
+                                "response": (r.get("response_text") or "")[:400]} for r in sample]),
+                 hide_index=True, width="stretch")
+
+with st.expander("How the experiment works"):
+    st.image(str(ROOT / "docs" / "how-it-works.png"), width="stretch")
+
+html_block("""<div class="foot">Independent research. Not affiliated with or endorsed by Alaska Airlines, Delta Air Lines
+or Southwest Airlines; the blue palette is merely inspired by the industry. These are API results with web search,
+not exactly what ChatGPT or Claude app users see. No bookings are made. Source:
+<a href="https://github.com/carlosfg97/icey-airlines">github.com/carlosfg97/icey-airlines</a>.</div>""")
