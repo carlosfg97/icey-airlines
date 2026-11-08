@@ -196,14 +196,14 @@ html_block(f"""
 <div class="hero"><div class="hero-in">
   <div class="kicker">Flight deck · AI shopping agents</div>
   <h1>Do AI agents send flight shoppers to the airline, or to an OTA?</h1>
-  <p>Claude and OpenAI, with web search, price the same trips on Alaska, Delta and Southwest in scheduled batches,
+  <p>Claude and OpenAI, with web search, price the same trips on Alaska, Delta and Southwest every hour,
   and we log which websites they actually point travelers to.</p>
-  <span class="pill">AS · DL · WN</span><span class="pill">36 searches / batch</span>
+  <span class="pill">AS · DL · WN</span><span class="pill">36 searches / hour</span>
   <span class="pill">last departure <b>{last}</b></span>
 </div></div>
 <div class="kpis">
   <div class="kpi"><div class="l">Answers logged</div><div class="v">{len(df):,}</div></div>
-  <div class="kpi"><div class="l">Batches</div><div class="v">{df.run_number.nunique()}</div></div>
+  <div class="kpi"><div class="l">Hourly batches</div><div class="v">{df.run_number.nunique()}</div></div>
   <div class="kpi"><div class="l">Failed calls</div><div class="v">{n_fail}</div></div>
   <div class="kpi"><div class="l">Routes covered</div><div class="v">{df.route_id.nunique()}</div></div>
 </div>
@@ -314,7 +314,7 @@ tabs = st.tabs([AIRLINES[a][1] for a in AIRLINES])
 for tab, a in zip(tabs, AIRLINES):
     with tab:
         st.image(str(ASSETS / f"route_{a}.png"), width="stretch",
-                 caption="Ten routes (stylised map, not to scale). Each batch: 3 routes, both directions.")
+                 caption="Ten routes (stylised map, not to scale). Every hour: 3 routes, both directions.")
 
 # ---- chart 3: domains --------------------------------------------------------------------------------
 st.subheader("3 · The 15 most-cited websites" if view == "cited" else "3 · The 15 most-consulted websites")
