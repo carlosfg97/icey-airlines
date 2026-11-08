@@ -37,6 +37,7 @@ python -m src.run --dry-run --run-number 12  # preview any run
 python -m src.run --check-rotation 72        # balance of the rotation over 72 runs
 python -m unittest discover -s tests -t .
 python -m src.classify data/results.jsonl    # category counts, top domains, unknown domains
+python scripts/hypotheses.py                 # pre-specified follow-up tests (cluster bootstrap by batch, Holm)
 ```
 
 ## GitHub setup
