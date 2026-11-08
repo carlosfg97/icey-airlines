@@ -117,10 +117,15 @@ h2, h3 {{ color: var(--ink); letter-spacing: -0.01em; }}
 
 # ---- data ----------------------------------------------------------------------------------------
 @st.cache_data(ttl=300)
-def load(include_tests):
+def load(include_tests, schema=2):
+    # `schema` is part of the cache key: bump it whenever build_frame gains or changes columns, otherwise
+    # Streamlit Cloud can keep serving a frame cached by the previous version of src/analyze.py.
     cfg = load_domains()
     rows = load_rows(RESULTS, include_tests)
-    return rows, build_frame(rows, cfg), cfg
+    df = build_frame(rows, cfg)
+    if "prompt_variant" not in df.columns:  # empty frame, or rows written before the column existed
+        df["prompt_variant"] = "base"
+    return rows, df, cfg
 
 
 ET = ZoneInfo("America/New_York")
