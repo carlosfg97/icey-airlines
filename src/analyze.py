@@ -50,7 +50,8 @@ def build_frame(rows, cfg, split_models=False):
         seen = [classify_url(u, a, cfg) for u in r.get("result_urls", [])]
         text = (r.get("response_text") or "").lower()
         mentioned = {k: bool(re.search(p, text)) for k, p in AIRLINE_WORDS.items()}
-        rec = {k: r.get(k) for k in ["run_number", "timestamp_utc", "provider", "model", "airline_target", "route_id",
+        rec = {"prompt_variant": r.get("prompt_variant") or "base"}
+        rec |= {k: r.get(k) for k in ["run_number", "timestamp_utc", "provider", "model", "airline_target", "route_id",
                                       "direction", "booking_window", "fare_type", "add_on"]}
         for label, items in (("cited", cited), ("seen", seen)):
             cats = Counter(c for _, c in items)
@@ -164,11 +165,17 @@ def top_domains(rows, cfg, n=15, which="cited_urls"):
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--include-tests", action="store_true")
+    ap.add_argument("--variant", default="base", choices=["base", "named", "all"],
+                    help="prompt variant to analyse (default base: airline not named). Never pool them by accident.")
     ap.add_argument("--results", default=str(ROOT / "data" / "results.jsonl"))
     args = ap.parse_args(argv)
     cfg = load_domains()
     rows = load_rows(args.results, args.include_tests)
     df = build_frame(rows, cfg)
+    if args.variant != "all" and not df.empty:
+        df = df[df.prompt_variant == args.variant]
+        rows = [r for r in rows if (r.get("prompt_variant") or "base") == args.variant]
+    print(f"prompt_variant = {args.variant}")
     if df.empty:
         print("No successful non-test rows yet.")
         return 0

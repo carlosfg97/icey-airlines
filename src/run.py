@@ -61,6 +61,14 @@ def make_prompt(origin_city, dest_city, date, fare, addon, variant, airline_name
             f"Can you find me the price and where I can book it? {FINAL_INSTRUCTION}")
 
 
+def variant_for(setting, run_number):
+    """'base' / 'named' are fixed; 'alternate' gives even run numbers 'base' and odd ones 'named', so both
+    variants keep accumulating side by side (a 2-batch dispatch always yields one of each)."""
+    if setting == "alternate":
+        return "named" if run_number % 2 else "base"
+    return setting
+
+
 def build_batch(run_number, run_date, settings, routes_cfg):
     """Deterministic batch for one run. Same variables for both directions and both providers.
 
@@ -71,6 +79,7 @@ def build_batch(run_number, run_date, settings, routes_cfg):
     """
     slots = settings["routes_per_airline_per_run"]
     airports = routes_cfg["airports"]
+    variant = variant_for(settings["prompt_variant"], run_number)
     tasks = []
     for slot in range(slots):
         for a_idx, airline in enumerate(settings["airlines"]):
@@ -85,9 +94,9 @@ def build_batch(run_number, run_date, settings, routes_cfg):
                         "route_id": f"{a}-{b}", "origin": o, "destination": d, "direction": direction,
                         "booking_window": window, "travel_date": date.isoformat(),
                         "fare_type": fare, "add_on": addon,
-                        "prompt_variant": settings["prompt_variant"],
+                        "prompt_variant": variant,
                         "prompt_text": make_prompt(airports[o], airports[d], date, fare, addon,
-                                                   settings["prompt_variant"],
+                                                   variant,
                                                    routes_cfg["airline_names"][airline]),
                     })
     return tasks
@@ -135,7 +144,8 @@ def execute(task, clients, settings, meta, env, raw_dir):
 
 
 def print_dry_run(meta, tasks):
-    print(f"DRY RUN  run_number={meta['run_number']}  run_id={meta['run_id']}  calls={len(tasks)}  (no API calls)\n")
+    print(f"DRY RUN  run_number={meta['run_number']}  run_id={meta['run_id']}  calls={len(tasks)}  "
+          f"prompt_variant={tasks[0]['prompt_variant'] if tasks else '-'}  (no API calls)\n")
     for i, t in enumerate(tasks, 1):
         print(f"[{i:02d}] {t['provider']:9s} {t['airline_target']:9s} {t['origin']}->{t['destination']} "
               f"{t['booking_window']:10s} {t['fare_type']:13s} {t['add_on']:14s} {t['travel_date']}")

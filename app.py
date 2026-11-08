@@ -164,10 +164,16 @@ def legend_html():
     html_block(f'<div class="legend">{items}</div>')
 
 # ---- filter row (one row above everything it scopes) --------------------------------------------------
-f1, f2, f3 = st.columns([1.5, 2, 1.1])
+f1, f4, f2, f3 = st.columns([1.5, 1.6, 2, 1.1])
 with f3:
     include_tests = st.toggle("Include test runs", value=False)
 rows, df, cfg = load(include_tests)
+
+with f4:
+    variant = st.segmented_control("Prompt", ["base", "named"], default="base", key="variant",
+                                   format_func={"base": "Airline not named", "named": "Airline named"}.get) or "base"
+df = df[df.prompt_variant == variant]
+rows = [r for r in rows if (r.get("prompt_variant") or "base") == variant]
 
 with f1:
     view = st.segmented_control("URL set", ["cited", "seen"], default="cited", key="view",

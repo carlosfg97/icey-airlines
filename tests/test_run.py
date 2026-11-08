@@ -20,6 +20,7 @@ class Batch(unittest.TestCase):
         self.assertLessEqual(len(a), self.settings["max_calls_per_run"])
 
     def test_prompt_never_names_airline_in_base_variant(self):
+        self.settings["prompt_variant"] = "base"
         for t in run.build_batch(3, date(2026, 11, 7), self.settings, self.routes):
             for name in ("Alaska", "Delta", "Southwest"):
                 self.assertNotIn(name, t["prompt_text"])
@@ -36,6 +37,26 @@ class Batch(unittest.TestCase):
         first = run.build_batch(0, date(2026, 11, 7), self.settings, self.routes)[:12]
         self.assertEqual({t["airline_target"] for t in first}, {"alaska", "delta", "southwest"})
         self.assertEqual({t["provider"] for t in first}, {"anthropic", "openai"})
+
+
+class Variants(unittest.TestCase):
+    def test_alternate_even_base_odd_named(self):
+        self.assertEqual(run.variant_for("alternate", 34), "base")
+        self.assertEqual(run.variant_for("alternate", 35), "named")
+        self.assertEqual(run.variant_for("base", 35), "base")
+
+    def test_named_prompt_names_airline_base_does_not(self):
+        settings, routes = run.load_config(run.ROOT / "config")
+        settings["prompt_variant"] = "alternate"
+        named = run.build_batch(35, date(2026, 11, 8), settings, routes)
+        base = run.build_batch(34, date(2026, 11, 8), settings, routes)
+        for t in named:
+            self.assertEqual(t["prompt_variant"], "named")
+            self.assertIn(routes["airline_names"][t["airline_target"]], t["prompt_text"])
+        for t in base:
+            self.assertEqual(t["prompt_variant"], "base")
+            for name in routes["airline_names"].values():
+                self.assertNotIn(name, t["prompt_text"])
 
 
 class Execute(unittest.TestCase):

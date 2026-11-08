@@ -27,7 +27,8 @@ workers: 4                         # parallel calls
 routes_per_airline_per_run: 3      # 3 airlines x 3 routes x 2 directions x 2 providers = 36 calls
 airlines: [alaska, delta, southwest]
 providers: [anthropic, openai]
-prompt_variant: base               # "base" never names the airline; "named" adds "on <Airline>"
+prompt_variant: alternate          # "base" never names the airline; "named" adds "with <Airline>";
+                                   # "alternate": even run numbers base, odd named (from Nov 8; before that all base)
 holiday_date: "2026-12-23"         # fixed so the holiday window is comparable across runs
 window_days: {next_week: 7, next_month: 30}
 

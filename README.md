@@ -26,7 +26,9 @@ the models search and source flight prices", not exactly what end users see. No 
 - Each batch: 3 airlines × 3 routes × 2 directions × 2 providers = **36 calls** (cap: 40).
 - Routes advance 3 per run per airline; window / fare / add-on follow a deterministic rotation over 27 combos
   keyed on the run number. Both directions and both providers get the identical prompt variables.
-- Base prompt never names the airline (tests whether the agent picks it). `prompt_variant: named` is available but off.
+- Base prompt never names the airline (tests whether the agent picks it). From Nov 8 `prompt_variant: alternate`: even
+  run numbers keep the base prompt, odd ones add "with <Airline>". Analysis, dashboard and H3-H5 use base only by
+  default; H6 in `scripts/hypotheses.py` compares the two variants over the period they ran side by side.
 - Test runs (`--test` / manual run with "test" checked) are flagged `is_test` and excluded from analysis.
 - Known confound: Alaska (West Coast/Alaska), Delta (Atlanta/East), Southwest (hub-to-hub) are different markets.
 

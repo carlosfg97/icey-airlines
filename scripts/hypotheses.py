@@ -6,6 +6,10 @@ Method: calls inside one hourly batch share routes/dates, so they are NOT indepe
 p-value comes from a cluster bootstrap that resamples whole batches (10,000 reps, seed 7). The three
 primary p-values get a Holm correction. The hypotheses were formed by looking at the data up to CUTOFF,
 so results on that set are exploratory; batches that arrive after CUTOFF are the confirmation set.
+
+H3-H5 use ONLY prompt_variant "base" (airline not named): naming the airline is a different treatment and is
+never pooled into them. H6 (added Nov 8, before any named data existed) compares "named" vs "base" batches
+from the period when both were running side by side (prompt_variant: alternate).
 """
 import sys
 from pathlib import Path
@@ -141,13 +145,52 @@ def run(d, label):
         print(f"  {k:60s} raw p = {p:.4f}   Holm p = {q:.4f}")
 
 
+def h6(df):
+    """H6: naming the airline in the prompt lowers OTA citation and raises own-site citation."""
+    named = df[df.prompt_variant == "named"]
+    print(f"\n{'=' * 78}\nH6  Naming the airline in the prompt lowers OTA reliance (named vs not-named prompts)\n{'=' * 78}")
+    if named.run_number.nunique() < 2:
+        print(f"  {named.run_number.nunique()} named batch(es) so far: need at least 2 per variant to test")
+        return
+    first = named.run_number.min()
+    d = df[df.run_number >= first - 1]                 # only the period when both variants ran side by side
+    print(f"  window: batches {d.run_number.min()}-{d.run_number.max()}  "
+          f"(base {d[d.prompt_variant == 'base'].run_number.nunique()}, named {named.run_number.nunique()} batches)")
+    for flag, name in (("cited_ota", "OTA cited"), ("cited_target", "own site cited")):
+        specs = {}
+        keys = []
+        for pr in ("anthropic", "openai"):
+            for a in AIRLINES:
+                k = f"{pr}_{a}"
+                keys.append(k)
+                s = (d.provider == pr) & (d.airline_target == a)
+                for v in ("named", "base"):
+                    specs[f"n_{k}_{v}"] = s & (d.prompt_variant == v)
+                    specs[f"o_{k}_{v}"] = s & (d.prompt_variant == v) & d[flag]
+        m = prep(d, specs)
+        stat = lambda v: sum(v[f"o_{k}_named"] / v[f"n_{k}_named"] - v[f"o_{k}_base"] / v[f"n_{k}_base"]
+                             for k in keys) / len(keys)
+        pt, lo, hi, p = summarize(*bootstrap(m, stat))
+        rn, rb = d[d.prompt_variant == "named"][flag].mean(), d[d.prompt_variant == "base"][flag].mean()
+        print(f"  {name:15s} named {rn:.0%} vs not named {rb:.0%}   effect {fmt(pt)}   "
+              f"95% CI [{fmt(lo)}, {fmt(hi)}]   p = {p:.4f}")
+    print("  by airline x model (OTA cited, named vs not named):")
+    for pr in ("anthropic", "openai"):
+        for a in AIRLINES:
+            s = (d.provider == pr) & (d.airline_target == a)
+            print(f"    {pr:9s} {a:9s} {d[s & (d.prompt_variant == 'named')].cited_ota.mean():.0%} vs "
+                  f"{d[s & (d.prompt_variant == 'base')].cited_ota.mean():.0%}")
+
+
 def main():
     cfg = load_domains()
     df = build_frame(load_rows(Path(__file__).resolve().parent.parent / "data" / "results.jsonl"), cfg)
-    ts = pd.to_datetime(df.timestamp_utc, utc=True)
+    base = df[df.prompt_variant == "base"]
+    ts = pd.to_datetime(base.timestamp_utc, utc=True)
     cut = pd.Timestamp(CUTOFF)
-    run(df[ts <= cut], "DISCOVERY set (data the hypotheses were drawn from, exploratory)")
-    run(df[ts > cut], "CONFIRMATION set (batches after the cutoff)")
+    run(base[ts <= cut], "DISCOVERY set (data the hypotheses were drawn from, exploratory)")
+    run(base[ts > cut], "CONFIRMATION set (batches after the cutoff, airline not named)")
+    h6(df)
 
 
 if __name__ == "__main__":
