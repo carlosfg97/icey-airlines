@@ -62,7 +62,7 @@ class Classify(unittest.TestCase):
         self.assertEqual(c("https://www.flightsfrom.com/x", "delta"), "ota_aggregator")
         self.assertEqual(c("https://www.expedia.ca/lp/flights", "delta"), "ota_aggregator")
         self.assertEqual(c("https://www.directflights.com/SEA-FAI", "alaska"), "ota_aggregator")
-        self.assertEqual(c("https://helloaxel.com/en/flights/x", "alaska"), "ai_travel_agent")
+        self.assertEqual(c("https://helloaxel.com/en/flights/x", "alaska"), "other")
         self.assertEqual(c("https://resource.alaskaair.net/en/x", "alaska"), "airline_direct_target")
         self.assertEqual(c("https://resource.alaskaair.net/en/x", "delta"), "airline_direct_other")
         self.assertEqual(c("https://aa-prod.airtrfx.com/en-us/x", "delta"), "airline_direct_other")

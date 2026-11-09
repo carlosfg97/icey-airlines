@@ -60,7 +60,6 @@ def build_frame(rows, cfg, split_models=False):
             rec[f"{label}_n"] = len(items)
             rec[f"{label}_target"] = cats.get("airline_direct_target", 0) > 0
             rec[f"{label}_ota"] = cats.get("ota_aggregator", 0) > 0
-            rec[f"{label}_ai"] = cats.get("ai_travel_agent", 0) > 0
         rec["primary_source"] = cited[0][1] if cited else "none"
         rec["target_mentioned"] = mentioned[a]
         rec["other_airline_mentioned"] = any(v for k, v in mentioned.items() if k != a)

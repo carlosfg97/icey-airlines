@@ -28,8 +28,8 @@ result, and what is still open. Written as the hand-off for the next session.
 - **Domain list (reviewed Nov 9).** Country versions of listed OTAs (expedia.ca, kayak.co.uk, …), other OTAs
   (traveloka, hotwire, edreams, …), two route finders (directflights.com, flightroutes.com) and a few airline domains
   (alaskaair.net, hawaiianair.com, aveloair.com, …) were added to `config/domains.yaml`. **helloaxel.com**, an AI-native
-  ticket search built for agent-to-agent use, has its own category `ai_travel_agent` and is **not** counted as an OTA
-  (see X6). Fee/policy guides and small fare sites stay "other". All numbers in this file use the reviewed list.
+  ticket search built for agent-to-agent use, stays "other" (**not** counted as an OTA) and is analysed separately in X6.
+  Fee/policy guides and small fare sites stay "other". All numbers in this file use the reviewed list.
 - **Routes are not comparable across airlines** (Alaska: SEA hub incl. Alaska/Hawaii; Delta: ATL hub, East/Florida;
   Southwest: point to point). Any "airline" difference may be a "market/route" difference.
 - **Model pooling.** OpenAI rows pool `gpt-6.1-sol` and `gpt-6-luna` (Carlos' choice). Luna cites slightly less OTA
@@ -79,8 +79,7 @@ Flights paths). Statistic: own-site share − OTA share, base prompt only.
 | OpenAI · Delta | 28% | 63% | −35.0 pp [−44.2, −25.2] |
 | OpenAI · Southwest | 32% | 49% | −17.5 pp [−31.1, −3.8] |
 
-Share of all cited URLs: OTA 37%, other airlines 23%, target airline 16%, AI travel agent 2%, other (news,
-blogs…) 22%. Most cited domains: kayak.com, southwest.com, alaskaair.com, flyfrontier.com, aa.com, trip.com,
+Share of all cited URLs: OTA 37%, other airlines 23%, target airline 16%, other (news, blogs, helloaxel…) 24%. Most cited domains: kayak.com, southwest.com, alaskaair.com, flyfrontier.com, aa.com, trip.com,
 momondo.com.
 
 **Verdict.** Mixed. OTAs win overall and for Delta and Southwest. **Alaska is the exception on OpenAI** (own site beats
@@ -289,9 +288,9 @@ hours, different routes in rotation). Pooled as "OpenAI" in the dashboard at Car
 ## X6 — AI travel agents: helloaxel.com (Nov 9)
 
 **Context.** During the domain review Carlos flagged helloaxel.com: an AI-native ticket search built for
-agent-to-agent use. It is neither the airline nor a classic OTA, so it has its own category (`ai_travel_agent`), its
-own color on the dashboard, and is **not** counted in `cited_ota`. Descriptive only (`scripts/robustness.py` R10); no
-hypothesis was set in advance.
+agent-to-agent use. It is neither the airline nor a classic OTA, so it is **not** counted in `cited_ota`; it stays
+"other" in `config/domains.yaml` and on the dashboard (a separate category was tried on Nov 9 and dropped: too small
+to show on its own). Descriptive only (`scripts/robustness.py` R10, by domain); no hypothesis was set in advance.
 
 | % of calls (base) | Retrieved by search | Cited | Cited if retrieved |
 |---|---|---|---|
@@ -414,8 +413,7 @@ the same way and is larger for OpenAI.
 (2) replaces the naive pooled z-test card with per-model comparisons on that metric, using a batch-cluster bootstrap
 (`compare_airlines_clustered` in `src/analyze.py`, 2,000 reps; no test with fewer than 5 batches, so the named prompt
 shows "too few to test"); (3) adds a "Split OpenAI" toggle (sol vs luna); (4) fixes text that said collection is
-hourly; (5) after the domain review, shows the AI travel agent as its own color in the URL mix, a fourth boarding-pass
-row and a route-board column. With models split, OpenAI sol shows no Alaska-vs-Delta gap on "OTA only" (+2 pts
+hourly. With models split, OpenAI sol shows no Alaska-vs-Delta gap on "OTA only" (+2 pts
 [−13, +18]); luna does (−26 pts [−38, −15]). All numbers above match the dashboard.
 
 ### Suggested changes to how results are reported

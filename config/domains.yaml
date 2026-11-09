@@ -130,10 +130,6 @@ ota_aggregator:
   - skiplagged.com
   - omio.com
 
-# AI travel agents: AI-native flight search / booking built for agent-to-agent use. Kept apart from OTAs on purpose.
-ai_travel_agent:
-  - helloaxel.com
-
 # google.com is only an aggregator under these paths (Google Flights / Travel)
 path_rules:
   - {domain: google.com, path_prefix: /travel, category: ota_aggregator}

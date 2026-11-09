@@ -17,7 +17,8 @@ using the same data. Base prompt only (airline not named), except R9.
   R10 AI travel agent (helloaxel.com): who cites it, when it is retrieved, and on which trips
 
 The domain list was reviewed on Nov 9 (missing OTAs and airline domains added to config/domains.yaml;
-helloaxel.com got its own category, ai_travel_agent). Fee/policy guides and small fare sites stay "other".
+helloaxel.com, an AI-native ticket search, stays "other" but is tracked here by domain). Fee/policy guides and small
+fare sites stay "other".
 """
 import re
 import sys
@@ -37,6 +38,7 @@ from src.classify import classify_url, load_domains, split_url  # noqa: E402
 # Own-site URL that can show a fare or start a booking (vs baggage, onboard, news, PDFs, agency pages).
 FARE_PATH = re.compile(r"flights-from-|/flights/|flightsearch|flight-search|/shopping/|/air/booking|"
                        r"fare-information|comparefares|/deals/|book-a-flight|/booking", re.I)
+AI_AGENT = {"helloaxel.com"}  # AI travel agents, tracked by domain (they stay "other" in config/domains.yaml)
 BRAND = {"alaska": r"alaska airlines|alaska air\b|alaskaair|alaska's|hawaiian airlines",
          "delta": r"\bdelta\b", "southwest": r"\bsouthwest\b"}
 KEYS = [f"{p}_{a}" for p in ("anthropic", "openai") for a in AIRLINES]
@@ -53,11 +55,14 @@ def frame():
         a = r["airline_target"]
         cit = [(classify_url(u, a, cfg), u) for u in r.get("cited_urls", [])]
         ret = [(classify_url(u, a, cfg), u) for u in r.get("result_urls", [])]
+        ai_doms = AI_AGENT
         own_c = [u for (_, c), u in cit if c == "airline_direct_target"]
         own_r = [u for (_, c), u in ret if c == "airline_direct_target"]
         q = " | ".join(r.get("search_queries") or []).lower()
         text = (r.get("response_text") or "").lower()
         ext.append({
+            "cited_ai": any(d in ai_doms for (d, _), _ in cit),
+            "seen_ai": any(d in ai_doms for (d, _), _ in ret),
             "own_fare_cited": any(FARE_PATH.search(urlparse(u).path) for u in own_c),
             "own_fare_seen": any(FARE_PATH.search(urlparse(u).path) for u in own_r),
             "q_names": bool(re.search({"alaska": r"alaska air|alaskaair", "delta": r"delta",

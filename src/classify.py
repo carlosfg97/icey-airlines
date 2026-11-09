@@ -1,7 +1,6 @@
 """Map URLs to registrable domains and classify them.
 
-Categories: airline_direct_target, airline_direct_other, ota_aggregator, ai_travel_agent, other.
-ai_travel_agent = AI-native flight search built for agents (e.g. helloaxel.com), kept apart from OTAs.
+Categories: airline_direct_target, airline_direct_other, ota_aggregator, other.
 Run `python -m src.classify data/results.jsonl` to see domain counts and the
 "other" domains that may need a manual look (add them to config/domains.yaml).
 """
@@ -14,7 +13,7 @@ from urllib.parse import urlparse
 import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
-CATEGORIES = ["airline_direct_target", "airline_direct_other", "ota_aggregator", "ai_travel_agent", "other"]
+CATEGORIES = ["airline_direct_target", "airline_direct_other", "ota_aggregator", "other"]
 # Small list of two-part public suffixes so e.g. www.skyscanner.co.uk -> skyscanner.co.uk
 TWO_PART_SUFFIXES = {
     "co.uk", "org.uk", "com.au", "co.nz", "co.jp", "co.in", "com.br", "com.mx",
@@ -67,8 +66,6 @@ def classify_url(url, airline_target, cfg):
         return domain, "airline_direct_other"
     if domain in cfg["ota_aggregator"]:
         return domain, "ota_aggregator"
-    if domain in cfg.get("ai_travel_agent", []):
-        return domain, "ai_travel_agent"
     return domain, "other"
 
 
