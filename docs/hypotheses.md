@@ -24,7 +24,7 @@ result, and what is still open. Written as the hand-off for the next session.
 - **Statistics.** Calls inside one batch share routes, dates and time, so they are not independent. All intervals and
   p-values below come from a **cluster bootstrap that resamples whole batches** (10,000 reps, seed 7), unless marked
   "naive". H3–H5 use a Holm correction across the three. H1/H2 numbers here use the same bootstrap (computed for this
-  file; `src/analyze.py` still prints a naive z-test).
+  file; `src/analyze.py` CLI still prints a naive z-test; the dashboard uses the bootstrap since Nov 9).
 - **Routes are not comparable across airlines** (Alaska: SEA hub incl. Alaska/Hawaii; Delta: ATL hub, East/Florida;
   Southwest: point to point). Any "airline" difference may be a "market/route" difference.
 - **Model pooling.** OpenAI rows pool `gpt-6.1-sol` and `gpt-6-luna` (Carlos' choice). Luna cites slightly less OTA
@@ -368,6 +368,15 @@ the same way and is larger for OpenAI.
 - **Domain list never fully reviewed.** The `FARE_SITES` / `EXTRA_OTA` sets in `scripts/robustness.py` are a
   one-pass manual reading of the top "other" domains; they should be checked before being moved into
   `config/domains.yaml`.
+
+### Dashboard changes made (Nov 9)
+
+`app.py` now: (1) adds a third boarding-pass row and a route-board column, "OTA, no own-site link";
+(2) replaces the naive pooled z-test card with per-model comparisons on that metric, using a batch-cluster bootstrap
+(`compare_airlines_clustered` in `src/analyze.py`, 2,000 reps; no test with fewer than 5 batches, so the named prompt
+shows "too few to test"); (3) adds a "Split OpenAI" toggle (sol vs luna); (4) fixes text that said collection is
+hourly. With models split, OpenAI sol shows no Alaska-vs-Delta gap on "OTA only" (+5 pts [−8, +20]); luna does
+(−24 pts [−35, −13]). The domain list is unchanged, so all numbers above still match the dashboard.
 
 ### Suggested changes to how results are reported
 

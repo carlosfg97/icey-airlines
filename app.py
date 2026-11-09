@@ -15,7 +15,7 @@ import pandas as pd
 import streamlit as st
 from PIL import Image
 
-from src.analyze import build_frame, compare_airlines, load_rows, share_table, url_category_share
+from src.analyze import MIN_BATCHES, build_frame, compare_airlines_clustered, load_rows, url_category_share
 from src.classify import CATEGORIES, classify_url, load_domains
 
 ROOT = Path(__file__).parent
@@ -117,14 +117,19 @@ h2, h3 {{ color: var(--ink); letter-spacing: -0.01em; }}
 
 # ---- data ----------------------------------------------------------------------------------------
 @st.cache_data(ttl=300)
-def load(include_tests, schema=2):
+def load(include_tests, split_models=False, schema=3):
     # `schema` is part of the cache key: bump it whenever build_frame gains or changes columns, otherwise
     # Streamlit Cloud can keep serving a frame cached by the previous version of src/analyze.py.
     cfg = load_domains()
     rows = load_rows(RESULTS, include_tests)
-    df = build_frame(rows, cfg)
+    df = build_frame(rows, cfg, split_models=split_models)
     if "prompt_variant" not in df.columns:  # empty frame, or rows written before the column existed
         df["prompt_variant"] = "base"
+    if not df.empty:
+        # Disintermediation without an alternative: the answer links an OTA but not the airline's own site.
+        # Claude links ~6 URLs per answer, so "links any OTA" is near 90% for every airline; this one discriminates.
+        for v in ("cited", "seen"):
+            df[f"{v}_ota_only"] = df[f"{v}_ota"] & ~df[f"{v}_target"]
     return rows, df, cfg
 
 
@@ -172,7 +177,10 @@ def legend_html():
 f1, f4, f2, f3 = st.columns([1.5, 1.6, 2, 1.1])
 with f3:
     include_tests = st.toggle("Include test runs", value=False)
-rows, df, cfg = load(include_tests)
+    split = st.toggle("Split OpenAI", value=False,
+                      help="OpenAI switched from gpt-6.1-sol to gpt-6-luna on Nov 7. They differ on how often they "
+                           "link the airline's own site (e.g. Delta 50% vs 18%), so pooled OpenAI numbers mix both.")
+rows, df, cfg = load(include_tests, split)
 
 with f4:
     variant = st.segmented_control("Prompt", ["base", "named"], default="base", key="variant",
@@ -198,8 +206,9 @@ rows = [r for r in rows if f"{r['provider']}:{r['model']}" in chosen or r["provi
 if df.empty:
     st.info("Pick at least one model.")
     st.stop()
-flag_ota, flag_own = f"{view}_ota", f"{view}_target"
+flag_ota, flag_own, flag_only = f"{view}_ota", f"{view}_target", f"{view}_ota_only"
 last = to_et(df.timestamp_utc.max(), "%b %d, %I:%M %p %Z")
+first = to_et(df.timestamp_utc.min(), "%b %d")
 n_fail = sum(1 for r in rows if r.get("error"))
 
 # ---- hero + KPIs -------------------------------------------------------------------------------------
@@ -207,14 +216,14 @@ html_block(f"""
 <div class="hero"><div class="hero-in">
   <div class="kicker">Flight deck · AI shopping agents</div>
   <h1>Do AI agents send flight shoppers to the airline, or to an OTA?</h1>
-  <p>Claude and OpenAI, with web search, price the same trips on Alaska, Delta and Southwest every hour,
+  <p>Claude and OpenAI, with web search, price the same trips on Alaska, Delta and Southwest in repeated batches,
   and we log which websites they actually point travelers to.</p>
-  <span class="pill">AS · DL · WN</span><span class="pill">36 searches / hour</span>
-  <span class="pill">last departure <b>{last}</b></span>
+  <span class="pill">AS · DL · WN</span><span class="pill">36 searches / batch</span>
+  <span class="pill">from <b>{first}</b> to <b>{last}</b></span>
 </div></div>
 <div class="kpis">
   <div class="kpi"><div class="l">Answers logged</div><div class="v">{len(df):,}</div></div>
-  <div class="kpi"><div class="l">Hourly batches</div><div class="v">{df.run_number.nunique()}</div></div>
+  <div class="kpi"><div class="l">Batches</div><div class="v">{df.run_number.nunique()}</div></div>
   <div class="kpi"><div class="l">Failed calls</div><div class="v">{n_fail}</div></div>
   <div class="kpi"><div class="l">Routes covered</div><div class="v">{df.route_id.nunique()}</div></div>
 </div>
@@ -224,36 +233,40 @@ html_block(f"""
 st.subheader("Boarding passes: who gets the click?")
 L_OTA = "Answers linking an OTA" if view == "cited" else "Searches showing an OTA"
 L_OWN = "Answers linking own site" if view == "cited" else "Searches showing own site"
+L_ONLY = "OTA, no own-site link" if view == "cited" else "OTA shown, own site not"
 tiles = []
 for key, (code, name) in AIRLINES.items():
     g = df[df.airline_target == key]
     if g.empty:
         continue
-    ota, own = g[flag_ota].mean(), g[flag_own].mean()
+    ota, own, only = g[flag_ota].mean(), g[flag_own].mean(), g[flag_only].mean()
     tiles.append(f"""<div class="bp"><div class="bp-main">
       <div class="bp-top"><span class="bp-code">{code}</span><span class="bp-name">{name}</span></div>
       <div class="bp-row"><div class="bp-l">{L_OTA}</div><div class="bp-h ota">{ota:.0%}</div>
         <div class="bp-track"><i style="width:{ota:.0%};background:var(--ota)"></i></div></div>
       <div class="bp-row"><div class="bp-l">{L_OWN}</div><div class="bp-h own">{own:.0%}</div>
         <div class="bp-track"><i style="width:{own:.0%};background:var(--own)"></i></div></div>
+      <div class="bp-row"><div class="bp-l">{L_ONLY}</div><div class="bp-h ota">{only:.0%}</div>
+        <div class="bp-track"><i style="width:{only:.0%};background:var(--ota)"></i></div></div>
     </div><div class="bp-stub"><div class="s">Answers</div><div class="n">{len(g)}</div></div></div>""")
 html_block('<div class="bps">' + "".join(tiles) + "</div>")
 
-comp = compare_airlines(df, flag_ota)
-comp_all = comp[comp.provider == "all"]
+comp = compare_airlines_clustered(df, flag_only)
+what = "answers that link an OTA but not the airline's site" if view == "cited" else "searches that show an OTA but not the airline's site"
 lines = []
-for _, r in comp_all.iterrows():
+for _, r in comp.iterrows():
     if pd.isna(r.p_value):
-        verdict = "too little data to test"
+        verdict = f"only {r.batches} batch{'es' if r.batches != 1 else ''}, too few to test"
     else:
-        verdict = f"p = {r.p_value:.3f}, " + ("statistically distinguishable" if r.p_value < 0.05
-                                              else "not distinguishable yet")
-    lines.append(f"<b>{AIRLINES[r.airline_a][1]}</b> vs <b>{AIRLINES[r.airline_b][1]}</b>: OTA named in "
-                 f"{r.share_a:.0%} vs {r.share_b:.0%} of answers ({verdict}).")
+        verdict = (f"gap {r['diff'] * 100:+.0f} pts, 95% CI {r.ci_low * 100:+.0f} to {r.ci_high * 100:+.0f}, "
+                   + ("distinguishable" if r.p_value < 0.05 else "not distinguishable"))
+    lines.append(f"<b>{provider_label(r.provider)}</b> · {AIRLINES[r.airline_a][1].split()[0]} {r.share_a:.0%} vs "
+                 f"{AIRLINES[r.airline_b][1].split()[0]} {r.share_b:.0%} ({verdict})")
 if lines:
-    html_block('<div class="card"><p>' + "<br>".join(lines) + "</p></div>")
-st.caption("Pooled across the selected models. The airlines fly different markets, so gaps can reflect routes, "
-           "not just the carrier.")
+    html_block(f'<div class="card"><p>Share of {what}:<br>' + "<br>".join(lines) + "</p></div>")
+st.caption(f"Tests are per model, with a bootstrap that resamples whole batches (calls in one batch share routes and "
+           f"dates; at least {MIN_BATCHES} batches needed). The airlines fly different markets and each has only 10 "
+           "routes, so gaps can reflect routes, not just the carrier.")
 
 # ---- chart 1: URL mix --------------------------------------------------------------------------------
 st.subheader("1 · Where do the links come from?")
@@ -293,8 +306,9 @@ with st.expander("Show the numbers"):
 
 # ---- chart 2: heatmap --------------------------------------------------------------------------------
 st.subheader("2 · Does the trip type change it?")
-st.caption("Share linking an OTA, by how far ahead the trip is (a week, a month, or the Dec 23 holiday) and the fare. "
-           "Faded cells have fewer than 3 answers.")
+st.caption("Share linking an OTA, by how far ahead the trip is (a week, a month, or the Dec 23 holiday) and the fare, "
+           "pooled across the selected models. Faded cells have fewer than 3 answers. Fare and route are not fully "
+           "balanced, but the first-class effect also holds when compared within each route and model.")
 hm = (df.groupby(["airline_target", "fare_type", "booking_window"])
       .agg(share=(flag_ota, "mean"), n=(flag_ota, "size")).reset_index())
 hm["airline"] = hm["airline_target"].map(lambda a: AIRLINES[a][1])
@@ -325,7 +339,7 @@ tabs = st.tabs([AIRLINES[a][1] for a in AIRLINES])
 for tab, a in zip(tabs, AIRLINES):
     with tab:
         st.image(str(ASSETS / f"route_{a}.png"), width="stretch",
-                 caption="Ten routes (stylised map, not to scale). Every hour: 3 routes, both directions.")
+                 caption="Ten routes (stylised map, not to scale). Each batch: 3 routes, both directions.")
 
 # ---- chart 3: domains --------------------------------------------------------------------------------
 st.subheader("3 · The 15 most-cited websites" if view == "cited" else "3 · The 15 most-consulted websites")
@@ -353,7 +367,8 @@ if not cdf.empty:
         y=ydom, x="total:Q", text="total:Q")
     st.altair_chart(style((bars3 + lab3).properties(height=26 * len(tot))), width="stretch")
     st.caption("A site can appear in two colors: southwest.com is 'own site' for Southwest trips and 'other airline' "
-               "when the trip was about another carrier.")
+               "when the trip was about another carrier. Counts are URLs, and Claude links about 3x as many per "
+               "answer as OpenAI, so this list leans toward Claude's choices.")
 
 # ---- departures boards ---------------------------------------------------------------------------------
 st.subheader("Departures: the latest answers")
@@ -374,12 +389,13 @@ html_block('<div class="board"><table><tr><th>TIME (ET)</th><th>FLT</th><th>ROUT
 
 with st.expander("Route board: all routes"):
     rb = (df.groupby(["airline_target", "route_id"]).agg(n=("run_number", "size"), ota=(flag_ota, "mean"),
-                                                         own=(flag_own, "mean")).reset_index())
+                                                         own=(flag_own, "mean"),
+                                                         only=(flag_only, "mean")).reset_index())
     rb["o"] = rb["airline_target"].map(list(AIRLINES).index)
     rb = rb.sort_values(["o", "route_id"])
     rt = "".join(f'<tr><td>{AIRLINES[r.airline_target][0]}</td><td>{r.route_id.replace("-", " ⇄ ")}</td>'
-                 f'<td class="dim">{r.n}</td><td>{r.ota:.0%}</td><td>{r.own:.0%}</td></tr>' for r in rb.itertuples())
-    html_block('<div class="board"><table><tr><th>FLT</th><th>ROUTE</th><th>ANSWERS</th><th>OTA</th><th>OWN SITE</th></tr>'
+                 f'<td class="dim">{r.n}</td><td>{r.ota:.0%}</td><td>{r.own:.0%}</td><td>{r.only:.0%}</td></tr>' for r in rb.itertuples())
+    html_block('<div class="board"><table><tr><th>FLT</th><th>ROUTE</th><th>ANSWERS</th><th>OTA</th><th>OWN SITE</th><th>OTA ONLY</th></tr>'
                + rt + "</table></div>")
 
 with st.expander("Sample responses (full text)"):

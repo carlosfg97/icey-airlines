@@ -1,7 +1,7 @@
 import math
 import unittest
 
-from src.analyze import build_frame, compare_airlines, self_reported_domains, two_prop_ztest, wilson
+from src.analyze import build_frame, compare_airlines, compare_airlines_clustered, self_reported_domains, two_prop_ztest, wilson
 from src.classify import load_domains
 
 CFG = load_domains()
@@ -64,6 +64,19 @@ class Frame(unittest.TestCase):
         res = compare_airlines(build_frame(rows, CFG), "cited_ota")
         allrow = res[res.provider == "all"].iloc[0]
         self.assertEqual((allrow.share_a, allrow.share_b), (1.0, 0.0))
+
+    def test_compare_airlines_clustered(self):
+        rows = []
+        for b in range(6):
+            for a, url in (("alaska", "https://www.kayak.com/a"), ("delta", "https://www.delta.com/a")):
+                r = row(a, "openai", [url])
+                r["run_number"] = b
+                rows.append(r)
+        res = compare_airlines_clustered(build_frame(rows, CFG), "cited_ota").iloc[0]
+        self.assertEqual((res.share_a, res.share_b, res["diff"], res.batches), (1.0, 0.0, 1.0, 6))
+        self.assertAlmostEqual(res.ci_low, 1.0)
+        few = compare_airlines_clustered(build_frame(rows[:4], CFG), "cited_ota").iloc[0]
+        self.assertTrue(math.isnan(few.p_value))  # 2 batches: no interval
 
     def test_self_reported_domains(self):
         self.assertEqual(self_reported_domains("KAYAK (kayak.com); Trip.com, www.aa.com"),

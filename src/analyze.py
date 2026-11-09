@@ -150,6 +150,42 @@ def compare_airlines(df, flag="cited_ota", base="alaska"):
     return pd.DataFrame(rows)
 
 
+MIN_BATCHES = 5  # below this a batch bootstrap is not meaningful
+
+
+def compare_airlines_clustered(df, flag="cited_ota", base="alaska", reps=2000, seed=7):
+    """Like compare_airlines, but the 95% CI and p-value come from a bootstrap that resamples whole batches
+    (calls in one batch share routes, dates and time, so they are not independent). Per provider only:
+    models cite very different numbers of URLs, so a pooled difference mixes two behaviours.
+    ci_low / ci_high / p_value are NaN when there are fewer than MIN_BATCHES batches."""
+    import numpy as np
+    rows = []
+    for prov in sorted(df.provider.unique()):
+        sub = df[df.provider == prov]
+        nb = sub.run_number.nunique()
+        for other in sorted(set(sub.airline_target) - {base}):
+            g = pd.DataFrame({"na": sub.airline_target == base, "ka": (sub.airline_target == base) & sub[flag],
+                              "nb": sub.airline_target == other, "kb": (sub.airline_target == other) & sub[flag]})
+            m = g.astype(float).groupby(sub.run_number.values).sum()
+            n_a, k_a, n_b, k_b = m.sum()
+            if not n_a or not n_b:
+                continue
+            row = {"provider": prov, "metric": flag, "airline_a": base, "airline_b": other,
+                   "share_a": k_a / n_a, "n_a": int(n_a), "share_b": k_b / n_b, "n_b": int(n_b),
+                   "diff": k_a / n_a - k_b / n_b, "batches": nb,
+                   "ci_low": float("nan"), "ci_high": float("nan"), "p_value": float("nan")}
+            if nb >= MIN_BATCHES:
+                rng = np.random.default_rng(seed)
+                S = rng.multinomial(nb, [1 / nb] * nb, size=reps) @ m.values
+                with np.errstate(divide="ignore", invalid="ignore"):
+                    dist = S[:, 1] / S[:, 0] - S[:, 3] / S[:, 2]
+                dist = dist[~np.isnan(dist)]
+                row["ci_low"], row["ci_high"] = np.percentile(dist, [2.5, 97.5])
+                row["p_value"] = min(1.0, max(2 * min((dist <= 0).mean(), (dist >= 0).mean()), 1 / len(dist)))
+            rows.append(row)
+    return pd.DataFrame(rows)
+
+
 def top_domains(rows, cfg, n=15, which="cited_urls"):
     c = Counter()
     for r in rows:
