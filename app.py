@@ -26,11 +26,12 @@ ASSETS = ROOT / "assets"
 INK, INK2, MUTED = "#0d2238", "#4a5a6a", "#6b7a89"
 NAVY, SURFACE, PAGE, HAIR = "#0b2a45", "#ffffff", "#f3f6f9", "#e3e8ee"
 CAT = {"airline_direct_target": "#1768ad", "airline_direct_other": "#7d8b9a",
-       "ota_aggregator": "#eb6834", "other": "#c9d2db"}
+       "ota_aggregator": "#eb6834", "ai_travel_agent": "#a3195b", "other": "#c9d2db"}
 CAT_LABEL = {"airline_direct_target": "Target airline's own site", "airline_direct_other": "Other airline's site",
-             "ota_aggregator": "OTA / aggregator", "other": "Other (news, blogs, ...)"}
+             "ota_aggregator": "OTA / aggregator", "ai_travel_agent": "AI travel agent (helloaxel)",
+             "other": "Other (news, blogs, ...)"}
 CAT_SHORT = {"airline_direct_target": "OWN SITE", "airline_direct_other": "OTHER AIRLINE",
-             "ota_aggregator": "OTA", "other": "OTHER"}
+             "ota_aggregator": "OTA", "ai_travel_agent": "AI AGENT", "other": "OTHER"}
 OTA_RAMP = ["#fdeee6", "#f9cdb6", "#f2a07a", "#eb6834", "#b8441a"]  # one-hue sequential for the heatmap
 AIRLINES = {"alaska": ("AS", "Alaska Airlines"), "delta": ("DL", "Delta Air Lines"),
             "southwest": ("WN", "Southwest Airlines")}
@@ -56,7 +57,7 @@ def html_block(s):
 html_block(f"""
 <style>
 :root {{ --ink:{INK}; --ink2:{INK2}; --muted:{MUTED}; --navy:{NAVY}; --surface:{SURFACE}; --page:{PAGE};
-  --hair:{HAIR}; --own:{CAT['airline_direct_target']}; --ota:{CAT['ota_aggregator']}; --amber:#ffb74d; }}
+  --hair:{HAIR}; --own:{CAT['airline_direct_target']}; --ota:{CAT['ota_aggregator']}; --ai:{CAT['ai_travel_agent']}; --amber:#ffb74d; }}
 .block-container {{ padding-top: 3.4rem; max-width: 1180px; }}
 html, body, [class*="css"], .stMarkdown {{ font-family: {FONT}; }}
 h2, h3 {{ color: var(--ink); letter-spacing: -0.01em; }}
@@ -86,7 +87,7 @@ h2, h3 {{ color: var(--ink); letter-spacing: -0.01em; }}
 .bp-row {{ margin-bottom: 9px; }}
 .bp-l {{ font: 600 10.5px {MONO}; letter-spacing:.12em; color: var(--muted); text-transform: uppercase; }}
 .bp-h {{ font-size: 34px; font-weight: 780; line-height: 1.05; color: var(--ink); }}
-.bp-h.ota {{ color: #b8441a; }} .bp-h.own {{ color: #11588f; }}
+.bp-h.ota {{ color: #b8441a; }} .bp-h.own {{ color: #11588f; }} .bp-h.ai {{ color: #a3195b; }}
 .bp-track {{ height: 6px; border-radius: 6px; background: #e6edf4; margin-top: 4px; overflow: hidden; }}
 .bp-track i {{ display:block; height:100%; border-radius: 6px; }}
 .bp-stub {{ width: 92px; border-left: 2px dashed var(--hair); background: #f7fafc; padding: 14px 8px; text-align:center;
@@ -117,7 +118,7 @@ h2, h3 {{ color: var(--ink); letter-spacing: -0.01em; }}
 
 # ---- data ----------------------------------------------------------------------------------------
 @st.cache_data(ttl=300)
-def load(include_tests, split_models=False, schema=3):
+def load(include_tests, split_models=False, schema=4):
     # `schema` is part of the cache key: bump it whenever build_frame gains or changes columns, otherwise
     # Streamlit Cloud can keep serving a frame cached by the previous version of src/analyze.py.
     cfg = load_domains()
@@ -161,11 +162,11 @@ def style(chart):
 
 
 LEGEND_EXPR = ("{'airline_direct_target':'Own site','airline_direct_other':'Other airline',"
-               "'ota_aggregator':'OTA / aggregator','other':'Other'}[datum.label]")
+               "'ota_aggregator':'OTA / aggregator','ai_travel_agent':'AI travel agent','other':'Other'}[datum.label]")
 cat_color = alt.Color("category:N", title=None, sort=CATEGORIES,
                       scale=alt.Scale(domain=CATEGORIES, range=[CAT[c] for c in CATEGORIES]), legend=None)
 LEGEND_NAMES = {"airline_direct_target": "Own site", "airline_direct_other": "Other airline",
-                "ota_aggregator": "OTA / aggregator", "other": "Other"}
+                "ota_aggregator": "OTA / aggregator", "ai_travel_agent": "AI travel agent", "other": "Other"}
 
 
 def legend_html():
@@ -206,7 +207,7 @@ rows = [r for r in rows if f"{r['provider']}:{r['model']}" in chosen or r["provi
 if df.empty:
     st.info("Pick at least one model.")
     st.stop()
-flag_ota, flag_own, flag_only = f"{view}_ota", f"{view}_target", f"{view}_ota_only"
+flag_ota, flag_own, flag_only, flag_ai = f"{view}_ota", f"{view}_target", f"{view}_ota_only", f"{view}_ai"
 last = to_et(df.timestamp_utc.max(), "%b %d, %I:%M %p %Z")
 first = to_et(df.timestamp_utc.min(), "%b %d")
 n_fail = sum(1 for r in rows if r.get("error"))
@@ -234,12 +235,13 @@ st.subheader("Boarding passes: who gets the click?")
 L_OTA = "Answers linking an OTA" if view == "cited" else "Searches showing an OTA"
 L_OWN = "Answers linking own site" if view == "cited" else "Searches showing own site"
 L_ONLY = "OTA, no own-site link" if view == "cited" else "OTA shown, own site not"
+L_AI = "Answers linking AI agent" if view == "cited" else "Searches showing AI agent"
 tiles = []
 for key, (code, name) in AIRLINES.items():
     g = df[df.airline_target == key]
     if g.empty:
         continue
-    ota, own, only = g[flag_ota].mean(), g[flag_own].mean(), g[flag_only].mean()
+    ota, own, only, ai = g[flag_ota].mean(), g[flag_own].mean(), g[flag_only].mean(), g[flag_ai].mean()
     tiles.append(f"""<div class="bp"><div class="bp-main">
       <div class="bp-top"><span class="bp-code">{code}</span><span class="bp-name">{name}</span></div>
       <div class="bp-row"><div class="bp-l">{L_OTA}</div><div class="bp-h ota">{ota:.0%}</div>
@@ -248,6 +250,8 @@ for key, (code, name) in AIRLINES.items():
         <div class="bp-track"><i style="width:{own:.0%};background:var(--own)"></i></div></div>
       <div class="bp-row"><div class="bp-l">{L_ONLY}</div><div class="bp-h ota">{only:.0%}</div>
         <div class="bp-track"><i style="width:{only:.0%};background:var(--ota)"></i></div></div>
+      <div class="bp-row"><div class="bp-l">{L_AI}</div><div class="bp-h ai">{ai:.0%}</div>
+        <div class="bp-track"><i style="width:{ai:.0%};background:var(--ai)"></i></div></div>
     </div><div class="bp-stub"><div class="s">Answers</div><div class="n">{len(g)}</div></div></div>""")
 html_block('<div class="bps">' + "".join(tiles) + "</div>")
 
@@ -272,7 +276,7 @@ st.caption(f"Tests are per model, with a bootstrap that resamples whole batches 
 st.subheader("1 · Where do the links come from?")
 pooled = [f"{provider_label(p)} = " + " + ".join(sorted(df.loc[df.provider == p, "model"].unique()))
           for p in providers if df.loc[df.provider == p, "model"].nunique() > 1]
-st.caption("Own site = the airline the trip was about. Each bar is 100% of the links in that group."
+st.caption("Own site = the airline the trip was about. AI travel agent = AI-native flight search built for agents (so far only helloaxel.com), shown apart from OTAs. Each bar is 100% of the links in that group."
            + (" Pooled models: " + "; ".join(pooled) + "." if pooled else ""))
 legend_html()
 d1 = url_category_share(df, ["airline_target", "provider"], view)
@@ -390,12 +394,12 @@ html_block('<div class="board"><table><tr><th>TIME (ET)</th><th>FLT</th><th>ROUT
 with st.expander("Route board: all routes"):
     rb = (df.groupby(["airline_target", "route_id"]).agg(n=("run_number", "size"), ota=(flag_ota, "mean"),
                                                          own=(flag_own, "mean"),
-                                                         only=(flag_only, "mean")).reset_index())
+                                                         only=(flag_only, "mean"), ai=(flag_ai, "mean")).reset_index())
     rb["o"] = rb["airline_target"].map(list(AIRLINES).index)
     rb = rb.sort_values(["o", "route_id"])
     rt = "".join(f'<tr><td>{AIRLINES[r.airline_target][0]}</td><td>{r.route_id.replace("-", " ⇄ ")}</td>'
-                 f'<td class="dim">{r.n}</td><td>{r.ota:.0%}</td><td>{r.own:.0%}</td><td>{r.only:.0%}</td></tr>' for r in rb.itertuples())
-    html_block('<div class="board"><table><tr><th>FLT</th><th>ROUTE</th><th>ANSWERS</th><th>OTA</th><th>OWN SITE</th><th>OTA ONLY</th></tr>'
+                 f'<td class="dim">{r.n}</td><td>{r.ota:.0%}</td><td>{r.own:.0%}</td><td>{r.only:.0%}</td><td>{r.ai:.0%}</td></tr>' for r in rb.itertuples())
+    html_block('<div class="board"><table><tr><th>FLT</th><th>ROUTE</th><th>ANSWERS</th><th>OTA</th><th>OWN SITE</th><th>OTA ONLY</th><th>AI AGENT</th></tr>'
                + rt + "</table></div>")
 
 with st.expander("Sample responses (full text)"):

@@ -1,7 +1,7 @@
 # Registrable domain -> category. Edit freely; unknown domains are reported for review.
 # airline_direct_target / airline_direct_other are decided per call from `airlines` below.
 airlines:            # target airline -> its own domains
-  alaska: [alaskaair.com, hawaiianairlines.com]
+  alaska: [alaskaair.com, hawaiianairlines.com, alaskaair.net, s-hawaiianairlines.com, hawaiianair.com]
   delta: [delta.com]
   southwest: [southwest.com]
 
@@ -20,6 +20,19 @@ other_airlines:      # direct airline sites that are not the target
   - alaskaair.com
   - delta.com
   - southwest.com
+  - alaskaair.net            # Alaska route pages mirrored on resource.alaskaair.net
+  - s-hawaiianairlines.com   # Hawaiian static files (contracts, PDFs)
+  - hawaiianair.com
+  - aveloair.com
+  - frontierairlines.com
+  - virginatlantic.com
+  - copaair.com
+  - americanairlines.co.uk
+  - americanairlines.es
+  - americanairlines.jp
+  - aa.co.uk
+  - aa.com.br
+  - airtrfx.com              # only seen as aa-prod.airtrfx.com: American's fare pages hosted by airTRFX
 
 ota_aggregator:
   - expedia.com
@@ -51,6 +64,75 @@ ota_aggregator:
   - flightconnections.com   # route/price finder
   - flightsfrom.com         # route/price finder
   - cheaptickets.com
+  - directflights.com       # route finder (same kind as flightconnections / flightsfrom)
+  - flightroutes.com        # route finder
+  # Added Nov 9 after manual review of the "other" list (validated by Carlos):
+  # country versions of OTAs already listed
+  - expedia.ca
+  - expedia.co.uk
+  - expedia.ie
+  - expedia.co.in
+  - expedia.com.sg
+  - expedia.co.nz
+  - expedia.de
+  - expedia.com.au
+  - expedia.mx
+  - expedia.it
+  - expedia.be
+  - expedia.com.hk
+  - expedia-aarp.com
+  - kayak.co.uk
+  - kayak.com.au
+  - kayak.co.in
+  - kayak.com.co
+  - kayak.de
+  - momondo.com.au
+  - momondo.ca
+  - momondo.co.za
+  - momondo.com.br
+  - momondo.com.co
+  - momondo.mx
+  - momondo.co.uk
+  - momondo.ie
+  - momondo.it
+  - skyscanner.co.in
+  - skyscanner.co.nz
+  - skyscanner.ca
+  - skyscanner.ie
+  - skyscanner.com.mx
+  - skyscanner.com.sg
+  - skyscanner.com.au
+  - skyscanner.ch
+  - skyscanner.co.za
+  - cheapflights.co.uk
+  - cheapflights.ca
+  - cheapflights.com.au
+  - cheapflights.co.nz
+  - travelocity.ca
+  - cheapoair.ca
+  # other OTAs / metasearch
+  - traveloka.com
+  - flights.com
+  - hotwire.com
+  - idealo.com
+  - edreams.net
+  - edreams.com
+  - edreams.co.uk
+  - edreams.com.au
+  - opodo.com.au
+  - opodo.co.uk
+  - easemytrip.com
+  - makemytrip.com
+  - cleartrip.com
+  - wego.com
+  - wego.qa
+  - airpaz.com
+  - skiplagged.com
+  - omio.com
+
+# AI travel agents: AI-native flight search / booking built for agent-to-agent use. Kept apart from OTAs on purpose.
+ai_travel_agent:
+  - helloaxel.com
 
 # google.com is only an aggregator under these paths (Google Flights / Travel)
 path_rules:

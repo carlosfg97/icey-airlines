@@ -182,6 +182,28 @@ def h6(df):
                   f"{d[s & (d.prompt_variant == 'base')].cited_ota.mean():.0%}")
 
 
+def h1_h2(base):
+    """H1 (own site - OTA) and H2 (OTA cited, Alaska - other airline): the tables in docs/hypotheses.md."""
+    print(f"\n{'=' * 78}\nH1 / H2 on all base batches: {len(base)} calls, {base.run_number.nunique()} batches\n{'=' * 78}")
+    groups = [("All", base)] + [(f"{pr} · {a}", base[(base.provider == pr) & (base.airline_target == a)])
+                                for pr in ("anthropic", "openai") for a in AIRLINES]
+    print("H1  own site cited - OTA cited")
+    for lab, g in groups:
+        m = prep(g, {"n": g.cited_target | True, "own": g.cited_target, "ota": g.cited_ota})
+        pt, lo, hi, p = summarize(*bootstrap(m, lambda v: (v["own"] - v["ota"]) / v["n"]))
+        print(f"  {lab:22s} own {g.cited_target.mean():.0%}  OTA {g.cited_ota.mean():.0%}  "
+              f"diff {fmt(pt)}  95% CI [{fmt(lo)}, {fmt(hi)}]  p = {p:.4f}")
+    print("H2  OTA cited, Alaska - other airline")
+    for scope, d in (("All models", base), ("anthropic", base[base.provider == "anthropic"]),
+                     ("openai", base[base.provider == "openai"])):
+        for other in ("delta", "southwest"):
+            s_a, s_b = d.airline_target == "alaska", d.airline_target == other
+            m = prep(d, {"na": s_a, "ka": s_a & d.cited_ota, "nb": s_b, "kb": s_b & d.cited_ota})
+            pt, lo, hi, p = summarize(*bootstrap(m, lambda v: v["ka"] / v["na"] - v["kb"] / v["nb"]))
+            print(f"  {scope:10s} vs {other:9s} Alaska {d[s_a].cited_ota.mean():.0%}  other {d[s_b].cited_ota.mean():.0%}"
+                  f"  diff {fmt(pt)}  95% CI [{fmt(lo)}, {fmt(hi)}]  p = {p:.4f}")
+
+
 def main():
     cfg = load_domains()
     df = build_frame(load_rows(Path(__file__).resolve().parent.parent / "data" / "results.jsonl"), cfg)
@@ -190,6 +212,7 @@ def main():
     cut = pd.Timestamp(CUTOFF)
     run(base[ts <= cut], "DISCOVERY set (data the hypotheses were drawn from, exploratory)")
     run(base[ts > cut], "CONFIRMATION set (batches after the cutoff, airline not named)")
+    h1_h2(base)
     h6(df)
 
 

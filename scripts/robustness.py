@@ -5,7 +5,7 @@
 Each section asks whether a conclusion in docs/hypotheses.md survives a different, defensible way of
 using the same data. Base prompt only (airline not named), except R9.
 
-  R1  Classification: unclassified OTAs and third-party fare sites ("other") -> do H1/H2 move?
+  R1  Classification: does counting the AI travel agent (helloaxel.com) as an intermediary move H1/H2?
   R2  Exclusive outcomes: OTA only / own site only / both / neither (Claude cites ~6 URLs, so "any OTA" saturates)
   R3  Own-site page type: fare/route page vs info page (baggage, onboard, PDFs) -> H1/H2/H5 on fare pages
   R4  Route as the unit: only 10 routes per airline, so airline claims (H2, H5) need a route-level interval
@@ -14,6 +14,10 @@ using the same data. Base prompt only (airline not named), except R9.
   R7  X1 absence: the "alaska" regex also matches the state (Anchorage, Alaska) -> stricter brand regex
   R8  Model drift: OpenAI results with gpt-6-luna only
   R9  H6: named batch vs base batches with the same routes (instead of adjacent batches)
+  R10 AI travel agent (helloaxel.com): who cites it, when it is retrieved, and on which trips
+
+The domain list was reviewed on Nov 9 (missing OTAs and airline domains added to config/domains.yaml;
+helloaxel.com got its own category, ai_travel_agent). Fee/policy guides and small fare sites stay "other".
 """
 import re
 import sys
@@ -30,16 +34,6 @@ from hypotheses import AIRLINES, CUTOFF, REPS, SEED, bootstrap, fmt, prep, summa
 from src.analyze import build_frame, load_rows  # noqa: E402
 from src.classify import classify_url, load_domains, split_url  # noqa: E402
 
-# OTAs / booking sites missing from config/domains.yaml (country variants and a few others). Sensitivity only.
-EXTRA_OTA = {"traveloka.com", "travelocity.ca", "expedia.ca", "idealo.com", "flights.com", "airpaz.com",
-             "kayak.ca", "skyscanner.ca", "cheapflights.ca", "kiwi.com", "flightreservationsdesk.com"}
-# Third-party fare / route-price pages and flight-search tools now in "other" (manual review of the top
-# "other" domains on Nov 9). Not blogs or news. Broad reading of "intermediary".
-FARE_SITES = {"helloaxel.com", "withautopilot.com", "deeparrival.com", "directflights.com", "travelvient.com",
-              "flyoment.com", "fondtravels.com", "flyinggetaway.com", "flightfare.com", "flytripinfo.com",
-              "skysonar.com", "siyatra.com", "flyofinder.com", "slicktrip.com", "flyxworld.com", "flight.info",
-              "tripprof.com", "holidayprice.com", "traveltourister.com", "airhint.com", "flightroutes.com",
-              "going.com", "flightdeals.net", "goodflightdeals.com", "dyme.earth", "awardtool.com", "point.me"}
 # Own-site URL that can show a fare or start a booking (vs baggage, onboard, news, PDFs, agency pages).
 FARE_PATH = re.compile(r"flights-from-|/flights/|flightsearch|flight-search|/shopping/|/air/booking|"
                        r"fare-information|comparefares|/deals/|book-a-flight|/booking", re.I)
@@ -59,14 +53,11 @@ def frame():
         a = r["airline_target"]
         cit = [(classify_url(u, a, cfg), u) for u in r.get("cited_urls", [])]
         ret = [(classify_url(u, a, cfg), u) for u in r.get("result_urls", [])]
-        doms = {d for (d, _), _ in cit}
         own_c = [u for (_, c), u in cit if c == "airline_direct_target"]
         own_r = [u for (_, c), u in ret if c == "airline_direct_target"]
         q = " | ".join(r.get("search_queries") or []).lower()
         text = (r.get("response_text") or "").lower()
         ext.append({
-            "ota_x": any(c == "ota_aggregator" for (_, c), _ in cit) or bool(doms & EXTRA_OTA),
-            "fare3p": bool(doms & FARE_SITES),
             "own_fare_cited": any(FARE_PATH.search(urlparse(u).path) for u in own_c),
             "own_fare_seen": any(FARE_PATH.search(urlparse(u).path) for u in own_r),
             "q_names": bool(re.search({"alaska": r"alaska air|alaskaair", "delta": r"delta",
@@ -74,7 +65,7 @@ def frame():
             "absent_strict": not re.search(BRAND[a], text),
         })
     df = pd.concat([df.reset_index(drop=True), pd.DataFrame(ext)], axis=1)
-    df["ota_broad"] = df.ota_x | df.fare3p
+    df["ota_or_ai"] = df.cited_ota | df.cited_ai
     df["ota_only"] = df.cited_ota & ~df.cited_target
     df["own_only"] = df.cited_target & ~df.cited_ota
     df["both"] = df.cited_ota & df.cited_target
@@ -130,15 +121,15 @@ def main():
     print(f"Base prompt: {len(b)} calls, {b.run_number.nunique()} batches, {b.route_id.nunique()} routes\n")
 
     print("=" * 78 + "\nR1  Classification sensitivity (share of calls, %)\n" + "=" * 78)
-    print("  cited_ota = as in docs; ota_x = + missed OTAs; ota_broad = + third-party fare/route-price sites")
-    print(table(b, ["cited_target", "cited_ota", "ota_x", "ota_broad"]))
-    for flag in ("cited_ota", "ota_broad"):
+    print("  cited_ai = cites the AI travel agent (helloaxel.com); ota_or_ai = OTA or AI travel agent")
+    print(table(b, ["cited_target", "cited_ota", "cited_ai", "ota_or_ai"]))
+    for flag in ("cited_ota", "ota_or_ai"):
         for prov in ("anthropic", "openai"):
             s = b[b.provider == prov]
             print(line(f"H2 {flag} Alaska - Delta ({prov})", batch_ci(s, flag)))
     o = b[(b.provider == "openai") & (b.airline_target == "alaska")]
     print(line("H1 OpenAI Alaska: own - OTA (docs definition)", batch_ci(o, "cited_target", "cited_ota")))
-    print(line("H1 OpenAI Alaska: own - OTA (broad intermediaries)", batch_ci(o, "cited_target", "ota_broad")))
+    print(line("H1 OpenAI Alaska: own - (OTA or AI agent)", batch_ci(o, "cited_target", "ota_or_ai")))
 
     print("\n" + "=" * 78 + "\nR2  Exclusive outcomes (share of calls, %)\n" + "=" * 78)
     print(table(b, ["ota_only", "both", "own_only", "neither"]))
@@ -245,6 +236,24 @@ def main():
         "named": nm.groupby("provider")[["cited_ota", "cited_target", "seen_target", "absent_strict"]].mean().stack(),
         "base_same_routes": mb.groupby("provider")[["cited_ota", "cited_target", "seen_target", "absent_strict"]].mean().stack()})
     print((out * 100).round(0).astype(int).to_string())
+
+    print("\n" + "=" * 78 + "\nR10 AI travel agent (helloaxel.com)\n" + "=" * 78)
+    b["ai_cr"] = b.cited_ai & b.seen_ai
+    g = b.groupby(["provider", "airline_target"]).agg(retrieved=("seen_ai", "mean"), cited=("cited_ai", "mean"))
+    g["cited_if_retrieved"] = b[b.seen_ai].groupby(["provider", "airline_target"]).cited_ai.mean()
+    g["n_retrieved"] = b[b.seen_ai].groupby(["provider", "airline_target"]).size()
+    print((g * [100, 100, 100, 1]).round(0).fillna(0).astype(int).to_string())
+    for col in ("fare_type", "booking_window"):
+        print(f"  cited by {col} (%): " + ", ".join(f"{k} {v:.0f}" for k, v in (b.groupby(col).cited_ai.mean() * 100).items()))
+    print("  cited by route (%, top 8): " + ", ".join(
+        f"{k} {v:.0f}" for k, v in (b.groupby("route_id").cited_ai.mean() * 100).sort_values(ascending=False).head(8).items()))
+    ai = b[b.cited_ai]
+    print(f"  when cited (n={len(ai)}): also cites an OTA {ai.cited_ota.mean():.0%}, own site {ai.cited_target.mean():.0%}, "
+          f"AI agent only intermediary (no OTA) {(~ai.cited_ota).mean():.0%}")
+    t = pd.to_datetime(b.timestamp_utc, utc=True).dt.floor("D")
+    print("  cited by day (%): " + ", ".join(f"{k:%b %d} {v:.0f}" for k, v in (b.groupby(t).cited_ai.mean() * 100).items()))
+    o = b[b.provider == "openai"]
+    print("  OpenAI by model (%): " + ", ".join(f"{m} {v:.0f}" for m, v in (o.groupby("model").cited_ai.mean() * 100).items()))
 
 
 if __name__ == "__main__":
