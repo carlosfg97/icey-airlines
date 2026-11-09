@@ -32,20 +32,20 @@ result, and what is still open. Written as the hand-off for the next session.
 
 ## Summary
 
-| ID | Hypothesis | Origin | Status |
+| ID | Hypothesis | Origin | Status (after the Nov 9 robustness review, see [below](#robustness-review-nov-9)) |
 |---|---|---|---|
-| H1 | Agents rely more on OTAs than on the airline's own site | Spec | **Mixed**: true overall and for Delta/Southwest; false for Alaska on OpenAI |
-| H2 | It happens more for Alaska than for the comparison carrier | Spec | **Rejected (reversed)**: Alaska has *fewer* OTA citations than Delta |
-| H3 | Claude's Delta gap is a retrieval problem, not a preference | Chat (Nov 8) | **Supported, replicated** out of sample |
-| H4 | First-class queries push agents toward OTAs | Chat (Nov 8) | **Supported, replicated** out of sample |
-| H5 | OpenAI cites Alaska's site more than rivals' sites when it finds it | Chat (Nov 8) | **Supported, replicated**, but route-confounded |
-| H6 | Naming the airline in the prompt lowers OTA reliance | Chat (Nov 8) | **Untested**: only 1 named batch; descriptive signal is large |
+| H1 | Agents rely more on OTAs than on the airline's own site | Spec | **Mixed**: true overall and for Delta/Southwest. The Alaska-on-OpenAI exception is **fragile**: luna only, and gone if third-party fare sites count as intermediaries |
+| H2 | It happens more for Alaska than for the comparison carrier | Spec | **Rejected (reversed)**, robust: Alaska is sent to an OTA *without* its own site far less often than Delta (both models) and Southwest (OpenAI) |
+| H3 | Claude's Delta gap is a retrieval problem, not a preference | Chat (Nov 8) | **Supported, replicated**, and narrowed: Claude's search rarely returns delta.com **even when its query says "Delta"**, and never returns a Delta fare page |
+| H4 | First-class queries push agents toward OTAs | Chat (Nov 8) | **Supported, robust**: holds within route × model, in both OpenAI models; it is "OTA instead of own site", not just "more links" |
+| H5 | OpenAI cites Alaska's site more than rivals' sites when it finds it | Chat (Nov 8) | **Supported for `gpt-6-luna` only** (none in `gpt-6.1-sol`); survives route-level CI and leave-one-route-out |
+| H6 | Naming the airline in the prompt lowers OTA reliance | Chat (Nov 8) | **Untested**: only 1 named batch; same-route comparison makes the signal even larger for OpenAI |
 | S1–S5 | Spec's secondary questions (model, direction, window, fare, add-ons) | Spec | Model and fare matter; direction, window, add-ons do not |
-| X1 | "Absence": the agent recommends a different airline | Spec | Large for OpenAI; heuristic metric, removed from dashboard |
+| X1 | "Absence": the agent recommends a different airline | Spec | Large for OpenAI; heuristic metric (checked: not inflated by the state name "Alaska") |
 | X2 | Agents use OTAs because only OTAs expose prices | Chat (Nov 8, exploration) | **Dropped**: no difference found |
-| X3 | `delta.com` blocks Claude's crawler | Chat (speculation) | **Unverified** guess explaining H3 |
+| X3 | `delta.com` blocks Claude's crawler | Chat (speculation) | **Unverified**; more plausible after R6, but robots.txt could not be fetched from the sandbox |
 | X4 | Self-reported sources agree with structured citations | Spec | Agree ~99–100% (weak cross-check) |
-| X5 | `gpt-6-luna` behaves like `gpt-6.1-sol` (cost switch) | Chat (Nov 7) | Close, not identical |
+| X5 | `gpt-6-luna` behaves like `gpt-6.1-sol` (cost switch) | Chat (Nov 7) | **No** for own-site citation: Delta own site cited 50% (sol) vs 18% (luna); this drives H5 |
 
 ---
 
@@ -279,6 +279,107 @@ hours, different routes in rotation). Pooled as "OpenAI" in the dashboard at Car
 
 ---
 
+## Robustness review (Nov 9)
+
+Question asked: are we using the data correctly to prove or disprove each hypothesis, and where are the blind spots?
+All numbers below come from `python scripts/robustness.py` (base prompt, 1,236 calls, same cluster bootstrap by batch
+unless marked "route CI"). The code in `src/` is unchanged; nothing below changes the dashboard.
+
+### What holds up
+
+- **Data integrity.** 35 batches × 36 calls (+ 1 named batch), no duplicate call keys, 0 errors; only ~1.5% of
+  OpenAI answers cite nothing. The doc's numbers reproduce exactly from `scripts/hypotheses.py`.
+- **H2 (reversed) is robust.** The outcome that matters for disintermediation is "sent to an OTA *and not* to the
+  airline's own site" (`ota_only`), because Claude cites ~6 URLs and "any OTA" sits at 89–95% for every airline.
+  On that outcome Alaska is far below Delta (Claude −65.5 pp [−73, −57]; OpenAI −15.5 pp [−25, −5]) and below
+  Southwest on OpenAI (−18.0 pp [−27, −8]). Resampling routes instead of batches gives the same Alaska-vs-Delta
+  result on OpenAI (−16.5 pp [−27.9, −5.8]).
+
+  | `ota_only` / `both` / `own_only` / `neither` (% of calls) | Alaska | Delta | Southwest |
+  |---|---|---|---|
+  | Claude | 14 / 76 / 10 / 0 | 79 / 14 / 0 / 7 | 14 / 82 / 5 / 0 |
+  | OpenAI | 24 / 19 / 46 / 11 | 40 / 20 / 8 / 33 | 42 / 5 / 27 / 26 |
+
+- **H4 is robust.** First class fare is not balanced across routes (e.g. SEA-HNL 20 first-class calls vs 12 basic), so
+  the test was redone within route × model (60 strata): +16.8 pp [+11.8, +21.7]. It is not "more links": cited URLs
+  per call are flat by fare (Claude 6.3 vs 6.0, OpenAI 1.8 vs 1.8). "OTA only" rises +10.1 pp [+5.3, +15.2] and the
+  own-site *fare page* is cited slightly less (−3.4 pp, p = 0.06). It appears in both OpenAI models (sol +31 pp,
+  luna +14 pp raw).
+- **H3 is sharper than stated.** The search *query* names the airline in 72% of Claude's Delta calls (similar to
+  the 69–82% for the other airlines). Even then, Claude's search returns delta.com only 21% of the time, against
+  97–99% for alaskaair.com / southwest.com and 81% for OpenAI on the same kind of query. **No Claude call ever got a
+  Delta fare or booking page**; the delta.com pages it cites are baggage/onboard info. So the gap is in Claude's search
+  index or crawl access, not in query wording or in Claude's choices (consistent with X3, still unverified).
+- **X1 heuristic.** Matching only brand forms ("Alaska Airlines", "alaskaair", "Hawaiian Airlines") gives the same
+  absence rates (OpenAI Alaska 21% vs 22%), so the state name "Alaska" does not inflate presence.
+
+### What is weaker than the doc says
+
+1. **The confirmation set is not a clean replication for OpenAI: the model changed.** Discovery holds 186 `gpt-6.1-sol`
+   + 180 `gpt-6-luna` OpenAI calls; confirmation holds **only luna** (252). The two models differ a lot on Delta's
+   own site (cited 50% sol vs 18% luna). Split by model:
+
+   | H5: OpenAI cites own site given it was retrieved, Alaska − others (route CI) | |
+   |---|---|
+   | `gpt-6.1-sol` (discovery) | **+0.2 pp [−18.6, +20.7]** |
+   | `gpt-6-luna` discovery | +44.0 pp [+22.5, +63.9] |
+   | `gpt-6-luna` confirmation | +37.4 pp [+17.8, +55.4] |
+
+   H5 replicates *within luna*, but it is a luna behaviour, not "OpenAI". The same holds for the H1 Alaska exception
+   (own − OTA: sol +4.8 pp [−19, +27], luna +28.5 pp [+15, +42]). Pooling the models (agreed Nov 7) hides this.
+2. **The H1 Alaska exception depends on the domain list.** ~1,260 cited URLs are "other", and many are third-party
+   fare/route-price pages (helloaxel.com 112, withautopilot.com 91, deeparrival.com 87, directflights.com 41, …) plus a
+   few OTAs that were never listed (traveloka.com, travelocity.ca, expedia.ca, idealo.com). If those count as
+   intermediaries, OpenAI-Alaska own − intermediary falls from +21.4 pp to **+7.8 pp [−5.6, +20.5] (n.s.)**. H2 does not
+   change for OpenAI (−18.0 pp); for Claude, intermediaries reach 96–99% everywhere (ceiling).
+3. **"Own site cited" mixes fare pages with info pages.** Alaska and Southwest publish static
+   "flights-from-X-to-Y" route pages with fares that search tools index; Delta does not (its retrieved pages are
+   baggage, onboard, PDFs, pro.delta.com agency pages, and the dynamic booking page). Own *fare/booking* page cited:
+   Claude 83 / 0 / 86%, OpenAI 56 / 15 / 30% (Alaska / Delta / Southwest). This is a likely **mechanism** for both H2
+   and H5 (it's an inference): airlines with crawlable fare pages get cited. H5 survives restricting to calls where an own
+   *fare* page was retrieved (+27.6 pp [+13.6, +41.6]), but Delta's rate rises from 44% to 64% (n=58) under that filter,
+   so part of Delta's gap is page type.
+4. **Airline claims rest on 10 routes per airline.** The batch bootstrap treats the 30 routes as fixed. Resampling
+   routes inside each airline widens intervals: Claude Alaska vs Southwest on `cited_ota` goes from p = 0.04 to
+   **p = 0.12** (no longer significant). OpenAI Alaska vs Delta (p = 0.002) and H5 (+28.0 pp [+11.7, +43.3]) survive.
+   H5 is not driven by one route: leaving any single Alaska route out keeps it between +25 and +31 pp (the
+   "near-monopoly" worry, SEA-JNU/SEA-FAI, does not explain it).
+
+### H6, closer look
+
+Comparing the named batch (run 35) with the 348 base calls on the **same routes and directions** (instead of the two
+adjacent batches): OpenAI OTA cited **6% vs 50%**, own site cited 100% vs 47%, absence 0% vs 41%. Claude: OTA 78% vs
+94%, own site 78% vs 66%. Still one batch (n = 18 per model), so still untested, but the matched comparison points
+the same way and is larger for OpenAI.
+
+### Blind spots the data cannot answer
+
+- **"OTA cited" ≠ "the target airline's fare sold through an OTA".** We never check which carrier the OTA link
+  shows. On a Southwest route an OTA page may list only other carriers' fares (Southwest's OTA distribution is
+  limited and should be checked), so H1/H2 measure "sent to an intermediary", not lost margin on the target airline.
+- **Citation ≠ click or booking.** Claude cites ~6 URLs; we don't know which one a user would open. Citation order
+  is a weak proxy at best (not analysed).
+- **One draw per condition.** Each prompt × model × route × date runs once; we can't separate model randomness from
+  condition effects except through the batch bootstrap. A few repeated identical prompts would measure this.
+- **Two days, one location, the API.** Search indexes and fares change; the consumer apps may differ.
+- **Model's own query choice is an intermediate outcome.** Whether the agent puts the airline in its query strongly
+  drives retrieval on OpenAI (Southwest: 96% retrieved if named in the query, 44% if not). Conditioning on it is
+  descriptive, not causal.
+- **Domain list never fully reviewed.** The `FARE_SITES` / `EXTRA_OTA` sets in `scripts/robustness.py` are a
+  one-pass manual reading of the top "other" domains; they should be checked before being moved into
+  `config/domains.yaml`.
+
+### Suggested changes to how results are reported
+
+1. Report OpenAI results **per model** (or luna only), at least for H1 and H5.
+2. Use `ota_only` (OTA without own site) as the headline disintermediation metric next to `cited_ota`.
+3. Add a "third-party fare site" category to `config/domains.yaml` (after a manual review) and show H1 both ways.
+4. Report airline differences with route-level intervals.
+5. For the Alaska call: "Alaska's static route/fare pages are a likely reason agents cite alaskaair.com" is a
+   testable, actionable story (keep them crawlable; check what premium-cabin pages exist, given H4).
+
+---
+
 ## Method notes and known limitations
 
 - **Design.** Each batch: 3 airlines × 3 routes × 2 directions × 2 models = 36 calls, same prompt variables for both
@@ -298,6 +399,7 @@ hours, different routes in rotation). Pooled as "OpenAI" in the dashboard at Car
 ```
 python -m src.analyze                  # base prompt; --variant named | all
 python scripts/hypotheses.py           # H3–H5 discovery/confirmation, H6 when ≥2 named batches exist
+python scripts/robustness.py           # Nov 9 robustness review (R1–R9)
 python -m src.classify data/results.jsonl
 ```
 The H1/H2 bootstrap numbers in this file were computed ad hoc with the helpers in `scripts/hypotheses.py`
@@ -309,7 +411,8 @@ The H1/H2 bootstrap numbers in this file were computed ad hoc with the helpers i
    `"batches":"2"` or pause it for good.
 2. If stopping: pause the cron-job.org job, **revoke the GitHub fine-grained token** (it was pasted in chat; expires
    Dec 7), optionally delete branch `claude/clever-dijkstra-k0aeoa`.
-3. Check X3 (delta.com robots.txt / crawler access).
+3. Check X3 (delta.com robots.txt / crawler access). It could not be fetched from the cloud sandbox (network
+   policy); check it from a laptop, for ClaudeBot / Claude-SearchBot / Claude-User vs OAI-SearchBot.
 4. Improve X1 (detect which carrier the answer recommends).
 5. Fold the H1/H2 bootstrap into `scripts/hypotheses.py` and `src/analyze.py`.
 6. Talking points for the François (Alaska) call, with the caveats above.

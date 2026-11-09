@@ -40,6 +40,7 @@ python -m src.run --check-rotation 72        # balance of the rotation over 72 r
 python -m unittest discover -s tests -t .
 python -m src.classify data/results.jsonl    # category counts, top domains, unknown domains
 python scripts/hypotheses.py                 # pre-specified follow-up tests (cluster bootstrap by batch, Holm)
+python scripts/robustness.py                 # robustness checks behind the Nov 9 review in docs/hypotheses.md
 ```
 
 ## GitHub setup
